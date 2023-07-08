@@ -54,19 +54,6 @@ export default function MarketingPage() {
 					position: 'relative',
 				}}
 			>
-				{/*<Container>*/}
-				{/*	<QuickStart />*/}
-				{/*</Container>*/}
-				{/*<Container>*/}
-				{/*	<Features />*/}
-				{/*</Container>*/}
-				{/*<Box paddingTop={{ md: 8 }}>*/}
-				{/*	<Box bgcolor={'alternate.main'}>*/}
-				{/*		<Container>*/}
-				{/*			<About />*/}
-				{/*		</Container>*/}
-				{/*	</Box>*/}
-				{/*</Box>*/}
 				<Container>
 					<Places />
 				</Container>
@@ -74,11 +61,6 @@ export default function MarketingPage() {
 			<Container>
 				<GetStarted />
 			</Container>
-			{/*<Box>*/}
-			{/*	<Container>*/}
-			{/*		<News posts={posts} />*/}
-			{/*	</Container>*/}
-			{/*</Box>*/}
 		</Suspense>
 	);
 }

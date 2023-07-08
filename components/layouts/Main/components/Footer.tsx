@@ -27,7 +27,7 @@ const Footer = (): JSX.Element => {
 									variant='text'
 									size='small'
 								>
-									Home
+									Candidates
 								</Button>
 							</Link>
 						</Box>
@@ -39,7 +39,7 @@ const Footer = (): JSX.Element => {
 									variant='text'
 									size='small'
 								>
-									Resources
+									Hiring
 								</Button>
 							</Link>
 						</Box>
@@ -51,7 +51,7 @@ const Footer = (): JSX.Element => {
 									size='small'
 									sx={{ color: 'common.white' }}
 								>
-									Store
+									Listing
 								</Button>
 							</Link>
 						</Box>
@@ -63,7 +63,7 @@ const Footer = (): JSX.Element => {
 			</Grid>
 			<Grid item xs={12}>
 				<Typography align={'center'} variant={'subtitle2'} gutterBottom>
-					&copy; almond {dayjs().format('YYYY')}. All rights reserved
+					&copy; talanta kazi {dayjs().format('YYYY')}. All rights reserved
 				</Typography>
 				<Typography align={'center'} variant={'caption'} component={'p'}>
 					When you visit or interact with our sites, services or tools, we or

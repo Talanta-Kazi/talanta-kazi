@@ -12,16 +12,11 @@ import { cn } from '@/lib/utils';
 import StoreProvider from '@/components/store-provider';
 
 export const metadata = {
-	title: 'Almond Hydroponics - Growing your plants smart',
-	description:
-		'We design sustainable solutions for hydroponic farmers, empowering them to grow fresh, clean, and local food in their communities around the globe.',
+	title: 'Staffscout',
+	description: 'Where talent meets opportunity.',
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang='en'
@@ -34,9 +29,7 @@ export default function RootLayout({
 		>
 			<body className='antialiased'>
 				<StoreProvider>
-					<ClientProvider>
-						{children}
-					</ClientProvider>
+					<ClientProvider>{children}</ClientProvider>
 				</StoreProvider>
 			</body>
 		</html>

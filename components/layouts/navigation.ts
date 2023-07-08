@@ -1,35 +1,86 @@
 const sideLayoutNavigation = [
 	{
-		title: 'Resources',
-		href: '/resources',
+		title: 'Career advisory',
+		href: '/career-advisory',
 	},
 	{
-		title: 'Portfolio',
-		href: '/portfolio',
+		title: 'CV services',
+		href: '/cv-services',
 	},
 	{
-		title: 'Latest news',
-		href: '/blog',
+		title: 'Find a job',
+		href: '/find-a-job',
 	},
 	{
-		title: 'Settings',
-		href: '/account',
+		title: 'Post a job (Free)',
+		href: '/post-a-job',
+	},
+	{
+		title: 'Find candidates',
+		href: '/find-candidates',
 	},
 ];
 
 const mainLayoutNavigation = [
 	{
-		title: 'Resources',
-		href: '/resources',
+		title: 'Career advisory',
+		href: '/career-advisory',
 	},
 	{
-		title: 'Store',
-		href: '/store',
+		title: 'CV services',
+		href: '/cv-services',
 	},
 	{
-		title: 'Our Latest',
-		href: '/news',
+		title: 'Find a job',
+		href: '/find-a-job',
+	},
+	{
+		title: 'Post a job (Free)',
+		href: '/post-a-job',
+	},
+	{
+		title: 'Find candidates',
+		href: '/find-candidates',
+	},
+	{
+		title: 'Employers',
+		href: '/employers',
 	},
 ];
 
-export { sideLayoutNavigation, mainLayoutNavigation };
+const candidatesLayoutNavigation = [
+	{
+		title: 'Find work',
+		href: '/candidate/jobs',
+	},
+	{
+		title: 'Saved jobs',
+		href: '/candidate/saved-jobs',
+	},
+	{
+		title: 'My jobs',
+		href: '/candidate/my-jobs',
+	},
+];
+
+const employerLayoutNavigation = [
+	{
+		title: 'All jobs',
+		href: '/employer/jobs',
+	},
+	{
+		title: 'Candidates',
+		href: '/employer/saved-jobs',
+	},
+	{
+		title: 'Reports',
+		href: '/employer/my-jobs',
+	},
+];
+
+export {
+	sideLayoutNavigation,
+	mainLayoutNavigation,
+	candidatesLayoutNavigation,
+	employerLayoutNavigation,
+};

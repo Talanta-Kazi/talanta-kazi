@@ -1,12 +1,13 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import type { GetServerSidePropsContext } from "next";
-import type { NextAuthOptions } from "next-auth";
-import { getServerSession } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import type { GetServerSidePropsContext } from 'next';
+import type { NextAuthOptions } from 'next-auth';
+import { getServerSession } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { env } from "@/env.mjs";
-import {JWT} from "next-auth/jwt";
-import {ICandidateProfile} from "@/types";
+import { env } from '@/env.mjs';
+import { JWT } from 'next-auth/jwt';
+import { ICandidateProfile } from '@/types';
+import { isArrayEmpty } from '@/lib/utils';
 
 interface AuthResponse {
 	token: string;
@@ -14,14 +15,14 @@ interface AuthResponse {
 }
 
 const assignRole = (user) => {
-	let role = "CANDIDATE";
+	let role = 'CANDIDATE';
 
 	if (user.is_both_employer_and_candidate) {
-		role = "BOTH";
+		role = 'BOTH';
 	} else if (user.is_candidate) {
-		role = "CANDIDATE";
+		role = 'CANDIDATE';
 	} else if (user.is_employer) {
-		role = "EMPLOYER";
+		role = 'EMPLOYER';
 	}
 
 	return role;
@@ -70,11 +71,11 @@ export const authOptions: NextAuthOptions = {
 	},
 	providers: [
 		CredentialsProvider({
-			id: "credentials",
-			name: "email",
+			id: 'credentials',
+			name: 'email',
 			credentials: {
-				username: { label: "Username", type: "text" },
-				password: { label: "Password", type: "password" }
+				username: { label: 'Username', type: 'text' },
+				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials, req) {
 				const headers = new Headers();
@@ -83,7 +84,7 @@ export const authOptions: NextAuthOptions = {
 
 				const payload = {
 					username: credentials?.username,
-					password: credentials?.password
+					password: credentials?.password,
 				};
 
 				const res = await fetch(`${env.API_URL}/login/`, {
@@ -100,8 +101,8 @@ export const authOptions: NextAuthOptions = {
 				}
 				// Return null if user data could not be retrieved
 				return null;
-			}
-		})
+			},
+		}),
 		/**
 		 * ...add more providers here
 		 *
@@ -120,10 +121,15 @@ export const authOptions: NextAuthOptions = {
 		async jwt({ token, user }) {
 			if (user) {
 				// @ts-expect-error
-				token.id = user.profile.id || "";
-				token.username = user.profile.user.username || "";
-				token.picture = user.profile.user.profilePic || "";
+				token.id = user.profile.id || '';
+				// @ts-expect-error
+				token.username = user.profile.user.username || '';
+				// @ts-expect-error
+				token.picture = user.profile.user.profilePic || '';
+				// @ts-expect-error
 				token.role = assignRole(user.profile.user);
+				// @ts-expect-error
+				token.newUser = isArrayEmpty(user.profile.job_title);
 				token.token = user.token;
 				token.refresh = user.refresh;
 				token.token_expiry = user.token_expiry;

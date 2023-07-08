@@ -1,88 +1,139 @@
 import Container from '@/components/container';
 import { Box, Button, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
-
-import homepagePic from '/public/img/hydroponics.webp';
-import Link from 'next/link';
-import { isObjectEmpty } from '@/lib/utils';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { alpha, useTheme } from '@mui/material/styles';
+import Slider from 'react-slick';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Hero = (): JSX.Element => {
 	const { data: session, status } = useSession();
-	const device = session?.user?.device || {};
+	const theme = useTheme();
+	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+		defaultMatches: true,
+	});
 
-	const LeftSide = () => (
-		<>
-			<Box marginBottom={2}>
-				<Typography variant='h2' color='text.primary' sx={{ fontWeight: 700 }}>
-					Grow your food{' '}
-				</Typography>
-				<Typography
-					color={'primary'}
-					component={'span'}
-					variant='h2'
-					sx={{ fontWeight: 700 }}
-				>
-					healthy.
-				</Typography>
-			</Box>
-			<Box marginBottom={3}>
-				<Typography
-					variant='h6'
-					component='p'
-					color='text.secondary'
-					sx={{ fontWeight: 400 }}
-				>
-					We design sustainable solutions for hydroponic farmers, empowering
-					them to grow fresh, clean, and local food in their communities around
-					the globe.
-				</Typography>
-			</Box>
-			<Box
-				display='flex'
-				flexDirection={{ xs: 'column', sm: 'row' }}
-				alignItems={{ xs: 'stretched', sm: 'flex-start' }}
-				marginTop={4}
-			>
-				<Button
-					component={Link}
-					variant='contained'
-					color='primary'
-					size='large'
-					href='/store'
-				>
-					Visit our store
-				</Button>
-				{status === 'authenticated' ? (
-					<Button
-						component={Link}
-						variant='outlined'
-						color='primary'
-						size='large'
-						href={`${isObjectEmpty(device) ? '/setup-device' : '/dashboard'}`}
+	function LeftSide() {
+		return (
+			<Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
+				<Box marginBottom={2}>
+					<Typography
+						variant='h3'
+						color='text.primary'
 						sx={{
-							marginTop: { xs: 2, sm: 0 },
-							marginLeft: { sm: 2 },
-							backgroundColor: 'background.paper',
-							'&:hover': {
-								backgroundColor: '#f4f4f6',
-							},
+							fontWeight: 700,
 						}}
 					>
-						{isObjectEmpty(device) ? 'Setup new device' : 'Go to dashboard'}
+						Where talent{' '}
+						<Typography
+							color='secondary'
+							component='span'
+							variant='inherit'
+							sx={{
+								background: `linear-gradient(180deg, transparent 82%, ${alpha(
+									theme.palette.secondary.main,
+									0.3,
+								)} 0%)`,
+							}}
+						>
+							meets opportunity
+						</Typography>
+					</Typography>
+				</Box>
+				<Box marginY={4}>
+					<Typography variant='h6' component='p' color='text.secondary'>
+						Looking for work? Organize your search, stand out to employers, and
+						track your progress here. Let&apos;s get to work.
+					</Typography>
+				</Box>
+				<Box
+					display='flex'
+					flexDirection={{ xs: 'column', sm: 'row' }}
+					alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+				>
+					<Button
+						variant='contained'
+						color='primary'
+						size='large'
+						fullWidth={!isMd}
+						href='/job-listing'
+						// endIcon={
+						// 	<Box
+						// 		component="svg"
+						// 		xmlns="http://www.w3.org/2000/svg"
+						// 		fill="none"
+						// 		viewBox="0 0 24 24"
+						// 		stroke="currentColor"
+						// 		width={24}
+						// 		height={24}
+						// 	>
+						// 		<path
+						// 			strokeLinecap="round"
+						// 			strokeLinejoin="round"
+						// 			strokeWidth={2}
+						// 			d="M17 8l4 4m0 0l-4 4m4-4H3"
+						// 		/>
+						// 	</Box>
+						// }
+					>
+						Find me a job!
 					</Button>
-				) : null}
+					<Button
+						variant='outlined'
+						sx={{
+							color: 'text.primary',
+							marginLeft: { xs: 0, sm: 2 },
+						}}
+						size='large'
+						fullWidth={!isMd}
+						href='/profile'
+					>
+						I&apos;m hiring
+					</Button>
+				</Box>
 			</Box>
-		</>
-	);
+		);
+	}
 
-	const RightSide = (): JSX.Element => {
+	function RightSide(): JSX.Element {
+		const sliderOpts = {
+			dots: false,
+			infinite: true,
+			speed: 3000,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			autoplay: true,
+			arrows: true,
+			fade: true,
+		};
+
 		return (
 			<Box
 				sx={{
 					height: { xs: 'auto', md: 1 },
-					'& img': {
+					'& .slick-slide img': {
 						objectFit: 'cover',
+					},
+					'& .slick-list, & .slick-slider, & .slick-track, & .slick-slide > div':
+						{
+							height: { xs: 'auto', md: 1 },
+						},
+					'& .slick-prev, & .slick-next': {
+						zIndex: 2,
+						bottom: 0,
+						top: '100%',
+						left: '100%',
+						right: 0,
+						transform: `translate(-100%, calc(-100% - ${theme.spacing(2)}))`,
+						marginLeft: theme.spacing(-2),
+						width: 32,
+						height: 32,
+						'&:before': {
+							fontSize: 32,
+						},
+					},
+					'& .slick-prev': {
+						marginLeft: theme.spacing(-7),
 					},
 					'& .lazy-load-image-loaded': {
 						height: 1,
@@ -90,20 +141,29 @@ const Hero = (): JSX.Element => {
 					},
 				}}
 			>
-				<Box
-					component={'img'}
-					// effect="blur"
-					src='/img/hydroponics.webp'
-					srcSet='/img/hydroponics.webp 2x'
-					alt='home-image'
-					height={{ xs: 'auto', md: 1 }}
-					maxHeight={{ xs: 300, md: 1 }}
-					width={1}
-					maxWidth={1}
-				/>
+				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
+				<Slider {...sliderOpts}>
+					{[
+						'/img/home1.jpeg',
+						'/img/home2.jpeg',
+						'/img/home3.jpeg',
+						'/img/home4.jpeg',
+					].map((item) => (
+						<Box
+							key={item}
+							component={LazyLoadImage}
+							effect='blur'
+							src={item}
+							height={{ xs: 'auto', md: 1 }}
+							maxHeight={{ xs: 300, md: 1 }}
+							width={1}
+							maxWidth={1}
+						/>
+					))}
+				</Slider>
 			</Box>
 		);
-	};
+	}
 
 	return (
 		<Box
@@ -169,7 +229,7 @@ const Hero = (): JSX.Element => {
 										},
 									}}
 								>
-									<Image fill src={homepagePic} alt='home-image' />
+									<RightSide />
 								</Box>
 							</Box>
 						</Box>

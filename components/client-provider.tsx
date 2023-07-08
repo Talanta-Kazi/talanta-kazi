@@ -6,16 +6,15 @@ import { SWRConfig } from 'swr';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { AnimatePresence, motion } from 'framer-motion';
-import CssBaseline from '@mui/material/CssBaseline';
 import { ErrorBoundary } from '@/components/error-boundary';
 import ErrorBoundaryPage from '@/components/error-boundary-page';
 import { ComponentProvider } from '@/context/ComponentContext';
 import Paper from '@mui/material/Paper';
 import SnackBar from '@/components/snack-bar';
-import { ThemeProvider } from '@mui/material/styles';
 import AOS from 'aos';
-import getTheme from '@/theme';
+import getTheme from 'components/theme-registry/theme';
 import { PaletteMode } from '@mui/material';
+import ThemeRegistry from '@/components/theme-registry';
 
 export const ColorModeContext = createContext({
 	toggleColorMode: () => {},
@@ -75,9 +74,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 								fetch(resource, init).then((res) => res.json()),
 						}}
 					>
-						<ThemeProvider theme={theme}>
-							{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-							<CssBaseline />
+						<ThemeRegistry>
 							<ColorModeContext.Provider value={colorMode}>
 								<ErrorBoundary
 									FallbackComponent={ErrorBoundaryPage}
@@ -89,7 +86,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 									</ComponentProvider>
 								</ErrorBoundary>
 							</ColorModeContext.Provider>
-						</ThemeProvider>
+						</ThemeRegistry>
 					</SWRConfig>
 				</motion.div>
 			</AnimatePresence>
