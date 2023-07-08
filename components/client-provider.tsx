@@ -12,6 +12,13 @@ import AOS from 'aos';
 import ThemeRegistry from '@/components/theme-registry';
 import useStore from '@/store';
 
+AOS.init({
+	once: true,
+	delay: 50,
+	duration: 500,
+	easing: 'ease-in-out',
+});
+
 export function ClientProvider({ children }: { children: ReactNode }) {
 	const store = useStore();
 
@@ -21,13 +28,6 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 		if (jssStyles) {
 			jssStyles.parentElement?.removeChild(jssStyles);
 		}
-
-		AOS.init({
-			once: true,
-			delay: 50,
-			duration: 500,
-			easing: 'ease-in-out',
-		});
 	}, []);
 
 	return (

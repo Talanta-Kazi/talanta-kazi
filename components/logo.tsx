@@ -3,9 +3,6 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 
-const darkLogo = '/logo.png';
-const logo = '/logo.png';
-
 interface Props {
 	displayText?: boolean;
 }
@@ -23,11 +20,11 @@ const Logo = ({ displayText = false }: Props): JSX.Element => {
 			style={{ cursor: 'pointer' }}
 		>
 			<Typography
-				variant='h5'
+				variant='h6'
 				color='textPrimary'
 				style={{
 					fontWeight: 600,
-					fontSize: '1.45rem',
+					// fontSize: '1.45rem',
 				}}
 			>
 				Talanta Kazi

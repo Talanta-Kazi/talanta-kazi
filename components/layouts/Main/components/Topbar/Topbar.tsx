@@ -1,5 +1,4 @@
-import { Menu } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -9,12 +8,9 @@ import { fancyId } from '@/lib/utils';
 import { mainLayoutNavigation } from '@/components/layouts/navigation';
 import Logo from '@/components/logo';
 import AuthButtonLink from '@/components/auth-button-link';
+import { MobileNav } from '@/components/layouts/Main/components';
 
-interface Props {
-	onSidebarOpen: () => void;
-}
-
-const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
+const Topbar = (): JSX.Element => {
 	const [activeLink, setActiveLink] = useState('');
 	const pathname = usePathname();
 
@@ -64,15 +60,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 
 			<Box sx={{ display: 'flex', position: 'static' }} alignItems={'center'}>
 				<AuthButtonLink />
-				<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-					<IconButton
-						onClick={onSidebarOpen}
-						aria-label='Menu'
-						sx={{ padding: 0, margin: 0 }}
-					>
-						<Menu fontSize={'medium'} />
-					</IconButton>
-				</Box>
+				<MobileNav />
 			</Box>
 		</Box>
 	);
