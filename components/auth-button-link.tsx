@@ -2,13 +2,13 @@ import UserAvatar from '@/components/user-avatar';
 import { Button, Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import Link from '@/components/link';
 
 export default function AuthButtonLink() {
 	const [activeLink, setActiveLink] = useState('');
-	const { pathname } = useRouter();
+	const pathname = usePathname();
 	const { status } = useSession();
 
 	useEffect(() => {

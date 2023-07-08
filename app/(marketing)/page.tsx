@@ -4,12 +4,7 @@ import { Suspense } from 'react';
 import { Box } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import Container from '@/components/container';
-import {
-	GetStarted,
-	Hero,
-	Places,
-	Services,
-} from '@/app/(marketing)/_components';
+import { Hero, Places, Services } from '@/app/(marketing)/_components';
 
 export default function MarketingPage() {
 	const theme = useTheme();
@@ -58,9 +53,6 @@ export default function MarketingPage() {
 					<Places />
 				</Container>
 			</Box>
-			<Container>
-				<GetStarted />
-			</Container>
 		</Suspense>
 	);
 }

@@ -1,20 +1,20 @@
-import {Menu} from '@mui/icons-material';
-import {Box, IconButton, Typography} from '@mui/material';
-import {useSession} from 'next-auth/react';
-import {usePathname} from 'next/navigation';
-import {useEffect, useState} from 'react';
+import { Menu } from '@mui/icons-material';
+import { Box, IconButton, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
-import {fancyId} from '@/lib/utils';
-import {mainLayoutNavigation} from '@/components/layouts/navigation';
+import { fancyId } from '@/lib/utils';
+import { mainLayoutNavigation } from '@/components/layouts/navigation';
 import Logo from '@/components/logo';
-import AuthButtonLink from "@/components/auth-button-link";
+import AuthButtonLink from '@/components/auth-button-link';
 
 interface Props {
 	onSidebarOpen: () => void;
 }
 
-const Topbar = ({onSidebarOpen}: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 	const [activeLink, setActiveLink] = useState('');
 	const pathname = usePathname();
 
@@ -26,7 +26,7 @@ const Topbar = ({onSidebarOpen}: Props): JSX.Element => {
 		}
 	}, [pathname]);
 
-	const {data: session, status} = useSession();
+	const { data: session, status } = useSession();
 
 	return (
 		<Box
@@ -35,10 +35,10 @@ const Topbar = ({onSidebarOpen}: Props): JSX.Element => {
 			alignItems={'center'}
 			width={1}
 		>
-			<Box sx={{display: {xs: 'flex'}}} alignItems={'center'}>
-				<Logo/>
+			<Box sx={{ display: { xs: 'flex' } }} alignItems={'center'}>
+				<Logo />
 			</Box>
-			<Box sx={{display: {xs: 'none', md: 'flex'}}} alignItems={'center'}>
+			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
 				{mainLayoutNavigation.map((page, index) => (
 					<Box key={fancyId()} marginLeft={index === 0 ? 0 : 4}>
 						<Link href={page.href}>
@@ -62,15 +62,15 @@ const Topbar = ({onSidebarOpen}: Props): JSX.Element => {
 				))}
 			</Box>
 
-			<Box sx={{display: 'flex', position: 'static'}} alignItems={'center'}>
-				<AuthButtonLink/>
-				<Box sx={{display: {xs: 'flex', md: 'none'}}} alignItems={'center'}>
+			<Box sx={{ display: 'flex', position: 'static' }} alignItems={'center'}>
+				<AuthButtonLink />
+				<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
 					<IconButton
 						onClick={onSidebarOpen}
 						aria-label='Menu'
-						sx={{padding: 0, margin: 0}}
+						sx={{ padding: 0, margin: 0 }}
 					>
-						<Menu fontSize={'medium'}/>
+						<Menu fontSize={'medium'} />
 					</IconButton>
 				</Box>
 			</Box>

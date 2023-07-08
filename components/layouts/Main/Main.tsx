@@ -115,11 +115,7 @@ const Main = ({
 					paddingY={{ xs: 2, md: 1 }}
 					paddingX={{ xs: 1, md: 4 }}
 				>
-					<Topbar
-						onSidebarOpen={handleSidebarOpen}
-						handleContactModal={handleContactModal}
-						colorInvert={trigger ? false : colorInvert}
-					/>
+					<Topbar onSidebarOpen={handleSidebarOpen} />
 				</Container>
 			</AppBar>
 			<div id='back-to-top-anchor' />
