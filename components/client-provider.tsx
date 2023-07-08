@@ -1,27 +1,19 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
-import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { SWRConfig } from 'swr';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ErrorBoundary } from '@/components/error-boundary';
 import ErrorBoundaryPage from '@/components/error-boundary-page';
 import { ComponentProvider } from '@/context/ComponentContext';
-import Paper from '@mui/material/Paper';
 import SnackBar from '@/components/snack-bar';
 import AOS from 'aos';
-import getTheme from 'components/theme-registry/theme';
-import { PaletteMode } from '@mui/material';
 import ThemeRegistry from '@/components/theme-registry';
-
-export const ColorModeContext = createContext({
-	toggleColorMode: () => {},
-});
+import useStore from '@/store';
 
 export function ClientProvider({ children }: { children: ReactNode }) {
-	const [mode, setMode] = useState<'light' | 'dark'>('light');
+	const store = useStore();
 
 	useEffect(() => {
 		// Remove the server-side injected CSS.
@@ -37,18 +29,6 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 			easing: 'ease-in-out',
 		});
 	}, []);
-
-	const colorMode = useMemo(
-		() => ({
-			toggleColorMode: () => {
-				setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-			},
-		}),
-		[],
-	);
-
-	const theme = useMemo(() => getTheme(mode as PaletteMode), [mode]);
-	const snack = useSelector((store: RootState) => store.snack);
 
 	return (
 		<SessionProvider>
@@ -75,17 +55,15 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 						}}
 					>
 						<ThemeRegistry>
-							<ColorModeContext.Provider value={colorMode}>
-								<ErrorBoundary
-									FallbackComponent={ErrorBoundaryPage}
-									onReset={() => window.location.replace('/')}
-								>
-									<ComponentProvider>
-										<Paper elevation={0}>{children}</Paper>
-										<SnackBar snack={snack} />
-									</ComponentProvider>
-								</ErrorBoundary>
-							</ColorModeContext.Provider>
+							<ErrorBoundary
+								FallbackComponent={ErrorBoundaryPage}
+								onReset={() => window.location.replace('/')}
+							>
+								<ComponentProvider>
+									{children}
+									<SnackBar snack={store.snack} />
+								</ComponentProvider>
+							</ErrorBoundary>
 						</ThemeRegistry>
 					</SWRConfig>
 				</motion.div>

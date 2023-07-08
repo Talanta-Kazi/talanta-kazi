@@ -1,22 +1,51 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { notificationsSlice } from '@/store/slices/notifications';
-import { snackSlice } from '@/store/slices/snack';
-import type { TypedUseSelectorHook } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
+import type { IProfileResponse } from "@/lib/types";
+import { create } from "zustand";
 
-const rootReducer = combineReducers({
-	[snackSlice.name]: snackSlice.reducer,
-	[notificationsSlice.name]: notificationsSlice.reducer,
-});
+import type { ICandidateProfile } from "@/types";
 
-const store = configureStore({
-	reducer: rootReducer,
-	devTools: true,
-});
+export type Severity = "success" | "error";
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+export interface SnackMessage {
+  message: string;
+  severity?: Severity;
+}
 
-export default store;
+type Store = {
+  authUser: Partial<ICandidateProfile> | null;
+  requestLoading: boolean;
+  setAuthUser: (user: Partial<ICandidateProfile> | null) => void;
+  setRequestLoading: (isLoading: boolean) => void;
+  snack: SnackMessage;
+  displaySnackMessage: (snack: SnackMessage) => void;
+  resetSnack: () => void;
+  setUploadingImage: (isUploading: boolean) => void;
+  uploadingImage: boolean;
+  profile: Partial<IProfileResponse> | null;
+  setProfile: (profile: Partial<IProfileResponse> | null) => void;
+};
+
+const useStore = create<Store>((set) => ({
+  authUser: null,
+  requestLoading: false,
+  setAuthUser: (user) => set((state) => ({ ...state, authUser: user })),
+  setRequestLoading: (isLoading) =>
+    set((state) => ({ ...state, requestLoading: isLoading })),
+  snack: {
+    message: "",
+    severity: "success"
+  },
+  displaySnackMessage: (snack: SnackMessage) =>
+    set((state) => ({
+      ...state,
+      snack
+    })),
+  resetSnack: () =>
+    set((state) => ({ ...state, snack: { message: "", severity: "success" } })),
+  uploadingImage: false,
+  setUploadingImage: (isUploading) =>
+    set((state) => ({ ...state, uploadingImage: isUploading })),
+  profile: null,
+  setProfile: (profile) => set((state) => ({ ...state, profile }))
+}));
+
+export default useStore;

@@ -1,6 +1,6 @@
 {
-	"name": "almondhydroponics.com",
-	"description": "Almond website for the hydroponics farm",
+	"name": "talanta-kazi.com",
+	"description": "Talent meets opportunity",
 	"version": "0.1.0",
 	"author": "Francis Masha",
 	"email": "francismasha96@gmail.com",
@@ -60,7 +60,8 @@
 		"swr": "^2.1.5",
 		"tailwind-merge": "^1.13.2",
 		"tailwindcss-animate": "^1.0.6",
-		"zod": "^3.21.4"
+		"zod": "^3.21.4",
+		"zustand": "^4.3.9"
 	},
 	"devDependencies": {
 		"@types/aos": "^3.0.4",

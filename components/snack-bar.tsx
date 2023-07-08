@@ -1,12 +1,11 @@
+import type { SnackMessage } from '@/lib/../store';
+import useStore from '@/lib/../store';
 import type { AlertProps } from '@mui/material';
 import { Snackbar, useMediaQuery } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
-import type { SnackMessage } from '@/store/slices/snack';
-import { reset } from '@/store/slices/snack';
 import type { SyntheticEvent } from 'react';
 import { forwardRef, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 interface SnackMessageProps {
 	snack: SnackMessage;
@@ -19,11 +18,11 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 	return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
 
-export const SnackBar = ({ snack }: SnackMessageProps): JSX.Element => {
+export function SnackBar({ snack }: SnackMessageProps): JSX.Element {
 	const [isSnackOpen, setSnackOpen] = useState(false);
 	const [snackMessage, setSnackMessage] = useState('');
+	const { resetSnack } = useStore();
 
-	const dispatch = useDispatch();
 	const theme = useTheme();
 	const isSm = useMediaQuery(theme.breakpoints.up('sm'), {
 		defaultMatches: true,
@@ -41,7 +40,7 @@ export const SnackBar = ({ snack }: SnackMessageProps): JSX.Element => {
 	) => {
 		if (reason === 'clickaway') return;
 		setSnackOpen(false);
-		dispatch(reset());
+		resetSnack();
 	};
 
 	return (
@@ -66,6 +65,6 @@ export const SnackBar = ({ snack }: SnackMessageProps): JSX.Element => {
 			</div>
 		</Snackbar>
 	);
-};
+}
 
 export default SnackBar;
