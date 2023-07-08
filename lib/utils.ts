@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { parse } from 'node-html-parser';
 
 import { env } from '@/env.mjs';
 
@@ -65,6 +66,13 @@ function removeScrollLock() {
 	root?.classList.remove('lock-scroll'); // class is defined in the global.css
 }
 
+const stripHtml = (html: string) => {
+	return parse(html).text;
+
+	// const doc = new DOMParser().parseFromString(html, "text/html");
+	// return doc.body.textContent || "";
+};
+
 export {
 	cn,
 	dateSortDesc,
@@ -77,4 +85,5 @@ export {
 	absoluteUrl,
 	lockScroll,
 	removeScrollLock,
+	stripHtml,
 };

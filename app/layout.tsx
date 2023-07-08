@@ -9,7 +9,6 @@ import { fontMono, fontSans } from '@/lib/fonts';
 import { ClientProvider } from '@/components/client-provider';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import StoreProvider from '@/components/store-provider';
 
 export const metadata = {
 	title: 'Staffscout',
@@ -28,9 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			suppressHydrationWarning
 		>
 			<body className='antialiased'>
-				<StoreProvider>
-					<ClientProvider>{children}</ClientProvider>
-				</StoreProvider>
+				<ClientProvider>{children}</ClientProvider>
 			</body>
 		</html>
 	);

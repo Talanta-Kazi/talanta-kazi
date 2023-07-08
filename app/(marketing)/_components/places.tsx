@@ -26,7 +26,7 @@ const Places = (): JSX.Element => {
 					height={1}
 					width={1}
 					borderRadius={2}
-					src={'/img/hydroponics-1.webp'}
+					src={'/img/home1.jpeg'}
 					alt='...'
 					effect='blur'
 					sx={{
@@ -53,7 +53,7 @@ const Places = (): JSX.Element => {
 					height={1}
 					width={1}
 					borderRadius={2}
-					src={'/img/hydroponics.webp'}
+					src={'/img/home2.jpeg'}
 					alt='...'
 					effect='blur'
 					sx={{
@@ -80,7 +80,7 @@ const Places = (): JSX.Element => {
 					height={1}
 					width={1}
 					borderRadius={2}
-					src={'/img/tomato-bucket.webp'}
+					src={'/img/home3.jpeg'}
 					alt='...'
 					effect='blur'
 					sx={{
@@ -108,7 +108,7 @@ const Places = (): JSX.Element => {
 					height={1}
 					width={1}
 					borderRadius={2}
-					src={'/img/hydroponics-2.webp'}
+					src={'/img/home4.jpeg'}
 					alt='...'
 					effect='blur'
 					sx={{

@@ -2,13 +2,16 @@
 
 import { Suspense } from 'react';
 import { Box } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Container from '@/components/container';
-import { Hero, Places, Services } from '@/app/(marketing)/_components';
+import {
+	Bookings,
+	Hero,
+	Reviews,
+	Services,
+} from '@/app/(marketing)/_components';
 
 export default function MarketingPage() {
-	const theme = useTheme();
-
 	return (
 		<Suspense fallback={null}>
 			<Box
@@ -25,7 +28,7 @@ export default function MarketingPage() {
 						height: '100%',
 						backgroundSize: '16px 16px',
 						backgroundImage: `radial-gradient(${alpha(
-							theme.palette.primary.dark,
+							'#c9ad24',
 							0.4,
 						)} 20%, transparent 20%)`,
 						opacity: 0.2,
@@ -39,18 +42,14 @@ export default function MarketingPage() {
 			<Container>
 				<Services />
 			</Container>
-			<Box
-				sx={{
-					backgroundImage: `linear-gradient(to bottom, ${alpha(
-						theme.palette.background.paper,
-						0,
-					)}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
-					backgroundRepeat: 'repeat-x',
-					position: 'relative',
-				}}
-			>
+			<Box bgcolor='alternate.main'>
 				<Container>
-					<Places />
+					<Bookings />
+				</Container>
+			</Box>
+			<Box bgcolor='alternate.main'>
+				<Container>
+					<Reviews />
 				</Container>
 			</Box>
 		</Suspense>

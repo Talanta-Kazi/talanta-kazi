@@ -1,3 +1,5 @@
+'use client';
+
 import Container from '@/components/container';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
