@@ -7,23 +7,9 @@
 	"private": true,
 	"scripts": {
 		"build": "next build",
-		"db:format": "prisma format",
-		"db:generate": "pnpm prisma generate",
-		"db:migrate": "prisma migrate",
-		"db:migrate:deploy": "prisma migrate deploy",
-		"db:migrate:dev": "prisma migrate dev",
-		"db:push": "pnpm prisma db push",
-		"db:reset": "prisma migrate reset",
-		"db:rollback": "tsx prisma/rollback.ts",
-		"db:seed": "tsx src/server/db/seed.ts",
-		"db:seed:migrate": "pnpm db:migrate && pnpm db:seed",
-		"db:seed:reset": "pnpm db:reset && pnpm db:seed",
-		"db:seed:rollback": "pnpm db:rollback && pnpm db:seed",
-		"db:studio": "prisma studio",
 		"dev": "next dev",
 		"format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
 		"lint": "next lint",
-		"postinstall": "prisma generate",
 		"start": "node .next/standalone/server.js"
 	},
 	"dependencies": {
