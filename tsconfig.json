@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"target": "es2018",
 		"lib": ["dom", "dom.iterable", "esnext"],
-		"types": ["react/next"],
 		"allowJs": true,
 		"checkJs": true,
 		"skipLibCheck": true,

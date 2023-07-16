@@ -1,6 +1,5 @@
 'use client';
 
-import { Suspense } from 'react';
 import { Box } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import Container from '@/components/container';
@@ -13,7 +12,7 @@ import {
 
 export default function MarketingPage() {
 	return (
-		<Suspense fallback={null}>
+		<>
 			<Box
 				bgcolor={'alternate.main'}
 				sx={{
@@ -39,7 +38,7 @@ export default function MarketingPage() {
 					<Hero />
 				</Box>
 			</Box>
-			<Container>
+			<Container paddingY={{ xs: 2, sm: 4, md: 6 }}>
 				<Services />
 			</Container>
 			<Box bgcolor='alternate.main'>
@@ -52,6 +51,6 @@ export default function MarketingPage() {
 					<Reviews />
 				</Container>
 			</Box>
-		</Suspense>
+		</>
 	);
 }

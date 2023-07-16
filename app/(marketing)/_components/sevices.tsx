@@ -57,7 +57,7 @@ export default function Services() {
 					component='p'
 					color='text.secondary'
 					align='center'
-					marginY={4}
+					marginY={2}
 				>
 					Fill out our standardized application on our platform.
 					<br />

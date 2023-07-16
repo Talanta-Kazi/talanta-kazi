@@ -18,10 +18,10 @@ const Topbar = (): JSX.Element => {
 			alignItems={'center'}
 		>
 			<Box sx={{ display: 'flex' }} alignItems={'center'} onClick={router.back}>
-				<IconButton style={{ marginRight: theme.spacing(1) }} color='primary'>
+				<IconButton style={{ marginRight: theme.spacing(1) }}>
 					<ArrowBackRounded className='learn-more-link__arrow' />
 				</IconButton>
-				<Typography variant='body2' color='primary' sx={{ cursor: 'pointer' }}>
+				<Typography variant='body2' sx={{ cursor: 'pointer' }}>
 					Back
 				</Typography>
 			</Box>
@@ -33,7 +33,6 @@ const Topbar = (): JSX.Element => {
 						size='medium'
 						label='Login'
 						variant='outlined'
-						color='primary'
 						avatar={
 							<Avatar
 								alt={'Anonymous User'}
