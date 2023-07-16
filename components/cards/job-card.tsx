@@ -7,6 +7,7 @@ import {
 	Button,
 	Card,
 	CardContent,
+	Divider,
 	Grid,
 	IconButton,
 	Stack,
@@ -18,6 +19,7 @@ import { useRouter } from 'next/navigation';
 
 import { stripHtml } from '@/lib/utils';
 import { Job } from '@/types';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface JobProps {
 	job: Job;
@@ -37,6 +39,9 @@ function JobCard({
 	},
 }: JobProps): JSX.Element {
 	const theme = useTheme();
+	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+		defaultMatches: true,
+	});
 
 	const { push } = useRouter();
 
@@ -49,20 +54,19 @@ function JobCard({
 		>
 			<Box
 				component={Card}
-				padding={0}
 				width={1}
 				height={1}
-				borderRadius={0}
-				// borderBottom={1}
+				borderRadius={isMd ? 2 : 0}
+				border={isMd ? 1 : 0}
+				borderColor={theme.palette.divider}
+				padding={isMd ? 2 : 0}
 				boxShadow={0}
 				display='flex'
 				flexDirection={{ xs: 'column', md: 'row' }}
 				sx={{
 					backgroundImage: 'none',
 					bgcolor: 'transparent',
-					border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-					borderRadius: 2,
-					padding: 3,
+					// border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 					':hover': {
 						bgcolor: alpha(theme.palette.primary.main, 0.1),
 						color: theme.palette.primary.dark,
@@ -78,11 +82,18 @@ function JobCard({
 						padding: '0 !important',
 					}}
 				>
-					<Box display='flex' justifyContent='space-between'>
-						<Typography variant='h5' fontWeight={700}>
-							{jobs_title}
-						</Typography>
-						<Box>
+					<Box
+						component={Grid}
+						container
+						display='flex'
+						justifyContent='space-between'
+					>
+						<Grid item xs={8}>
+							<Typography variant='h6' fontWeight={700}>
+								{jobs_title}
+							</Typography>
+						</Grid>
+						<Grid item>
 							<Tooltip title='Like'>
 								<IconButton aria-label='add to favorites'>
 									<Favorite />
@@ -93,7 +104,7 @@ function JobCard({
 									<Bookmark />
 								</IconButton>
 							</Tooltip>
-						</Box>
+						</Grid>
 					</Box>
 					<Stack
 						marginY={1}
@@ -109,7 +120,7 @@ function JobCard({
 						>
 							{contract_type_id}
 						</Typography>
-						{'|'}
+						<Divider orientation='vertical' flexItem />
 						<Typography
 							variant='body2'
 							color='text.secondary'
@@ -117,7 +128,7 @@ function JobCard({
 						>
 							Est. Salary: {offered_salary}
 						</Typography>
-						{'|'}
+						<Divider orientation='vertical' flexItem />
 						<Typography
 							variant='body2'
 							color='text.secondary'
@@ -127,11 +138,10 @@ function JobCard({
 						</Typography>
 					</Stack>
 					<Typography
-						variant='body1'
-						color='text.primary'
+						color='text.secondary'
 						sx={{
 							display: '-webkit-box',
-							WebkitLineClamp: 2,
+							WebkitLineClamp: { xs: 3, md: 2 },
 							WebkitBoxOrient: 'vertical',
 							overflow: 'hidden',
 							textOverflow: 'ellipsis',
@@ -168,6 +178,7 @@ function JobCard({
 					</Box>
 				</CardContent>
 			</Box>
+			<Divider sx={{ marginY: 2, display: { xs: 'block', md: 'none' } }} />
 		</Grid>
 	);
 }

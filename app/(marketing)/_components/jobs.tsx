@@ -10,11 +10,7 @@ import { fancyId } from '@/lib/utils';
 import { ContractType, Job } from '@/types';
 import JobCard from '@/components/cards/job-card';
 
-// const JobCard = dynamic(() => import("@/components/Cards/JobCard"), {
-//   ssr: false
-// });
-
-function Jobs({
+export default function Jobs({
 	jobs,
 	contractTypes,
 }: {
@@ -48,13 +44,7 @@ function Jobs({
 					Our latest jobs
 				</Typography>
 			</Box>
-			<Grid
-				container
-				spacing={4}
-				marginY={4}
-				justifyContent='center'
-				alignItems='center'
-			>
+			<Grid spacing={4} marginY={4} justifyContent='center' alignItems='center'>
 				{modifiedJobs.map((job) => (
 					<JobCard key={fancyId()} job={job} />
 				))}
@@ -92,5 +82,3 @@ function Jobs({
 		</Box>
 	);
 }
-
-export default Jobs;

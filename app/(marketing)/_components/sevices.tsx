@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link';
 import { fancyId } from '@/lib/utils';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const mock = [
 	{
@@ -41,6 +42,10 @@ const mock = [
 
 export default function Services() {
 	const theme = useTheme();
+	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+		defaultMatches: true,
+	});
+
 	return (
 		<Box>
 			<Box marginBottom={4}>
@@ -100,7 +105,7 @@ export default function Services() {
 								component={Link}
 								href={item.href}
 								display='flex'
-								flexDirection='column'
+								flexDirection={{ xs: 'row', md: 'column' }}
 								alignItems='center'
 								data-aos='fade-up'
 								data-aos-delay={i * 100}
@@ -112,6 +117,7 @@ export default function Services() {
 									width={60}
 									height={60}
 									marginBottom={2}
+									marginRight={{ md: 0, xs: 2 }}
 									bgcolor={alpha(theme.palette.primary.main, 0.3)}
 									color={theme.palette.primary.main}
 									variant='rounded'
