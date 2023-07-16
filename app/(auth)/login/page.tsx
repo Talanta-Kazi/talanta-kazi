@@ -1,17 +1,9 @@
-'use client';
-
 import { Box, Grid } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Container from '@/components/container';
 import { LoginForm } from '@/app/(auth)/login/login-form';
+import { StyledGrid } from '@/app/(auth)/styles';
 
 const Login = (): JSX.Element => {
-	const theme = useTheme();
-	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-		defaultMatches: true,
-	});
-
 	return (
 		<Box
 			position='relative'
@@ -25,24 +17,11 @@ const Login = (): JSX.Element => {
 		>
 			<Container>
 				<Grid container spacing={4}>
-					{isMd ? (
-						<Grid item container justifyContent='center' xs={12} md={6}>
-							<Box height={1} width={1} maxWidth={500}>
-								<Box
-									component='img'
-									src='/img/login.svg'
-									width={1}
-									height={1}
-									sx={{
-										filter:
-											theme.palette.mode === 'dark'
-												? 'brightness(0.8)'
-												: 'none',
-									}}
-								/>
-							</Box>
-						</Grid>
-					) : null}
+					<StyledGrid item container justifyContent='center' xs={12} md={6}>
+						<Box height={1} width={1} maxWidth={500}>
+							<Box component='img' src='/img/login.svg' width={1} height={1} />
+						</Box>
+					</StyledGrid>
 					<Grid
 						item
 						container

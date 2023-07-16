@@ -26,7 +26,7 @@ function Input({ name, control, label, ...rest }: InputProps) {
 			}) => (
 				<ValidationTextField
 					helperText={error ? error.message : null}
-					size='small'
+					size='medium'
 					error={!!error}
 					onChange={onChange}
 					value={value || ''}

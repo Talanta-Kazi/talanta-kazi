@@ -2,6 +2,7 @@ import { ComponentContext } from '@/context/ComponentContext';
 import {
 	AccountCircleOutlined,
 	AdminPanelSettingsTwoTone,
+	AllOutTwoTone,
 	CodeTwoTone,
 	FaceTwoTone,
 	HelpOutline,
@@ -38,8 +39,8 @@ const UserAvatar = (): JSX.Element => {
 	const { setCurrentRoleBasedAccess, currentRoleBasedAccess = 'USER' } =
 		useContext(ComponentContext);
 
-	const { name, image, role } = session?.user || {
-		name: 'Anonymous User',
+	const { username, image, role } = session?.user || {
+		username: 'Anonymous User',
 		image: '/img/avatar_male.svg',
 	};
 
@@ -84,32 +85,38 @@ const UserAvatar = (): JSX.Element => {
 
 	const menuItems = [
 		{
+			name: 'Dashboard',
+			icon: <AllOutTwoTone fontSize='small' color='action' />,
+			link: '/candidate/jobs',
+			secondaryText: 'Manage your space',
+		},
+		{
 			name: 'Profile',
-			icon: <AccountCircleOutlined fontSize='small' />,
+			icon: <AccountCircleOutlined fontSize='small' color='action' />,
 			link: 'account',
 			secondaryText: 'All about you',
 		},
 		{
 			name: 'Help',
-			icon: <HelpOutline fontSize='small' />,
+			icon: <HelpOutline fontSize='small' color='action' />,
 			link: 'help',
 			secondaryText: 'Find support',
 		},
 		{
 			name: 'Feedback',
-			icon: <OpenInNew fontSize='small' />,
+			icon: <OpenInNew fontSize='small' color='action' />,
 			link: 'send-feedback',
-			secondaryText: 'Help improve almond',
+			secondaryText: 'Help improve our service',
 		},
 	];
 
 	return (
 		<Fragment>
-			<Tooltip title={name ?? 'Anonymous User'}>
+			<Tooltip title={username ?? 'Anonymous User'}>
 				{isSm ? (
 					<Avatar
 						onClick={handleToggleProfileMenu}
-						alt={name ?? 'Anonymous User'}
+						alt={username ?? 'Anonymous User'}
 						src={image ?? '/img/avatar_male.svg'}
 						aria-describedby='menu-popover'
 						aria-controls='menu-popover'
@@ -119,13 +126,12 @@ const UserAvatar = (): JSX.Element => {
 				) : (
 					<Chip
 						size='medium'
-						label={name ?? 'Anonymous User'}
+						label={username ?? 'Anonymous User'}
 						variant='outlined'
-						color='primary'
 						onClick={handleToggleProfileMenu}
 						avatar={
 							<Avatar
-								alt={name ?? 'Anonymous User'}
+								alt={username ?? 'Anonymous User'}
 								src={image ?? '/img/avatar_male.svg'}
 								aria-describedby='menu-popover'
 								aria-controls='menu-popover'
@@ -159,25 +165,12 @@ const UserAvatar = (): JSX.Element => {
 							ml: -0.5,
 							mr: 1,
 						},
-						// '&:before': {
-						// 	content: '""',
-						// 	display: 'block',
-						// 	position: 'absolute',
-						// 	top: 0,
-						// 	right: 14,
-						// 	width: 10,
-						// 	height: 10,
-						// 	bgcolor: 'background.paper',
-						// 	transform: 'translateY(-50%) rotate(45deg)',
-						// 	zIndex: theme.zIndex.appBar + 1,
-						// 	border: `0.6px solid ${alpha(theme.palette.divider, 0.3)}`,
-						// },
 					},
 				}}
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
-				{role === 'ADMIN' && (
+				{role === 'EMPLOYER' && (
 					<MenuItem
 						key={fancyId()}
 						sx={{
@@ -238,8 +231,9 @@ const UserAvatar = (): JSX.Element => {
 							<ListItemIcon sx={{ minWidth: 44, marginRight: 1 }}>
 								<Avatar
 									sx={{
-										backgroundColor: alpha(theme.palette.primary.main, 0.1),
+										backgroundColor: alpha(theme.palette.primary.main, 0.3),
 										color: theme.palette.primary.main,
+										borderRadius: 1,
 									}}
 								>
 									{item.icon}
@@ -262,11 +256,12 @@ const UserAvatar = (): JSX.Element => {
 					<ListItemIcon sx={{ minWidth: 44, marginRight: 1 }}>
 						<Avatar
 							sx={{
-								backgroundColor: alpha(theme.palette.primary.main, 0.1),
+								backgroundColor: alpha(theme.palette.primary.main, 0.3),
 								color: theme.palette.primary.main,
+								borderRadius: 1,
 							}}
 						>
-							<Logout fontSize='small' />
+							<Logout fontSize='small' color='action' />
 						</Avatar>
 					</ListItemIcon>
 					<ListItemText primary='Logout' secondary='Heading back home' />

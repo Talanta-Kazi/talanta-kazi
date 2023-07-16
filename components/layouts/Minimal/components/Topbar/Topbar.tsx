@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import UserAvatar from '@/components/user-avatar';
 
 const Topbar = (): JSX.Element => {
-	const router = useRouter();
+	const { push } = useRouter();
 	const theme = useTheme();
 	const { data: session } = useSession();
 
@@ -17,12 +17,16 @@ const Topbar = (): JSX.Element => {
 			justifyContent={'space-between'}
 			alignItems={'center'}
 		>
-			<Box sx={{ display: 'flex' }} alignItems={'center'} onClick={router.back}>
+			<Box
+				sx={{ display: 'flex' }}
+				alignItems={'center'}
+				onClick={() => push('/')}
+			>
 				<IconButton style={{ marginRight: theme.spacing(1) }}>
 					<ArrowBackRounded className='learn-more-link__arrow' />
 				</IconButton>
 				<Typography variant='body2' sx={{ cursor: 'pointer' }}>
-					Back
+					Home
 				</Typography>
 			</Box>
 			<Box>

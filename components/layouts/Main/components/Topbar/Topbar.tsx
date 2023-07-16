@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -21,8 +20,6 @@ const Topbar = (): JSX.Element => {
 			setActiveLink('');
 		}
 	}, [pathname]);
-
-	const { data: session, status } = useSession();
 
 	return (
 		<Box

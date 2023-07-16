@@ -2,10 +2,10 @@
 
 import { Form } from '@/components/forms/form';
 import { Box, Button, Grid, InputAdornment, Typography } from '@mui/material';
-import { authSchema } from '@/lib/validations/auth';
+import { loginAuthSchema } from '@/lib/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { HTMLAttributes, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -17,7 +17,7 @@ import Input from '@/components/forms/input';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
-type FormData = z.infer<typeof authSchema>;
+type FormData = z.infer<typeof loginAuthSchema>;
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
 	const { displaySnackMessage } = useStore();
@@ -29,7 +29,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 	const { data: authSession, status: authStatus } = useSession();
 
 	const form = useForm<FormData>({
-		resolver: zodResolver(authSchema),
+		resolver: zodResolver(loginAuthSchema),
 		mode: 'onChange',
 	});
 
@@ -38,10 +38,9 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 		control,
 		formState: { isSubmitting, isValid, isDirty },
 	} = form;
-	const searchParams = useSearchParams();
 
 	async function onSubmit({ username, password }: FormData) {
-		const res = await signIn('auth-login', {
+		const res = await signIn('credentials', {
 			username,
 			password,
 			redirect: false,
@@ -145,6 +144,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 									type='submit'
 									color='primary'
 									size='large'
+									disabled={isSubmitting || !isDirty || !isValid}
 									loading={isSubmitting}
 									loadingIndicator='Please wait...'
 								>

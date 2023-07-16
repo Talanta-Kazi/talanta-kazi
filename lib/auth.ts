@@ -1,4 +1,3 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import type { GetServerSidePropsContext } from 'next';
 import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
@@ -14,7 +13,7 @@ interface AuthResponse {
 	profile: ICandidateProfile;
 }
 
-const assignRole = (user) => {
+const assignRole = (user: any) => {
 	let role = 'CANDIDATE';
 
 	if (user.is_both_employer_and_candidate) {
@@ -36,12 +35,13 @@ const refreshAccessToken = async (token: JWT) => {
 		headers.append('Accept', 'application/json');
 		headers.append('Authorization', `Bearer ${token.refresh}`);
 
-		const res = await fetch(`${env.API_URL}/auth}`, {
+		const res = await fetch(`${env.API_URL}/users/api-user-login/}`, {
 			method: 'POST',
 			headers: headers,
 		});
 
 		const user = await res.json();
+
 		if (!res.ok) {
 			throw new Error();
 		}
@@ -87,13 +87,14 @@ export const authOptions: NextAuthOptions = {
 					password: credentials?.password,
 				};
 
-				const res = await fetch(`${env.API_URL}/login/`, {
+				const res = await fetch(`${env.API_URL}/users/api-user-login/`, {
 					method: 'POST',
 					body: JSON.stringify(credentials),
 					headers: headers,
 				});
 
 				const user = await res.json();
+				console.log('Class: , Function: authorize, Line 97 user():', user);
 
 				// If no error and we have user data, return it
 				if (res.status === 200 && user) {
@@ -116,49 +117,42 @@ export const authOptions: NextAuthOptions = {
 	pages: {
 		signIn: '/login',
 		error: '/login',
+		newUser: '/create-profile/title', // If set, new users will be directed here on first sign in
 	},
 	callbacks: {
-		async jwt({ token, user }) {
-			if (user) {
-				// @ts-expect-error
-				token.id = user.profile.id || '';
-				// @ts-expect-error
-				token.username = user.profile.user.username || '';
-				// @ts-expect-error
-				token.picture = user.profile.user.profilePic || '';
-				// @ts-expect-error
-				token.role = assignRole(user.profile.user);
-				// @ts-expect-error
-				token.newUser = isArrayEmpty(user.profile.job_title);
-				token.token = user.token;
-				token.refresh = user.refresh;
-				token.token_expiry = user.token_expiry;
-				token.refresh_expiry = user.refresh_expiry;
+		async jwt({ token, user, account }) {
+			if (account && user) {
+				return {
+					...token,
+					accessToken: user.token,
+					// @ts-expect-error
+					id: user.profile.id || '',
+					// @ts-expect-error
+					username: user.profile.user.username || '',
+					// @ts-expect-error
+					picture: user.profile.user.profilePic || '',
+					// @ts-expect-error
+					role: assignRole(user.profile.user),
+					// @ts-expect-error
+					newUser: isArrayEmpty(user.profile.job_title),
+				};
 			}
 
-			let currentDate = new Date();
-
-			currentDate.setDate(currentDate.getDate() + 20);
-
-			const expiryDate = token?.token_expiry! * 1000;
-
-			if (Date.now() + 20 < expiryDate) {
-				// not yet expired
-				return token;
-			}
-
-			return refreshAccessToken(token);
+			return token;
 		},
 		async session({ session, token }) {
-			if (token) {
-				session.user.id = token.id as string;
-				session.user.name = token.name as string;
-				session.user.email = token.email as string;
-				session.user.image = token.picture as string;
-				session.user.role = token.role;
-			}
-
-			return session;
+			return {
+				...session,
+				user: {
+					...session.user,
+					id: token.id || '',
+					username: token.username || '',
+					token: token.accessToken || '',
+					image: token.picture,
+					role: token.role,
+					newUser: token.newUser,
+				},
+			};
 		},
 	},
 	debug: env.NODE_ENV === 'development',

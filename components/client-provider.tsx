@@ -1,7 +1,7 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { SWRConfig } from 'swr';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -11,9 +11,11 @@ import SnackBar from '@/components/snack-bar';
 import AOS from 'aos';
 import ThemeRegistry from '@/components/theme-registry';
 import useStore from '@/store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export function ClientProvider({ children }: { children: ReactNode }) {
 	const store = useStore();
+	const [queryClient] = useState(() => new QueryClient());
 
 	useEffect(() => {
 		// Remove the server-side injected CSS.
@@ -54,17 +56,19 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 								fetch(resource, init).then((res) => res.json()),
 						}}
 					>
-						<ThemeRegistry>
-							<ErrorBoundary
-								FallbackComponent={ErrorBoundaryPage}
-								onReset={() => window.location.replace('/')}
-							>
-								<ComponentProvider>
-									{children}
-									<SnackBar snack={store.snack} />
-								</ComponentProvider>
-							</ErrorBoundary>
-						</ThemeRegistry>
+						<QueryClientProvider client={queryClient}>
+							<ThemeRegistry>
+								<ErrorBoundary
+									FallbackComponent={ErrorBoundaryPage}
+									onReset={() => window.location.replace('/')}
+								>
+									<ComponentProvider>
+										{children}
+										<SnackBar snack={store.snack} />
+									</ComponentProvider>
+								</ErrorBoundary>
+							</ThemeRegistry>
+						</QueryClientProvider>
 					</SWRConfig>
 				</motion.div>
 			</AnimatePresence>

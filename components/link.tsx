@@ -1,15 +1,15 @@
-import * as React from 'react';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
+import { AnchorHTMLAttributes, forwardRef } from 'react';
 
 // Add support for the sx prop for consistency with the other branches.
 const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
-	extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
+	extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
 		Omit<
 			NextLinkProps,
 			'href' | 'as' | 'passHref' | 'onMouseEnter' | 'onClick' | 'onTouchStart'
@@ -18,7 +18,7 @@ interface NextLinkComposedProps
 	linkAs?: NextLinkProps['as'];
 }
 
-export const NextLinkComposed = React.forwardRef<
+export const NextLinkComposed = forwardRef<
 	HTMLAnchorElement,
 	NextLinkComposedProps
 >(function NextLinkComposed(props, ref) {
@@ -62,7 +62,7 @@ export type LinkProps = {
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 	props,
 	ref,
 ) {
@@ -85,7 +85,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 
 	const pathname = usePathname();
 	const className = clsx(classNameProps, {
-		[activeClassName]: pathname.startsWith(href.toString()),
+		[activeClassName]: pathname?.startsWith(href.toString()),
 	});
 
 	const isExternal =
