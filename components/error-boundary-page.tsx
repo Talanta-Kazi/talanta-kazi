@@ -32,9 +32,8 @@ const ErrorBoundaryPage = ({ error, resetErrorBoundary }: any): JSX.Element => {
 					align='left'
 				>
 					Oops! Seems there is a bug on the page you were viewing. Please try
-					reload the application or you can report this to the almond
-					hydroponics{' '}
-					<Link href='mailto:almond.froyo@gmail.com' underline='none'>
+					reload the application or you can report this to the talanta kazi{' '}
+					<Link href='mailto:noreply@talantakazi.com' underline='none'>
 						here.
 					</Link>
 				</Typography>
