@@ -3,8 +3,8 @@ import { Button, Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import Link from '@/components/link';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function AuthButtonLink() {
 	const [activeLink, setActiveLink] = useState('');

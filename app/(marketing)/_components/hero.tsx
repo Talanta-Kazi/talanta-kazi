@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { alpha, useTheme } from '@mui/material/styles';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Link from '@/components/link';
+import Link from 'next/link';
 
 const Hero = (): JSX.Element => {
 	const { data: session, status } = useSession();
@@ -209,58 +209,82 @@ const Hero = (): JSX.Element => {
 
 	return (
 		<Box
+			bgcolor={'alternate.main'}
 			sx={{
-				width: 1,
-				height: 1,
-				overflow: 'hidden',
+				position: 'relative',
+				'&::after': {
+					position: 'absolute',
+					content: '""',
+					width: '30%',
+					zIndex: 1,
+					top: 0,
+					left: '5%',
+					height: '100%',
+					backgroundSize: '16px 16px',
+					backgroundImage: `radial-gradient(${alpha(
+						'#c9ad24',
+						0.4,
+					)} 20%, transparent 20%)`,
+					opacity: 0.2,
+				},
 			}}
 		>
-			<Container paddingX={0} paddingY={0}>
+			<Box position={'relative'} zIndex={3}>
 				<Box
-					display={'flex'}
-					flexDirection={{ xs: 'column', md: 'row' }}
-					position={'relative'}
-					minHeight={{ md: 600 }}
+					sx={{
+						width: 1,
+						height: 1,
+						overflow: 'hidden',
+					}}
 				>
-					<Box
-						width={1}
-						order={{ xs: 2, md: 1 }}
-						display={'flex'}
-						alignItems={'center'}
-					>
-						<Container>
-							<LeftSide />
-						</Container>
-					</Box>
-					<Box
-						margin={2}
-						sx={{
-							flex: { xs: '0 0 100%', md: '0 0 50%' },
-							position: 'relative',
-							maxWidth: { xs: '100%', md: '50%' },
-							order: { xs: 1, md: 2 },
-						}}
-					>
+					<Container paddingX={0} paddingY={0}>
 						<Box
-							sx={{
-								width: { xs: 1, md: '30vw' },
-								height: '100%',
-								position: 'relative',
-							}}
+							display={'flex'}
+							flexDirection={{ xs: 'column', md: 'row' }}
+							position={'relative'}
+							minHeight={{ md: 600 }}
 						>
 							<Box
+								width={1}
+								order={{ xs: 2, md: 1 }}
+								display={'flex'}
+								alignItems={'center'}
+							>
+								<Container>
+									<LeftSide />
+								</Container>
+							</Box>
+							<Box
+								margin={2}
 								sx={{
-									width: '100%',
-									height: '100%',
-									overflow: 'hidden',
+									flex: { xs: '0 0 100%', md: '0 0 50%' },
+									position: 'relative',
+									maxWidth: { xs: '100%', md: '50%' },
+									order: { xs: 1, md: 2 },
 								}}
 							>
-								<RightSide />
+								<Box
+									sx={{
+										width: { xs: 1, md: '30vw' },
+										height: '100%',
+										position: 'relative',
+									}}
+								>
+									<Box
+										sx={{
+											width: '100%',
+											height: '100%',
+											overflow: 'hidden',
+										}}
+									>
+										<RightSide />
+									</Box>
+								</Box>
 							</Box>
 						</Box>
-					</Box>
+					</Container>
 				</Box>
-			</Container>
+			</Box>
 		</Box>
 	);
 };

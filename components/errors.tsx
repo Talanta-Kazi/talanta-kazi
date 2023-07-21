@@ -5,7 +5,7 @@ import { Box, Button, Typography, useMediaQuery } from '@mui/material';
 import Container from '@/components/container';
 import { ArrowBack } from '@mui/icons-material';
 import { Main } from '@/components/layouts';
-import Link from '@/components/link';
+import Link from 'next/link';
 
 export function NotFoundPage() {
 	const theme = useTheme();

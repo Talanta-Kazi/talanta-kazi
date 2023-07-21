@@ -15,8 +15,8 @@ export default function Jobs({
 	contractTypes,
 }: {
 	jobs: Array<Job>;
-	contractTypes: ContractType[];
-}): JSX.Element {
+	contractTypes: Array<ContractType>;
+}) {
 	const contract = contractTypes,
 		contractObject = contract.reduce(
 			// @ts-expect-error

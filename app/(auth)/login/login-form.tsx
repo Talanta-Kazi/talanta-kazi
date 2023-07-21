@@ -12,7 +12,7 @@ import * as z from 'zod';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import useStore from '@/store/index';
 import { LoadingButton } from '@mui/lab';
-import Link from '@/components/link';
+import Link from 'next/link';
 import Input from '@/components/forms/input';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;

@@ -20,31 +20,7 @@ export default async function MarketingPage() {
 
 	return (
 		<Fragment>
-			<Box
-				bgcolor={'alternate.main'}
-				// sx={{
-				// 	position: 'relative',
-				// 	'&::after': {
-				// 		position: 'absolute',
-				// 		content: '""',
-				// 		width: '30%',
-				// 		zIndex: 1,
-				// 		top: 0,
-				// 		left: '5%',
-				// 		height: '100%',
-				// 		backgroundSize: '16px 16px',
-				// 		backgroundImage: `radial-gradient(${alpha(
-				// 			'#c9ad24',
-				// 			0.4,
-				// 		)} 20%, transparent 20%)`,
-				// 		opacity: 0.2,
-				// 	},
-				// }}
-			>
-				<Box position={'relative'} zIndex={3}>
-					<Hero />
-				</Box>
-			</Box>
+			<Hero />
 			<Container paddingY={{ xs: 2, sm: 4, md: 6 }}>
 				<Services />
 			</Container>

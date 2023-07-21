@@ -12,6 +12,7 @@ import AOS from 'aos';
 import ThemeRegistry from '@/components/theme-registry';
 import useStore from '@/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider as Balancer } from 'react-wrap-balancer';
 
 export function ClientProvider({ children }: { children: ReactNode }) {
 	const store = useStore();
@@ -63,7 +64,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 									onReset={() => window.location.replace('/')}
 								>
 									<ComponentProvider>
-										{children}
+										<Balancer>{children}</Balancer>
 										<SnackBar snack={store.snack} />
 									</ComponentProvider>
 								</ErrorBoundary>

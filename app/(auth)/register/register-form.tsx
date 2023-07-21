@@ -23,7 +23,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import useStore from '@/store/index';
 import { LoadingButton } from '@mui/lab';
-import Link from '@/components/link';
+import Link from 'next/link';
 import Input from '@/components/forms/input';
 import { useMutation } from '@tanstack/react-query';
 import { registerUserFn } from '@/app/(auth)/actions';
