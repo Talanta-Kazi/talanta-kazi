@@ -8,6 +8,7 @@ import Topbar from '@/app/(candidate)/candidate/jobs/topbar';
 import UserJobCard from '@/app/(candidate)/candidate/jobs/user-job-card';
 import { fancyId } from '@/lib/utils';
 import { Job } from '@/types';
+import FilterSpecialism from '@/app/(candidate)/candidate/jobs/filter-specialism';
 
 interface SidebarProps {
 	specialisms: any;
@@ -69,7 +70,7 @@ export default function Sidebar({
 				}}
 			>
 				<Box padding={2}>
-					{/*<FilterSpecialism specialisms={specialisms} />*/}
+					<FilterSpecialism specialisms={specialisms} />
 					<Divider sx={{ my: 3 }} />
 					{/*<FilterCategory />*/}
 					{/*<Divider sx={{ my: 3 }} />*/}
