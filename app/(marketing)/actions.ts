@@ -33,3 +33,13 @@ export const getJobById = cache(async (id: string): Promise<Job> => {
 
 	return res.json();
 });
+
+export const getSpecialisms = cache(async (): Promise<Array<string>> => {
+	const res = await fetch(`${env.API_URL}/jobs/list-specialism/`);
+
+	if (!res.ok) {
+		throw new Error('Failed to fetch data');
+	}
+
+	return res.json();
+});

@@ -12,7 +12,7 @@ import {
 	Typography,
 	useMediaQuery,
 } from '@mui/material';
-import { alpha, styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/navigation';
 import type { MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
@@ -31,24 +31,6 @@ const mock = [
 		value: 'employer',
 	},
 ];
-
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-	'& .MuiToggleButtonGroup-grouped': {
-		margin: theme.spacing(2),
-		alignItems: 'center',
-		border: 1,
-		backgroundColor: alpha(theme.palette.alternate.main, 0.9),
-		'&.Mui-disabled': {
-			border: 1,
-		},
-		'&:not(:first-of-type)': {
-			borderRadius: theme.shape.borderRadius,
-		},
-		'&:first-of-type': {
-			borderRadius: theme.shape.borderRadius,
-		},
-	},
-}));
 
 type Alignment = 'employer' | 'candidate' | 'candidate-and-employer' | '...';
 
@@ -102,7 +84,7 @@ const SelectUserType = (): JSX.Element => {
 			marginTop={16}
 			sx={{
 				border: `1px solid ${theme.palette.divider}`,
-				borderRadius: 2,
+				borderRadius: 4,
 			}}
 		>
 			<Stack
@@ -142,6 +124,10 @@ const SelectUserType = (): JSX.Element => {
 							height='200px'
 							marginX={0}
 							border={1}
+							sx={{
+								border: `1px solid ${theme.palette.divider}`,
+								borderRadius: 4,
+							}}
 						>
 							<Stack
 								direction='column'

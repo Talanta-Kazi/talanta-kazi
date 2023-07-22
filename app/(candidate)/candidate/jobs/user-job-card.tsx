@@ -177,7 +177,7 @@ export default function UserJobCard({
 							variant='contained'
 							size='small'
 							component={Link}
-							href={`/jobs-listing/${id}`}
+							href={`/job-listing/${id}`}
 							endIcon={
 								<Box
 									component='svg'
@@ -197,7 +197,7 @@ export default function UserJobCard({
 								</Box>
 							}
 						>
-							More
+							more
 						</Button>
 					</Box>
 				</CardContent>
