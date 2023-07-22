@@ -9,6 +9,12 @@ import Link from 'next/link';
 import { fancyId } from '@/lib/utils';
 import { ContractType, Job } from '@/types';
 import JobCard from '@/components/cards/job-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Jobs Listing',
+	description: 'List of all jobs available on the platform.',
+};
 
 export default function Jobs({
 	jobs,
@@ -44,7 +50,7 @@ export default function Jobs({
 					Our latest jobs
 				</Typography>
 			</Box>
-			<Grid spacing={4} marginY={4} justifyContent='center' alignItems='center'>
+			<Grid marginY={4} justifyContent='center' alignItems='center'>
 				{modifiedJobs.map((job) => (
 					<JobCard key={fancyId()} job={job} />
 				))}

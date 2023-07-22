@@ -46,12 +46,7 @@ function JobCard({
 	const { push } = useRouter();
 
 	return (
-		<Grid
-			item
-			xs={12}
-			sx={{ padding: '0 !important', cursor: 'pointer', marginBottom: 1 }}
-			onClick={() => push(`/job-listing/${id}`)}
-		>
+		<Grid item xs={12} sx={{ padding: '0 !important', marginBottom: 1 }}>
 			<Box
 				component={Card}
 				width={1}
@@ -88,7 +83,12 @@ function JobCard({
 						display='flex'
 						justifyContent='space-between'
 					>
-						<Grid item xs={8}>
+						<Grid
+							item
+							xs={8}
+							sx={{ cursor: 'pointer' }}
+							onClick={() => push(`/job-listing/${id}`)}
+						>
 							<Typography variant='h6' fontWeight={700}>
 								{jobs_title}
 							</Typography>
