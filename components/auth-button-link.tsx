@@ -1,3 +1,5 @@
+'use client';
+
 import UserAvatar from '@/components/user-avatar';
 import { Button, Divider } from '@mui/material';
 import Box from '@mui/material/Box';
