@@ -1,13 +1,25 @@
-import { apiClient } from '@/lib/api';
 import { ProfileInputSchema } from '@/lib/validations/profile';
 import { Candidate } from '@/types';
 import { cache } from 'react';
 import { env } from '@/env.mjs';
 import { getSession } from '@/lib/auth';
 
-const updateProfileFn = async (profile: Partial<ProfileInputSchema>) => {
-	const response = await apiClient.put<Candidate>('/api/profile', profile);
-	return response.data;
+const updateProfileFn = async (
+	id: string,
+	profile: Partial<ProfileInputSchema>,
+) => {
+	console.log('Class: , Function: updateProfileFn, Line 9 profile():', profile);
+
+	try {
+		const response = await fetch(`/api/profile/${id}`, {
+			method: 'PUT',
+			body: JSON.stringify(profile),
+		});
+
+		return await response.json();
+	} catch (error) {
+		throw new Error(error as any);
+	}
 };
 
 const getCandidateProfile = cache(async (id?: string): Promise<Candidate> => {

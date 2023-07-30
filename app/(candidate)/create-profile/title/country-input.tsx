@@ -1,8 +1,7 @@
 'use client';
 
 import { InputProps } from '@/components/forms/input-props';
-import { Autocomplete } from '@mui/lab';
-import { Box, TextField } from '@mui/material';
+import { Autocomplete, Box, TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { useMemo } from 'react';
 // @ts-ignore

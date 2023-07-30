@@ -1,5 +1,24 @@
 import * as z from 'zod';
 
+export const profileCreateOrPatchSchema = z.object({
+	user: z.number(),
+	specialism_id: z.string(),
+	experience_id: z.string(),
+	job_title: z
+		.string()
+		.min(5, 'Please enter a valid name')
+		.max(50, 'Please enter a valid name'),
+	personal_statement: z.string(),
+	education: z.string(),
+	personal: z.string(),
+	biography: z.string(),
+	portfolio: z.string(),
+	experience: z.string(),
+	skills: z.string(),
+	job_level: z.string(),
+	availability_status: z.number(),
+});
+
 export const profileSchema = z.object({
 	user: z.object({
 		id: z.string(),
@@ -68,4 +87,4 @@ export const profileSchema = z.object({
 
 export const profileValidationSchema = profileSchema.partial();
 
-export type ProfileInputSchema = z.infer<typeof profileSchema>;
+export type ProfileInputSchema = z.infer<typeof profileCreateOrPatchSchema>;

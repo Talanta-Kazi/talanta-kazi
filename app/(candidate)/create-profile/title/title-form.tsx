@@ -15,9 +15,7 @@ interface CandidateTitleFormProps {
 	candidate: Candidate;
 }
 
-export default function CandidateTitleForm({
-	candidate,
-}: CandidateTitleFormProps) {
+export default function TitleForm({ candidate }: CandidateTitleFormProps) {
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
 
 	const defaultValues = {
@@ -48,7 +46,7 @@ export default function CandidateTitleForm({
 
 	return (
 		<form name='profile-title' method='post' onSubmit={handleSubmit(onSubmit)}>
-			<Grid container spacing={4} marginTop={2}>
+			<Grid container marginTop={2}>
 				<Grid item xs={12}>
 					<Typography
 						variant='body1'

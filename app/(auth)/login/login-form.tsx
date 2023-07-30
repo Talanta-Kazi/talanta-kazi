@@ -6,7 +6,7 @@ import { loginAuthSchema } from '@/lib/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -26,7 +26,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 		setPasswordVisibility((prevState) => !prevState);
 
 	const { push, replace } = useRouter();
-	const { data: authSession, status: authStatus } = useSession();
+	const { data: session, status: authStatus } = useSession();
 
 	const form = useForm<FormData>({
 		resolver: zodResolver(loginAuthSchema),
@@ -60,6 +60,19 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 			// await push(callbackUrl);
 		}
 	}
+
+	useEffect(() => {
+		if (authStatus === 'authenticated') {
+			const newUser = session?.user.newUser;
+			{
+				newUser ? push('create-profile/select-role') : push('candidate/jobs');
+			}
+		}
+	}, [session?.user?.newUser, session?.user.token]);
+
+	useEffect(() => {
+		localStorage.setItem('token', session?.user.token as string);
+	}, [session?.user.token]);
 
 	return (
 		<Form {...form}>

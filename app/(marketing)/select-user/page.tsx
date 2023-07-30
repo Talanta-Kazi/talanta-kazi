@@ -58,13 +58,13 @@ const SelectUserType = (): JSX.Element => {
 		}
 	}, [alignment]);
 
-	const handlePushToDashboardViews = async () => {
+	const handlePushToDashboardViews = () => {
 		switch (alignment) {
 			case 'employer':
-				await push('/employer/analytics');
+				push('/employer/analytics');
 				return;
 			case 'candidate':
-				await push('/candidate/jobs');
+				push('/candidate/jobs');
 				return;
 			default:
 				return;
@@ -126,7 +126,7 @@ const SelectUserType = (): JSX.Element => {
 							border={1}
 							sx={{
 								border: `1px solid ${theme.palette.divider}`,
-								borderRadius: 4,
+								borderRadius: 2,
 							}}
 						>
 							<Stack

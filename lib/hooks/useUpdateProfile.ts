@@ -3,16 +3,28 @@ import { useMutation } from '@tanstack/react-query';
 import { isArrayEmpty } from '@/lib/utils';
 import { updateProfileFn } from '@/app/(candidate)/actions';
 import { ProfileInputSchema } from '@/lib/validations/profile';
+import { useSession } from 'next-auth/react';
 
 export default function useUpdateProfile() {
 	const { displaySnackMessage } = useStore();
+	const session = useSession();
+
+	// TODO: This should be handled by the hook
+	if (!session) {
+		displaySnackMessage({
+			message: 'Unauthorized',
+			severity: 'error',
+		});
+	}
+
+	const id = session?.data?.user?.id as string;
 
 	const {
 		mutate: updateProfile,
 		status,
 		isSuccess,
 	} = useMutation(
-		(payload: Partial<ProfileInputSchema>) => updateProfileFn(payload),
+		(payload: Partial<ProfileInputSchema>) => updateProfileFn(id, payload),
 		{
 			onSuccess() {
 				displaySnackMessage({
