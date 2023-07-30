@@ -20,20 +20,20 @@ const steps = [
 		url: '/create-profile/speciality',
 	},
 	{
-		label: 'Education',
-		url: '/create-profile/personal-details',
+		label: 'Bio',
+		url: '/create-profile/bio',
 	},
 	{
-		label: 'Bio',
-		url: '/create-profile/personal-details',
+		label: 'Education',
+		url: '/create-profile/education',
 	},
 	{
 		label: 'Work',
-		url: '/create-profile/personal-details',
+		url: '/create-profile/work',
 	},
 	{
 		label: 'Portfolio',
-		url: '/create-profile/personal-details',
+		url: '/create-profile/portfolio',
 	},
 ];
 

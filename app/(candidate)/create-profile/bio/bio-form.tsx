@@ -2,7 +2,6 @@
 
 import { Grid, Typography } from '@mui/material';
 import Input from '@/components/forms/input';
-import CountryInput from '@/app/(candidate)/create-profile/title/country-input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,26 +9,26 @@ import { profileValidationSchema } from '@/lib/validations/profile';
 import useUpdateProfile from '@/lib/hooks/useUpdateProfile';
 import { Candidate } from '@/types';
 import * as z from 'zod';
+import { mutateStringObject } from '@/lib/utils';
 
 interface CandidateTitleFormProps {
 	candidate: Candidate;
 }
 
-export type CreateProfileTitleInputSchema = Pick<
+type CreateProfileBioInputSchema = Pick<
 	z.infer<typeof profileValidationSchema>,
-	'job_title' | 'country' | 'website'
+	'personal_statement' | 'videoURL'
 >;
 
-export default function TitleForm({ candidate }: CandidateTitleFormProps) {
+export default function BioForm({ candidate }: CandidateTitleFormProps) {
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
 
 	const defaultValues = {
-		job_title: candidate?.job_title || '',
-		country: personal?.country || '',
-		website: personal?.website || '',
+		personal_statement: candidate?.personal_statement || '',
+		videoURL: personal?.videoURL || '',
 	};
 
-	const { handleSubmit, control } = useForm<CreateProfileTitleInputSchema>({
+	const { handleSubmit, control } = useForm<CreateProfileBioInputSchema>({
 		mode: 'onChange',
 		resolver: zodResolver(profileValidationSchema),
 		defaultValues,
@@ -37,14 +36,12 @@ export default function TitleForm({ candidate }: CandidateTitleFormProps) {
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
-	const onSubmit: SubmitHandler<CreateProfileTitleInputSchema> = (values) => {
-		const customPersonal = {
-			country: values.country,
-			website: values.website,
-		};
+	const onSubmit: SubmitHandler<CreateProfileBioInputSchema> = (values) => {
 		const payload = {
-			job_title: values.job_title,
-			personal: JSON.stringify(customPersonal),
+			personal_statement: values.personal_statement,
+			personal: mutateStringObject(candidate.personal, {
+				videoURL: values.videoURL as string,
+			}),
 		};
 		updateProfile(payload);
 	};
@@ -60,40 +57,48 @@ export default function TitleForm({ candidate }: CandidateTitleFormProps) {
 							fontWeight: 500,
 						}}
 					>
-						Stand out by describing yourself and personal details.
+						A short personal statement to help us know you better (500
+						characters).
 					</Typography>
 					<Input
 						autoFocus
 						required
-						name='job_title'
+						name='personal_statement'
 						margin='dense'
 						size='medium'
 						control={control}
-						label='Title'
-						placeholder='Example: Customer service executive'
+						label='Personal statement'
+						placeholder='I am...'
 						type='text'
+						multiline
+						rows={7}
 					/>
-					<Input
-						name='website'
-						margin='dense'
-						size='medium'
-						control={control}
-						label='Website'
-						placeholder='Example: https://my-website.com'
-						type='text'
-					/>
-					<CountryInput
-						name='country'
-						control={control}
-						label='country'
-						defaultCountry={personal?.country}
-					/>
+					<Grid item xs={12}>
+						<Typography
+							variant='body1'
+							marginBottom={2}
+							sx={{
+								fontWeight: 500,
+							}}
+						>
+							Upload a video cv link more about yourself
+						</Typography>
+						<Input
+							name='videoURL'
+							margin='dense'
+							size='medium'
+							control={control}
+							label='Video CV URL'
+							placeholder='https://yout.be'
+							type='text'
+						/>
+					</Grid>
 				</Grid>
 			</Grid>
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/create-profile/speciality'
+				nextPageUrl='/create-profile/education'
 				nextPageTitle='Share your skills'
 			/>
 		</form>

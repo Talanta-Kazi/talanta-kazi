@@ -73,6 +73,35 @@ const stripHtml = (html: string) => {
 	// return doc.body.textContent || "";
 };
 
+const removeDuplicates = <T>(arr: T[]): T[] => [...new Set(arr)];
+
+const stringifyMap = (valueMap: {
+	entries: () => Iterable<readonly [PropertyKey, any]>;
+	delete: (arg0: any) => void;
+}) => {
+	for (const [key] of valueMap.entries()) {
+		if (key === undefined) {
+			valueMap.delete(key);
+		}
+	}
+	return JSON.stringify(Object.fromEntries(valueMap.entries()));
+};
+
+const objectToMap = (obj: Record<string, string[]>): Map<string, string[]> =>
+	new Map(Object.entries(obj));
+
+const isStringNullOrEmpty = (str: string): boolean =>
+	str == null || str.trim() === '';
+
+const mutateStringObject = (
+	str: string,
+	obj: Record<string, string>,
+): string => {
+	console.log('Class: , Function: mutateStringObject, Line 100 ():', str, obj);
+	const stringToObject = JSON.parse(str);
+	return JSON.stringify({ ...stringToObject, ...obj });
+};
+
 export {
 	cn,
 	dateSortDesc,
@@ -86,4 +115,9 @@ export {
 	lockScroll,
 	removeScrollLock,
 	stripHtml,
+	removeDuplicates,
+	stringifyMap,
+	isStringNullOrEmpty,
+	mutateStringObject,
+	objectToMap,
 };
