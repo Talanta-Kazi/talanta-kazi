@@ -18,7 +18,7 @@ export default async function CandidateEducation() {
 					fontWeight: 700,
 				}}
 			>
-				What work would you want to do with us?
+				Add your work experience
 			</Typography>
 			<WorkForm candidate={candidate} />
 		</>
