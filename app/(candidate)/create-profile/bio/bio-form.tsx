@@ -11,7 +11,7 @@ import { Candidate } from '@/types';
 import * as z from 'zod';
 import { mutateStringObject } from '@/lib/utils';
 
-interface CandidateTitleFormProps {
+interface CandidateBioFormProps {
 	candidate: Candidate;
 }
 
@@ -20,7 +20,7 @@ type CreateProfileBioInputSchema = Pick<
 	'personal_statement' | 'videoURL'
 >;
 
-export default function BioForm({ candidate }: CandidateTitleFormProps) {
+export default function BioForm({ candidate }: CandidateBioFormProps) {
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
 
 	const defaultValues = {
