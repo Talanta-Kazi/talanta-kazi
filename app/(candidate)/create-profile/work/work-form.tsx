@@ -69,6 +69,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 	useEffect(() => {
 		const subscription = watch((value, { name }) => {
 			setWorkExperienceSelected(
+				// @ts-expect-error
 				(prevMap) => new Map(prevMap.set(name, value[name])),
 			);
 		});
@@ -78,7 +79,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
-	const onSubmit = (values) => {
+	const onSubmit = (values: { work_experience: string }) => {
 		const experience = [];
 
 		if (workComponent.length === 1 && workExperienceSelected.has('company')) {
@@ -93,6 +94,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 
 		updateProfile({
 			experience: JSON.stringify(experience),
+			// @ts-expect-error
 			experiences_id: workLevel.findIndex(
 				(work) => work === values.work_experience,
 			),
@@ -116,6 +118,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 	};
 
 	return (
+		// @ts-expect-error
 		<form name='profile-work' method='post' onSubmit={handleSubmit(onSubmit)}>
 			<Grid container spacing={4} marginTop={2}>
 				<Grid item xs={12}>

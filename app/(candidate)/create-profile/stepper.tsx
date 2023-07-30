@@ -46,7 +46,10 @@ export default function ProfileStepper() {
 		<Stepper
 			activeStep={activeStep}
 			orientation={isMd ? 'vertical' : 'horizontal'}
-			sx={{ display: { md: 'block', xs: 'none' }, position: 'absolute' }}
+			sx={{
+				display: { md: 'block', xs: 'none' },
+				position: 'absolute',
+			}}
 		>
 			{steps.map((step, index) => (
 				<Step key={step.label}>
