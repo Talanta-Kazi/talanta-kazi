@@ -13,7 +13,7 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { ICandidates } from '@/types';
+import { Candidate } from '@/types';
 import { fancyId, stripHtml } from '@/lib/utils';
 import Avatar from '@mui/material/Avatar';
 
@@ -47,9 +47,9 @@ function Reviews(): JSX.Element {
 		defaultMatches: true,
 	});
 
-	const data: ICandidates[] = [];
+	const data: Candidate[] = [];
 	// @ts-ignore
-	const candidates: ICandidates[] = data?.slice(0, 3);
+	const candidates: Candidate[] = data?.slice(0, 3);
 
 	return (
 		<Box

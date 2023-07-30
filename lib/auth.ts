@@ -1,16 +1,15 @@
-import type { GetServerSidePropsContext } from 'next';
 import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { env } from '@/env.mjs';
 import { JWT } from 'next-auth/jwt';
-import { ICandidateProfile } from '@/types';
+import { CandidateProfile } from '@/types';
 import { isArrayEmpty } from '@/lib/utils';
 
 interface AuthResponse {
 	token: string;
-	profile: ICandidateProfile;
+	profile: CandidateProfile;
 }
 
 const assignRole = (user: any) => {
@@ -94,7 +93,6 @@ export const authOptions: NextAuthOptions = {
 				});
 
 				const user = await res.json();
-				console.log('Class: , Function: authorize, Line 97 user():', user);
 
 				// If no error and we have user data, return it
 				if (res.status === 200 && user) {
@@ -155,18 +153,17 @@ export const authOptions: NextAuthOptions = {
 			};
 		},
 	},
-	debug: env.NODE_ENV === 'development',
+	debug: process.env.NODE_ENV === 'development',
 };
 
-/**
- * Wrapper for `getServerSession` so that you don't need to import the
- * `authOptions` in every file.
- *
- * @see https://next-auth.js.org/configuration/nextjs
- **/
-export const getServerAuthSession = (ctx: {
-	req: GetServerSidePropsContext['req'];
-	res: GetServerSidePropsContext['res'];
-}) => {
-	return getServerSession(ctx.req, ctx.res, authOptions);
-};
+export function getSession() {
+	return getServerSession(authOptions) as Promise<{
+		user: {
+			id: string;
+			token: string;
+			username: string;
+			email: string;
+			image: string;
+		};
+	} | null>;
+}

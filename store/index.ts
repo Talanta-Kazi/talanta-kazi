@@ -1,7 +1,7 @@
-import type { IProfileResponse } from '@/lib/types';
+import type { ProfileSchema } from '@/lib/types';
 import { create } from 'zustand';
 
-import type { ICandidateProfile } from '@/types';
+import type { CandidateProfile } from '@/types';
 
 export type Severity = 'success' | 'error';
 
@@ -11,17 +11,17 @@ export interface SnackMessage {
 }
 
 type Store = {
-	authUser: Partial<ICandidateProfile> | null;
+	authUser: Partial<CandidateProfile> | null;
 	requestLoading: boolean;
-	setAuthUser: (user: Partial<ICandidateProfile> | null) => void;
+	setAuthUser: (user: Partial<CandidateProfile> | null) => void;
 	setRequestLoading: (isLoading: boolean) => void;
 	snack: SnackMessage;
 	displaySnackMessage: (snack: SnackMessage) => void;
 	resetSnack: () => void;
 	setUploadingImage: (isUploading: boolean) => void;
 	uploadingImage: boolean;
-	profile: Partial<IProfileResponse> | null;
-	setProfile: (profile: Partial<IProfileResponse> | null) => void;
+	profile: Partial<ProfileSchema> | null;
+	setProfile: (profile: Partial<ProfileSchema> | null) => void;
 };
 
 const useStore = create<Store>((set) => ({

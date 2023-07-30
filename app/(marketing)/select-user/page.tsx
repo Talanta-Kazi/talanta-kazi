@@ -82,10 +82,10 @@ const SelectUserType = (): JSX.Element => {
 		<Container
 			width={800}
 			marginTop={16}
-			sx={{
-				border: `1px solid ${theme.palette.divider}`,
-				borderRadius: 4,
-			}}
+			// sx={{
+			// 	border: `1px solid ${theme.palette.divider}`,
+			// 	borderRadius: 4,
+			// }}
 		>
 			<Stack
 				direction='column'

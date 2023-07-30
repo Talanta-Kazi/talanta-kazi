@@ -39,7 +39,7 @@ export interface IUserResponse {
 	is_both_employer_and_candidate?: boolean;
 }
 
-export interface IProfileResponse {
+export interface ProfileSchema {
 	user: IUser;
 	specialism_id: string;
 	experiences_id: number;

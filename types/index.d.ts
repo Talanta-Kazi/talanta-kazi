@@ -2,7 +2,9 @@ export type Maybe<T> = T | null;
 
 export type Tuple<T> = [T, T];
 
-interface ICandidates {
+declare module 'react-select-country-list';
+
+interface Candidate {
 	id: number;
 	user_id: number;
 	profile_pic: string;
@@ -25,7 +27,7 @@ interface ICandidates {
 	deleted_at: Date;
 }
 
-interface IUser {
+interface User {
 	id: string;
 	first_name: string;
 	last_name: string;
@@ -36,9 +38,9 @@ interface IUser {
 	is_both_employer_and_candidate?: boolean;
 }
 
-export interface ICandidateProfile extends ICandidates {
+export interface CandidateProfile extends Candidate {
 	id: string;
-	user: IUser;
+	user: User;
 }
 
 export interface Job {

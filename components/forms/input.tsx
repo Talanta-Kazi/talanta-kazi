@@ -14,7 +14,7 @@ const ValidationTextField = styled(TextField)({
 	},
 });
 
-function Input({ name, control, label, ...rest }: InputProps) {
+export default function Input({ name, control, label, ...rest }: InputProps) {
 	return (
 		<Controller
 			name={name}
@@ -39,5 +39,3 @@ function Input({ name, control, label, ...rest }: InputProps) {
 		/>
 	);
 }
-
-export default Input;
