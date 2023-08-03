@@ -5,7 +5,7 @@ import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { profileValidationSchema } from '@/lib/validations/profile';
-import useUpdateProfile from '@/lib/hooks/useUpdateProfile';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Candidate } from '@/types';
 import { useEffect, useMemo, useState } from 'react';
 import { AddCircle } from '@mui/icons-material';
@@ -20,7 +20,7 @@ interface CandidateSpecialityFormProps {
 
 export type CreateProfileSpecialityInputSchema = Pick<
 	z.infer<typeof profileValidationSchema>,
-	'speciality' | 'specialitySkills'
+	'speciality' | 'specialitySkills' | 'skills'
 >;
 
 export default function SpecialityForm({
@@ -79,6 +79,9 @@ export default function SpecialityForm({
 		useForm<CreateProfileSpecialityInputSchema>({
 			mode: 'onChange',
 			resolver: zodResolver(profileValidationSchema),
+			defaultValues: {
+				skills: candidate?.skills,
+			},
 		});
 
 	const specialism = watch('speciality');

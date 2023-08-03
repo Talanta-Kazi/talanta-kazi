@@ -18,23 +18,21 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const mock = [
 	{
-		title: 'Find a job',
-		subtitle:
-			'Fill out our standardized application on our platform. Most applicants finish in under an hour.',
+		title: 'Professionals',
+		subtitle: 'Who you look to employ.',
 		icon: <WorkTwoTone fontSize='large' color='action' />,
 		href: '/job-listing',
 	},
 	{
-		title: 'Get a professional',
-		subtitle:
-			"We'll immediately match you with any relevant openings and you get to pick which ones you're interested in.",
+		title: 'Freelancers',
+		subtitle: 'Who are Individual experts for short ad hoc projects.',
 		icon: <ConstructionTwoTone fontSize='large' color='action' />,
 		href: '/job-listing',
 	},
 	{
-		title: 'General and technical',
+		title: 'Consultants',
 		subtitle:
-			'After 3 days all of your offers will arrive and you will have another 7 days to select your new company.',
+			'Companies with a track record of delivering complex projects for you.',
 		icon: <PixTwoTone fontSize='large' color='action' />,
 		href: '/job-listing',
 	},
@@ -64,9 +62,10 @@ export default function Services() {
 					align='center'
 					marginY={2}
 				>
-					Fill out our standardized application on our platform.
-					<br />
-					Most applicants finish in under an hour.
+					Looking for the best of Kenyan Techies, Creatives, Designers or
+					Analysts? Then connect with:
+					{/*<br />*/}
+					{/*Most applicants finish in under an hour.*/}
 				</Typography>
 				<Box marginTop={3} display='flex' justifyContent='center'>
 					<Button
@@ -134,9 +133,9 @@ export default function Services() {
 								>
 									{item.title}
 								</Typography>
-								{/* <Typography align="center" color="text.secondary"> */}
-								{/*	{item.subtitle} */}
-								{/* </Typography> */}
+								<Typography align='center' color='text.secondary'>
+									{item.subtitle}
+								</Typography>
 							</Box>
 						</Grid>
 					))}

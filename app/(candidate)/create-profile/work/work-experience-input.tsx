@@ -10,6 +10,7 @@ import type { Dayjs } from 'dayjs';
 import { Fragment } from 'react';
 import Input from '@/components/forms/input';
 import Date from '@/components/forms/date';
+import TextEditor from '@/components/forms/text-editor';
 
 interface Props {
 	id: number;
@@ -39,7 +40,7 @@ export default function WorkExperienceInput({
 }: Props) {
 	return (
 		<Fragment>
-			<Grid item xs={11}>
+			<Grid item xs={11} spacing={0}>
 				<Input
 					autoFocus
 					required
@@ -59,11 +60,12 @@ export default function WorkExperienceInput({
 					label='Job Title'
 					type='text'
 				/>
-				{/*<FormRichTextEditor*/}
-				{/*	name="job_description"*/}
-				{/*	control={control}*/}
-				{/*	label="Job description"*/}
-				{/*/>*/}
+
+				<TextEditor
+					name='job_description'
+					control={control}
+					label='Job Description'
+				/>
 
 				<Input
 					name='achievements'
@@ -111,7 +113,7 @@ export default function WorkExperienceInput({
 					label='Current work'
 				/>
 			</Grid>
-			<Grid item xs={1}>
+			<Grid item xs={1} spacing={0} sx={{ marginLeft: '0 !important' }}>
 				{id > 0 ? (
 					<IconButton aria-label='delete' onClick={() => handleDelete(id)}>
 						<Clear color='error' />

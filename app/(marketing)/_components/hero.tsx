@@ -26,7 +26,7 @@ const Hero = (): JSX.Element => {
 							fontWeight: 700,
 						}}
 					>
-						Where talent{' '}
+						Unleash Kenyan talent{' '}
 						<Typography
 							color='secondary'
 							component='span'
@@ -38,7 +38,7 @@ const Hero = (): JSX.Element => {
 								)} 0%)`,
 							}}
 						>
-							meets opportunity
+							Techies, Creatives, Designers & Analysts
 						</Typography>
 					</Typography>
 				</Box>

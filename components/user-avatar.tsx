@@ -116,23 +116,28 @@ const UserAvatar = (): JSX.Element => {
 				{isSm ? (
 					<Avatar
 						onClick={handleToggleProfileMenu}
-						alt={username ?? 'Anonymous User'}
-						src={image ?? '/img/avatar_male.svg'}
+						alt={username || 'Anonymous User'}
+						src={image || '/img/avatar_male.svg'}
 						aria-describedby='menu-popover'
 						aria-controls='menu-popover'
 						aria-haspopup='true'
 						typeof='button'
+						variant='rounded'
+						sx={{
+							width: 32,
+							height: 32,
+						}}
 					/>
 				) : (
 					<Chip
 						size='medium'
-						label={username ?? 'Anonymous User'}
+						label={username || 'Anonymous User'}
 						variant='outlined'
 						onClick={handleToggleProfileMenu}
 						avatar={
 							<Avatar
-								alt={username ?? 'Anonymous User'}
-								src={image ?? '/img/avatar_male.svg'}
+								alt={username || 'Anonymous User'}
+								src={image || '/img/avatar_male.svg'}
 								aria-describedby='menu-popover'
 								aria-controls='menu-popover'
 								aria-haspopup='true'

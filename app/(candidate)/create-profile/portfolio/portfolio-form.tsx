@@ -6,7 +6,7 @@ import { stringifyMap } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { profileValidationSchema } from '@/lib/validations/profile';
 import { z } from 'zod';
-import useUpdateProfile from '@/lib/hooks/useUpdateProfile';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Button, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { AddCircle } from '@mui/icons-material';

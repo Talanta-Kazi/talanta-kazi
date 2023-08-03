@@ -10,7 +10,7 @@ interface AuthLayoutProps {
 export default function AuthLayout({ children }: AuthLayoutProps) {
 	return (
 		<Minimal>
-			<Container>
+			<Container padding={0}>
 				<ProfileStepper />
 				<Container maxWidth={720} paddingY={0}>
 					{children}

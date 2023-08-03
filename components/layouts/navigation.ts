@@ -1,13 +1,5 @@
 const sideLayoutNavigation = [
 	{
-		title: 'Career advisory',
-		href: '/career-advisory',
-	},
-	{
-		title: 'CV services',
-		href: '/cv-services',
-	},
-	{
 		title: 'Find a job',
 		href: '/find-a-job',
 	},
@@ -22,14 +14,6 @@ const sideLayoutNavigation = [
 ];
 
 const mainLayoutNavigation = [
-	{
-		title: 'Career advisory',
-		href: '/career-advisory',
-	},
-	{
-		title: 'CV services',
-		href: '/cv-services',
-	},
 	{
 		title: 'Find a job',
 		href: '/find-a-job',

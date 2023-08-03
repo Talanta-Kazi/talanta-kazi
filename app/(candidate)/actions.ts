@@ -1,6 +1,5 @@
 import { ProfileInputSchema } from '@/lib/validations/profile';
 import { Candidate } from '@/types';
-import { cache } from 'react';
 import { env } from '@/env.mjs';
 import { getSession } from '@/lib/auth';
 
@@ -8,8 +7,6 @@ const updateProfileFn = async (
 	id: string,
 	profile: Partial<ProfileInputSchema>,
 ) => {
-	console.log('Class: , Function: updateProfileFn, Line 9 profile():', profile);
-
 	try {
 		const response = await fetch(`/api/profile/${id}`, {
 			method: 'PUT',
@@ -22,7 +19,7 @@ const updateProfileFn = async (
 	}
 };
 
-const getCandidateProfile = cache(async (id?: string): Promise<Candidate> => {
+const getCandidateProfile = async (id?: string): Promise<Candidate> => {
 	const session = await getSession();
 	if (!session) {
 		throw new Error('Unauthorized');
@@ -50,6 +47,6 @@ const getCandidateProfile = cache(async (id?: string): Promise<Candidate> => {
 	} catch (error) {
 		throw new Error(error as any);
 	}
-});
+};
 
 export { updateProfileFn, getCandidateProfile };

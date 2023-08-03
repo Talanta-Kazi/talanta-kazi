@@ -7,8 +7,8 @@ import { fancyId, isBrowser, stringifyMap } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { profileValidationSchema } from '@/lib/validations/profile';
 import { z } from 'zod';
-import useUpdateProfile from '@/lib/hooks/useUpdateProfile';
-import { Button, Grid, MenuItem, Stack } from '@mui/material';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { Button, Fab, Grid, MenuItem, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Input from '@/components/forms/input';
 import WorkExperienceInput from '@/app/(candidate)/create-profile/work/work-experience-input';
@@ -120,8 +120,8 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 	return (
 		// @ts-expect-error
 		<form name='profile-work' method='post' onSubmit={handleSubmit(onSubmit)}>
-			<Grid container spacing={4} marginTop={2}>
-				<Grid item xs={12}>
+			<Grid container marginTop={0} spacing={0}>
+				<Grid item xs={12} spacing={0}>
 					<Typography
 						variant='body1'
 						marginBottom={2}
@@ -192,13 +192,35 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 							startIcon={<AddCircle fontSize='large' />}
 							variant='contained'
 							onClick={handleAddWorkExperienceTextFields}
-							sx={{ fontWeight: 'medium', color: 'unset' }}
+							sx={{
+								fontWeight: 'medium',
+								color: 'unset',
+								display: { xs: 'none', md: 'flex' },
+							}}
 						>
 							ADD WORK EXPERIENCE
 						</Button>
 					</Grid>
 				</Grid>
 			</Grid>
+			<Fab
+				variant='extended'
+				size='medium'
+				color='primary'
+				aria-label='add'
+				onClick={handleAddWorkExperienceTextFields}
+				sx={{
+					fontWeight: 'medium',
+					color: 'unset',
+					display: { xs: 'flex', md: 'none' },
+					position: 'fixed',
+					bottom: 72,
+					right: 30,
+				}}
+			>
+				<AddCircle sx={{ mr: 0.5 }} />
+				WORK EXPERIENCE
+			</Fab>
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}

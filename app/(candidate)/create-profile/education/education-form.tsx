@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { isBrowser, stringifyMap } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
-import useUpdateProfile from '@/lib/hooks/useUpdateProfile';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import Typography from '@mui/material/Typography';
 import { Button, Grid, Stack } from '@mui/material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
@@ -71,10 +71,22 @@ export default function EducationForm({
 			? graduateEducationLevel
 			: semiSkilledEducationLevel;
 
-	const { control, handleSubmit, watch } =
+	const { control, handleSubmit, watch, formState, getValues } =
 		useForm<CreateProfileEducationInputSchema>({
 			mode: 'onChange',
+			defaultValues: {
+				education: JSON.parse(candidate?.education),
+			},
 		});
+
+	console.log(
+		'Class: default, Function: EducationForm, Line 82 formState():',
+		formState.defaultValues,
+	);
+	console.log(
+		'Class: default, Function: EducationForm, Line 86 getValues()():',
+		getValues(),
+	);
 
 	useEffect(() => {
 		const subscription = watch((value, { name }) => {
