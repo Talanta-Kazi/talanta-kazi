@@ -107,7 +107,6 @@ export default function RegisterForm({
 	});
 
 	const onSubmit: SubmitHandler<RegisterInputSchema> = (values) => {
-		console.log('Class: default, Function: onSubmit, Line 100 ():', values);
 		const payload = {
 			...values,
 			userType: alignment,
@@ -125,10 +124,12 @@ export default function RegisterForm({
 							fontWeight: 700,
 						}}
 					>
-						Create an account
+						Create an account profile
 					</Typography>
 					<Typography color='text.secondary'>
-						Fill out the form to get started.
+						Your source for the information and resources you need for your
+						career journey at Talanta Kazi. Create personalized job alerts, see
+						jobs recommended for you, get interview schedules and more.
 					</Typography>
 				</Box>
 
@@ -142,7 +143,7 @@ export default function RegisterForm({
 					aria-label='Work'
 					sx={{ marginBottom: '28px' }}
 				>
-					<ToggleButton value='candidate'>Candidate</ToggleButton>
+					<ToggleButton value='talent'>Talent</ToggleButton>
 					<ToggleButton value='employer'>Employer</ToggleButton>
 				</ToggleButtonGroup>
 
@@ -266,7 +267,7 @@ export default function RegisterForm({
 									disabled={isSubmitting || !isDirty || !isValid}
 									loadingIndicator='Please wait...'
 								>
-									Register
+									Create Account Profile
 								</LoadingButton>
 							</Box>
 							<Box marginTop={2}>
@@ -275,8 +276,7 @@ export default function RegisterForm({
 									<Button
 										component={Link}
 										href='/login'
-										variant='text'
-										color='inherit'
+										color='primary'
 										sx={{ fontWeight: 700 }}
 									>
 										Login.

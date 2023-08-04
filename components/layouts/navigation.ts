@@ -4,7 +4,7 @@ const sideLayoutNavigation = [
 		href: '/find-a-job',
 	},
 	{
-		title: 'Post a job (Free)',
+		title: 'Post a job',
 		href: '/post-a-job',
 	},
 	{
@@ -19,7 +19,7 @@ const mainLayoutNavigation = [
 		href: '/find-a-job',
 	},
 	{
-		title: 'Post a job (Free)',
+		title: 'Post a job',
 		href: '/post-a-job',
 	},
 	{

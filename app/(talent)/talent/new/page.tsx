@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuBookTwoTone, WorkTwoTone } from '@mui/icons-material';
+import { AllOutTwoTone, SpaTwoTone, WorkTwoTone } from '@mui/icons-material';
 /* eslint-disable react/no-unescaped-entities */
 import {
 	Avatar,
@@ -21,18 +21,21 @@ import { fancyId } from '@/lib/utils';
 
 const mock = [
 	{
-		title: 'I am a candidate',
-		icon: <MenuBookTwoTone color='action' />,
-		value: 'candidate',
+		title: 'I am a freelancer',
+		icon: <SpaTwoTone fontSize='large' color='action' />,
+		value: 'freelancer',
 	},
 	{
-		title: 'I am an employer',
-		icon: <WorkTwoTone color='action' />,
-		value: 'employer',
+		title: 'I am a professional',
+		icon: <AllOutTwoTone fontSize='large' color='action' />,
+		value: 'professional',
+	},
+	{
+		title: 'I am a consultant',
+		icon: <WorkTwoTone fontSize='large' color='action' />,
+		value: 'consultant',
 	},
 ];
-
-type Alignment = 'employer' | 'candidate' | 'candidate-and-employer' | '...';
 
 const SelectUserType = (): JSX.Element => {
 	const theme = useTheme();
@@ -49,8 +52,11 @@ const SelectUserType = (): JSX.Element => {
 			case 'candidate':
 				setActiveState('candidate');
 				return;
-			case 'employer':
-				setActiveState('employer');
+			case 'professional':
+				setActiveState('professional');
+				return;
+			case 'consultant':
+				setActiveState('consultant');
 				return;
 			default:
 				setActiveState('...');
@@ -63,7 +69,10 @@ const SelectUserType = (): JSX.Element => {
 			case 'employer':
 				push('/employer/analytics');
 				return;
-			case 'candidate':
+			case 'professional':
+				push('/candidate/jobs');
+				return;
+			case 'consultant':
 				push('/candidate/jobs');
 				return;
 			default:
@@ -79,14 +88,7 @@ const SelectUserType = (): JSX.Element => {
 	};
 
 	return (
-		<Container
-			width={800}
-			marginTop={16}
-			// sx={{
-			// 	border: `1px solid ${theme.palette.divider}`,
-			// 	borderRadius: 4,
-			// }}
-		>
+		<Container marginTop={isMd ? 16 : 2}>
 			<Stack
 				direction='column'
 				justifyContent='center'
@@ -95,73 +97,58 @@ const SelectUserType = (): JSX.Element => {
 			>
 				<Box>
 					<Typography
-						variant='h5'
+						variant='h4'
 						align={'center'}
 						sx={{
-							fontWeight: 500,
+							fontWeight: 700,
 						}}
 					>
-						Proceed as candidate or employer
+						Choose talent profile
 					</Typography>
 				</Box>
 				<ToggleButtonGroup
+					color='primary'
 					size='small'
 					value={alignment}
+					orientation={isMd ? 'horizontal' : 'vertical'}
 					exclusive
 					onChange={handleAlignment}
-					aria-label='text alignment'
-					sx={{
-						marginTop: 4,
-					}}
+					aria-label='Profile type'
 				>
 					{mock.map((item) => (
 						<Box
 							key={fancyId()}
 							value={item.value}
 							component={ToggleButton}
-							paddingX={4}
+							paddingX={2}
 							width={1}
-							height='200px'
+							height={isMd ? '200px' : 1}
 							marginX={0}
-							border={1}
-							sx={{
-								border: `1px solid ${theme.palette.divider}`,
-								borderRadius: 2,
-							}}
 						>
 							<Stack
-								direction='column'
-								justifyContent='center'
-								alignItems='flex-start'
-								width={200}
+								direction={isMd ? 'column' : 'row'}
+								justifyContent='flex-start'
+								alignItems='center'
+								width={isMd ? 200 : '80vw'}
 							>
-								<Stack
-									direction='row'
-									justifyContent='space-between'
-									alignItems='flex-start'
-									spacing={4}
-									marginBottom={4}
-									width={200}
+								<Box
+									component={Avatar}
+									width={isMd ? 60 : 48}
+									height={isMd ? 60 : 48}
+									marginBottom={isMd ? 2 : 0}
+									marginRight={isMd ? 0 : 2}
+									bgcolor={alpha(theme.palette.primary.main, 0.3)}
+									color={theme.palette.primary.main}
+									variant='rounded'
+									// borderRadius={2}
 								>
-									<Box
-										component={Avatar}
-										width={60}
-										height={60}
-										marginBottom={2}
-										marginRight={{ md: 0, xs: 2 }}
-										bgcolor={alpha(theme.palette.primary.main, 0.3)}
-										color={theme.palette.primary.main}
-										variant='rounded'
-										borderRadius={2}
-									>
-										{item.icon}
-									</Box>
-								</Stack>
+									{item.icon}
+								</Box>
 
 								<Stack
 									direction='column'
 									justifyContent='space-around'
-									alignItems='center'
+									alignItems='start'
 									spacing={4}
 								>
 									<Typography

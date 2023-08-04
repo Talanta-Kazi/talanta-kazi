@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import useDelayedRender from 'use-delayed-render';
 import { cn, lockScroll } from '@/lib/utils';
 import { Button, Divider } from '@mui/material';
+import { useSession } from 'next-auth/react';
 
 function MenuIcon(props: JSX.IntrinsicElements['svg']) {
 	return (
@@ -57,6 +58,7 @@ function CrossIcon(props: JSX.IntrinsicElements['svg']) {
 }
 
 const MobileNav = () => {
+	const { status } = useSession();
 	const [navShow, setNavShow] = useState(false);
 	const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(
 		navShow,
@@ -85,7 +87,7 @@ const MobileNav = () => {
 	}, []);
 
 	return (
-		<div className='sm:hidden'>
+		<div className='ml-2 sm:hidden'>
 			<button
 				className={cn(styles.burger, 'visible md:hidden')}
 				aria-label='Toggle menu'
@@ -116,29 +118,9 @@ const MobileNav = () => {
 					<li
 						onClick={onToggleNav}
 						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
-						style={{ transitionDelay: '150ms' }}
-					>
-						<Link href='/' className='flex w-auto pb-4'>
-							Career advisory
-						</Link>
-					</li>
-					<Divider />
-					<li
-						onClick={onToggleNav}
-						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
-						style={{ transitionDelay: '175ms' }}
-					>
-						<Link href='/projects' className='flex w-auto pb-4'>
-							CV services
-						</Link>
-					</li>
-					<Divider />
-					<li
-						onClick={onToggleNav}
-						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
 						style={{ transitionDelay: '200ms' }}
 					>
-						<Link href='/blog' className='flex w-auto pb-4'>
+						<Link href='/job-listing' className='flex w-auto pb-4'>
 							Find a job
 						</Link>
 					</li>
@@ -148,8 +130,8 @@ const MobileNav = () => {
 						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
 						style={{ transitionDelay: '200ms' }}
 					>
-						<Link href='/1loc' className='flex w-auto pb-4'>
-							Post a job (Free)
+						<Link href='/post-a-job' className='flex w-auto pb-4'>
+							Post a job
 						</Link>
 					</li>
 					<Divider />
@@ -157,10 +139,7 @@ const MobileNav = () => {
 						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
 						style={{ transitionDelay: '250ms' }}
 					>
-						<Link
-							href='https://notes.francismasha.com'
-							className='flex w-auto pb-4'
-						>
+						<Link href='/find-candidate' className='flex w-auto pb-4'>
 							Find candidates
 						</Link>
 					</li>
@@ -170,8 +149,8 @@ const MobileNav = () => {
 						className='border-b border-gray-300 px-8 text-lg font-medium text-gray-900 dark:border-gray-700 dark:text-gray-100'
 						style={{ transitionDelay: '300ms' }}
 					>
-						<Link href='/about' className='flex w-auto pb-4'>
-							Contact us
+						<Link href='/employers' className='flex w-auto pb-4'>
+							Employers
 						</Link>
 					</li>
 					<Divider />
@@ -182,9 +161,9 @@ const MobileNav = () => {
 							color='primary'
 							size='large'
 							fullWidth
-							href='/login'
+							href={status === 'authenticated' ? '/candidate/jobs' : '/login'}
 						>
-							Login
+							{status === 'authenticated' ? 'Dashboard' : 'Login'}
 						</Button>
 					</li>
 				</ul>

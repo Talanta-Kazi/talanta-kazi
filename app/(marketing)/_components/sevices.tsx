@@ -25,7 +25,7 @@ const mock = [
 	},
 	{
 		title: 'Freelancers',
-		subtitle: 'Who are Individual experts for short ad hoc projects.',
+		subtitle: 'Individual experts for short ad hoc projects.',
 		icon: <ConstructionTwoTone fontSize='large' color='action' />,
 		href: '/job-listing',
 	},
@@ -124,18 +124,27 @@ export default function Services() {
 								>
 									{item.icon}
 								</Box>
-								<Typography
-									variant='h6'
-									gutterBottom
-									color='text.primary'
-									sx={{ fontWeight: 500 }}
-									align='center'
+								<Box
+									display='flex'
+									flexDirection='column'
+									alignItems={{ xs: 'start', md: 'center' }}
 								>
-									{item.title}
-								</Typography>
-								<Typography align='center' color='text.secondary'>
-									{item.subtitle}
-								</Typography>
+									<Typography
+										variant='h6'
+										gutterBottom
+										color='text.primary'
+										sx={{ fontWeight: 500 }}
+										align='center'
+									>
+										{item.title}
+									</Typography>
+									<Typography
+										color='text.secondary'
+										align={isMd ? 'center' : 'left'}
+									>
+										{item.subtitle}
+									</Typography>
+								</Box>
 							</Box>
 						</Grid>
 					))}

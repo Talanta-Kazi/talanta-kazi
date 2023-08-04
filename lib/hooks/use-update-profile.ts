@@ -1,7 +1,7 @@
 import useStore from '@/store/index';
 import { useMutation } from '@tanstack/react-query';
 import { isArrayEmpty } from '@/lib/utils';
-import { updateProfileFn } from '@/app/(candidate)/actions';
+import { updateProfileFn } from '@/app/(talent)/actions';
 import { ProfileInputSchema } from '@/lib/validations/profile';
 import { useSession } from 'next-auth/react';
 

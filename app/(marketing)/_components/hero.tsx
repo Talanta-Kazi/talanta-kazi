@@ -222,7 +222,7 @@ const Hero = (): JSX.Element => {
 					height: '100%',
 					backgroundSize: '16px 16px',
 					backgroundImage: `radial-gradient(${alpha(
-						'#c9ad24',
+						theme.palette.primary.dark,
 						0.4,
 					)} 20%, transparent 20%)`,
 					opacity: 0.2,

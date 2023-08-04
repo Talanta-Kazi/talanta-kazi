@@ -65,7 +65,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 		if (authStatus === 'authenticated') {
 			const newUser = session?.user.newUser;
 			{
-				newUser ? push('create-profile/select-role') : push('candidate/jobs');
+				!newUser ? push('talent/new') : push('candidate/jobs');
 			}
 		}
 	}, [session?.user?.newUser, session?.user.token]);
@@ -169,8 +169,6 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 										<Button
 											component={Link}
 											href='/register'
-											variant='text'
-											color='inherit'
 											sx={{ fontWeight: 700 }}
 										>
 											Sign up here.

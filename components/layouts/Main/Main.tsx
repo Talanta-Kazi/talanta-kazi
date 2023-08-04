@@ -85,11 +85,7 @@ const Main = ({ children, bgcolor = 'transparent' }: Props): JSX.Element => {
 				}}
 				elevation={trigger ? 1 : 0}
 			>
-				<Container
-					maxWidth={1}
-					paddingY={{ xs: 2, md: 1 }}
-					paddingX={{ xs: 2, md: 4 }}
-				>
+				<Container maxWidth={1} paddingY={1} paddingX={{ xs: 2, md: 4 }}>
 					<Topbar />
 				</Container>
 			</AppBar>

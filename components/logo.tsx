@@ -1,30 +1,27 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
+import logo from '../public/img/logo.png';
+import Image from 'next/image';
 
-interface Props {
-	displayText?: boolean;
-}
-
-const Logo = ({ displayText = false }: Props): JSX.Element => {
-	const {
-		palette: { mode },
-	} = useTheme();
-
+const Logo = () => {
 	return (
 		<Box
 			component={Link}
 			href={'/'}
 			role='presentation'
-			style={{ cursor: 'pointer' }}
+			sx={{
+				display: 'flex',
+				cursor: 'pointer',
+				alignItems: 'center',
+			}}
 		>
+			<Image src={logo} alt='...' width={96} height={96} className='h-8 w-8' />
 			<Typography
 				variant='h6'
 				color='textPrimary'
 				style={{
 					fontWeight: 600,
-					// fontSize: '1.45rem',
 				}}
 			>
 				Talanta Kazi
