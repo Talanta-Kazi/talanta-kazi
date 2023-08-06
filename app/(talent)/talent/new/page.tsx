@@ -94,9 +94,9 @@ const SelectUserType = (): JSX.Element => {
 	};
 
 	const linkToDashboardViews: LinkToDashboardViews = {
-		freelancer: '/freelancer-profile/title',
-		professional: '/professional-profile/title',
-		consultant: '/consultant-profile/title',
+		freelancer: '/freelancer-profile/personal',
+		professional: '/professional-profile/personal',
+		consultant: '/consultant-profile/personal',
 	} as const;
 
 	const handleAlignment = (
