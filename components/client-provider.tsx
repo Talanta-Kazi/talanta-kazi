@@ -15,7 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider as Balancer } from 'react-wrap-balancer';
 
 export function ClientProvider({ children }: { children: ReactNode }) {
-	const store = useStore();
+	const { snack } = useStore();
 	const [queryClient] = useState(() => new QueryClient());
 
 	useEffect(() => {
@@ -65,7 +65,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 								>
 									<ComponentProvider>
 										<Balancer>{children}</Balancer>
-										<SnackBar snack={store.snack} />
+										<SnackBar snack={snack} />
 									</ComponentProvider>
 								</ErrorBoundary>
 							</ThemeRegistry>

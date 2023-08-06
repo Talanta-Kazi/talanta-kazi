@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Controller } from 'react-hook-form';
 
 import type { InputProps } from './input-props';
+import dayjs from 'dayjs';
 
 function Date({ name, control, label, ...rest }: InputProps) {
 	return (
@@ -18,7 +19,7 @@ function Date({ name, control, label, ...rest }: InputProps) {
 					<MobileDatePicker
 						{...rest}
 						label={label}
-						value={value}
+						value={dayjs(value)}
 						onChange={onChange}
 						sx={{ width: '100%' }}
 					/>

@@ -1,32 +1,18 @@
-'use client';
-
 import { CheckBox, CheckBoxOutlineBlank, Clear } from '@mui/icons-material';
-import {
-	Checkbox,
-	FormControlLabel,
-	Grid,
-	IconButton,
-	MenuItem,
-	Stack,
-} from '@mui/material';
-import type { Dayjs } from 'dayjs';
+import { Grid, IconButton, MenuItem, Stack } from '@mui/material';
 import { Fragment } from 'react';
 import Input from '@/components/forms/input';
 import { fancyId } from '@/lib/utils';
 import Date from '@/components/forms/date';
+import Checkbox from '@/components/forms/checkbox';
 
 interface Props {
 	id: number;
 	control: any;
+	watch: any;
 	label?: string;
 	educationLevel: Array<string>;
 	handleDelete: (id: number) => void;
-	fromDate: Dayjs | null;
-	toDate: Dayjs | null;
-	setFromDate: any;
-	setToDate: any;
-	handleCurrentSchoolSelect: () => void;
-	isCurrentSchool: boolean;
 }
 
 const icon = <CheckBoxOutlineBlank fontSize='small' />;
@@ -35,15 +21,10 @@ const checkedIcon = <CheckBox fontSize='small' />;
 export default function EducationInput({
 	id,
 	control,
+	watch,
 	label,
 	educationLevel,
 	handleDelete,
-	fromDate,
-	toDate,
-	setFromDate,
-	setToDate,
-	handleCurrentSchoolSelect,
-	isCurrentSchool,
 	...rest
 }: Props) {
 	return (
@@ -51,7 +32,7 @@ export default function EducationInput({
 			<Grid item xs={11}>
 				<Input
 					required
-					name='institution'
+					name={`education[${id}].institution`}
 					margin='dense'
 					size='medium'
 					control={control}
@@ -63,7 +44,7 @@ export default function EducationInput({
 					select
 					autoFocus={false}
 					margin='dense'
-					name='education_level'
+					name={`education[${id}].education_level`}
 					placeholder=''
 					size='medium'
 					control={control}
@@ -78,7 +59,7 @@ export default function EducationInput({
 				</Input>
 				<Input
 					required
-					name='course'
+					name={`education[${id}].course`}
 					margin='dense'
 					size='medium'
 					control={control}
@@ -94,7 +75,8 @@ export default function EducationInput({
 				>
 					<Date
 						required
-						name='from_date'
+						name={`education[${id}].from_date`}
+						type='date'
 						disableFuture
 						control={control}
 						label='From date'
@@ -104,9 +86,10 @@ export default function EducationInput({
 					/>
 
 					<Date
-						disabled={isCurrentSchool}
+						disabled={watch(`education[${id}].current_school`) === true}
+						type='date'
 						disableFuture
-						name='to_date'
+						name={`education[${id}].to_date`}
 						control={control}
 						label='To date'
 						openTo='year'
@@ -115,10 +98,16 @@ export default function EducationInput({
 					/>
 				</Stack>
 
-				<FormControlLabel
-					control={<Checkbox onChange={() => handleCurrentSchoolSelect()} />}
+				<Checkbox
 					label='Current school'
+					control={control}
+					name={`education[${id}].current_school`}
 				/>
+
+				{/*<FormControlLabel*/}
+				{/*	control={<Checkbox onChange={() => handleCurrentSchoolSelect()} />}*/}
+				{/*	label='Current school'*/}
+				{/*/>*/}
 			</Grid>
 			<Grid item xs={1}>
 				{id > 0 ? (

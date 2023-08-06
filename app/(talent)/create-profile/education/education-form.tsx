@@ -1,11 +1,9 @@
 'use client';
 
-import { Candidate } from '@/types';
 import { profileValidationSchema } from '@/lib/validations/profile';
 import { z } from 'zod';
-import { useEffect, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import { isBrowser, stringifyMap } from '@/lib/utils';
+import { Key, useState } from 'react';
+import { isBrowser } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import Typography from '@mui/material/Typography';
@@ -13,9 +11,10 @@ import { Button, Grid, Stack } from '@mui/material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import { AddCircle } from '@mui/icons-material';
 import EducationInput from '@/app/(talent)/create-profile/education/education-input';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface CandidateEducationFormProps {
-	candidate: Candidate;
+	defaultValues: any;
 }
 
 const graduateEducationLevel = [
@@ -42,25 +41,46 @@ const trainingType = [
 	'Vocational Training/Certification/Licensing',
 ];
 
-type CreateProfileEducationInputSchema = z.infer<
-	typeof profileValidationSchema
+type CreateProfileEducationInputSchema = Pick<
+	z.infer<typeof profileValidationSchema>,
+	| 'education_level'
+	| 'institution'
+	| 'course'
+	| 'from_date'
+	| 'to_date'
+	| 'education'
 >;
 
-export default function EducationForm({
-	candidate,
-}: CandidateEducationFormProps) {
-	const [educationComponent, setEducationComponent] = useState<
-		Array<Record<string, any>>
-	>([{ id: 0, educationLevel: '' }]);
-	const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs(''));
-	const [toDate, setToDate] = useState<Dayjs | null>(dayjs(''));
-	const [isCurrentSchool, setIsCurrentSchool] = useState(false);
-	const [educationLevelSelected, setEducationLevelSelected] = useState(
-		new Map<string, string[]>(),
-	);
+const educationSchema = z.object({
+	education: z.array(
+		z.object({
+			institution: z.string().nonempty(),
+			education_level: z.string().nonempty(),
+			course: z.string().nonempty(),
+			from_date: z.coerce.date(),
+			to_date: z.coerce.date(),
+			current_school: z.boolean(),
+		}),
+	),
+});
 
-	const handleCurrentSchoolSelect = () =>
-		setIsCurrentSchool((prevState) => !prevState);
+type FormData = z.infer<typeof educationSchema>;
+
+export default function EducationForm({
+	defaultValues,
+}: CandidateEducationFormProps) {
+	const [education, setEducation] = useState(
+		defaultValues?.education || [
+			{
+				institution: '',
+				education_level: '',
+				course: '',
+				from_date: '',
+				to_date: '',
+				current_school: false,
+			},
+		],
+	);
 
 	const professionalLevel = isBrowser
 		? window.localStorage.getItem('professionalLevel')
@@ -71,68 +91,43 @@ export default function EducationForm({
 			? graduateEducationLevel
 			: semiSkilledEducationLevel;
 
-	const { control, handleSubmit, watch, formState, getValues } =
-		useForm<CreateProfileEducationInputSchema>({
-			mode: 'onChange',
-			defaultValues: {
-				education: JSON.parse(candidate?.education),
-			},
-		});
-
-	console.log(
-		'Class: default, Function: EducationForm, Line 82 formState():',
-		formState.defaultValues,
-	);
-	console.log(
-		'Class: default, Function: EducationForm, Line 86 getValues()():',
-		getValues(),
-	);
-
-	useEffect(() => {
-		const subscription = watch((value, { name }) => {
-			setEducationLevelSelected(
-				// @ts-expect-error
-				(prevMap) => new Map(prevMap.set(name, value[name])),
-			);
-		});
-
-		return () => subscription.unsubscribe();
-	}, [watch]);
+	const { control, handleSubmit, reset, watch } = useForm({
+		mode: 'onChange',
+		resolver: zodResolver(educationSchema),
+		defaultValues,
+	});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
-	const onSubmit = () => {
-		const education = [];
-
-		if (
-			educationComponent.length === 1 &&
-			educationLevelSelected.has('institution')
-		) {
-			education.push(JSON.parse(stringifyMap(educationLevelSelected)));
-		}
-
-		educationComponent.forEach((item) => {
-			if (item.educationLevel !== '') {
-				education.push(JSON.parse(item.educationLevel));
-			}
-		});
-
-		updateProfile({ education: JSON.stringify(education) });
+	const onSubmit = async (data: any) => {
+		updateProfile({ education: JSON.stringify(data) });
 	};
 
 	const handleAddEducationTextFields = () => {
-		setEducationComponent((prevState) =>
-			prevState.concat({
-				id: prevState[0].id++,
-				educationLevel: stringifyMap(educationLevelSelected),
-			}),
-		);
+		setEducation((prevState: any) => [
+			...prevState,
+			{
+				institution: '',
+				education_level: '',
+				course: '',
+				from_date: '',
+				to_date: '',
+				current_school: false,
+			},
+		]);
 	};
 
-	const handleRemoveEducationTextFields = (id: number) => {
-		setEducationComponent((prevState) =>
-			prevState.filter((item) => item.id !== id),
+	const handleRemoveEducationTextFields = (index: number) => {
+		const filteredEducation = defaultValues.education.filter(
+			(_: any, i: number) => i !== index,
 		);
+		const resetEducationValues = {
+			education: filteredEducation,
+		};
+		reset(resetEducationValues);
+		setEducation((prevState: any) => [
+			...prevState.filter((_: any, i: number) => i !== index),
+		]);
 	};
 
 	return (
@@ -155,31 +150,23 @@ export default function EducationForm({
 				</Grid>
 
 				<Grid item xs={12}>
-					{educationComponent
-						.slice()
-						.sort((a, b) => a.id - b.id)
-						.map((item) => (
-							<Stack
-								direction='row'
-								alignItems='stretch'
-								spacing={2}
-								key={item.id}
-								marginBottom={4}
-							>
-								<EducationInput
-									id={item.id}
-									control={control}
-									educationLevel={educationLevel}
-									handleDelete={handleRemoveEducationTextFields}
-									fromDate={fromDate}
-									setFromDate={setFromDate}
-									setToDate={setToDate}
-									toDate={toDate}
-									handleCurrentSchoolSelect={handleCurrentSchoolSelect}
-									isCurrentSchool={isCurrentSchool}
-								/>
-							</Stack>
-						))}
+					{education.map((_: any, index: Key | null | undefined | number) => (
+						<Stack
+							direction='row'
+							alignItems='stretch'
+							spacing={2}
+							key={index}
+							marginBottom={4}
+						>
+							<EducationInput
+								id={index as number}
+								control={control}
+								watch={watch}
+								educationLevel={educationLevel}
+								handleDelete={handleRemoveEducationTextFields}
+							/>
+						</Stack>
+					))}
 				</Grid>
 
 				<Grid item xs={12}>

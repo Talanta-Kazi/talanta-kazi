@@ -1,4 +1,3 @@
-import type { SnackMessage } from '@/lib/../store';
 import useStore from '@/lib/../store';
 import type { AlertProps } from '@mui/material';
 import { Snackbar, useMediaQuery } from '@mui/material';
@@ -6,6 +5,7 @@ import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 import type { SyntheticEvent } from 'react';
 import { forwardRef, useEffect, useState } from 'react';
+import { SnackMessage } from '@/store/slices/createSnackSlice';
 
 interface SnackMessageProps {
 	snack: SnackMessage;

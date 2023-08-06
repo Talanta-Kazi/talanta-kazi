@@ -18,6 +18,8 @@ import type { MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 import Container from '@/components/container';
 import { fancyId } from '@/lib/utils';
+import useLocalStorage from '@/lib/hooks/use-local-storage';
+import Link from 'next/link';
 
 const mock = [
 	{
@@ -43,20 +45,27 @@ const SelectUserType = (): JSX.Element => {
 		defaultMatches: true,
 	});
 	const { push } = useRouter();
+	const [storedValue, setLocalStorage] = useLocalStorage(
+		'userType',
+		'freelancer',
+	);
 
 	const [alignment, setAlignment] = useState('...');
 	const [activeState, setActiveState] = useState('');
 
 	useEffect(() => {
 		switch (alignment) {
-			case 'candidate':
-				setActiveState('candidate');
+			case 'freelancer':
+				setActiveState('freelancer');
+				setLocalStorage('freelancer');
 				return;
 			case 'professional':
 				setActiveState('professional');
+				setLocalStorage('professional');
 				return;
 			case 'consultant':
 				setActiveState('consultant');
+				setLocalStorage('consultant');
 				return;
 			default:
 				setActiveState('...');
@@ -66,7 +75,7 @@ const SelectUserType = (): JSX.Element => {
 
 	const handlePushToDashboardViews = () => {
 		switch (alignment) {
-			case 'employer':
+			case 'freelancer':
 				push('/employer/analytics');
 				return;
 			case 'professional':
@@ -140,7 +149,6 @@ const SelectUserType = (): JSX.Element => {
 									bgcolor={alpha(theme.palette.primary.main, 0.3)}
 									color={theme.palette.primary.main}
 									variant='rounded'
-									// borderRadius={2}
 								>
 									{item.icon}
 								</Box>
@@ -170,36 +178,40 @@ const SelectUserType = (): JSX.Element => {
 					justifyContent={'center'}
 					marginTop={isMd ? 12 : 4}
 				>
-					<Button
-						variant='contained'
-						color='primary'
-						size='large'
-						fullWidth={!isMd}
-						onClick={handlePushToDashboardViews}
-						endIcon={
-							alignment !== '...' ||
-							(alignment === null && (
-								<Box
-									component='svg'
-									xmlns='http://www.w3.org/2000/svg'
-									fill='none'
-									viewBox='0 0 24 24'
-									stroke='currentColor'
-									width={24}
-									height={24}
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M17 8l4 4m0 0l-4 4m4-4H3'
-									/>
-								</Box>
-							))
-						}
-					>
-						{`Proceed as ${alignment ? alignment.split('-').join(' ') : '...'}`}
-					</Button>
+					<Link href='/create-profile/title'>
+						<Button
+							variant='contained'
+							color='primary'
+							size='large'
+							fullWidth={!isMd}
+							// onClick={handlePushToDashboardViews}
+							endIcon={
+								alignment !== '...' ||
+								(alignment === null && (
+									<Box
+										component='svg'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+										width={24}
+										height={24}
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth={2}
+											d='M17 8l4 4m0 0l-4 4m4-4H3'
+										/>
+									</Box>
+								))
+							}
+						>
+							{`Proceed as ${
+								alignment ? alignment.split('-').join(' ') : '...'
+							}`}
+						</Button>
+					</Link>
 				</Box>
 			</Stack>
 		</Container>

@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Custom hook to save and retrieve data from localStorage
+ * @param key
+ * @param initialValue
+ */
 const useLocalStorage = <T>(
 	key: string,
 	initialValue: T,

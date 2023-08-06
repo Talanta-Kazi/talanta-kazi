@@ -6,7 +6,7 @@ import { ProfileInputSchema } from '@/lib/validations/profile';
 import { useSession } from 'next-auth/react';
 
 export default function useUpdateProfile() {
-	const { displaySnackMessage } = useStore();
+	const { displaySnackMessage, setProfile } = useStore();
 	const session = useSession();
 
 	// TODO: This should be handled by the hook
@@ -26,7 +26,8 @@ export default function useUpdateProfile() {
 	} = useMutation(
 		(payload: Partial<ProfileInputSchema>) => updateProfileFn(id, payload),
 		{
-			onSuccess() {
+			onSuccess(data) {
+				setProfile(data);
 				displaySnackMessage({
 					message: 'Profile updated successful.',
 				});

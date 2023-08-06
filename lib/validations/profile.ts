@@ -1,5 +1,15 @@
 import * as z from 'zod';
 
+const educationSchema = z.array(
+	z.object({
+		institution: z.string(),
+		education_level: z.string(),
+		course: z.string(),
+		from_date: z.string(),
+		to_date: z.string(),
+	}),
+);
+
 export const profileCreateOrPatchSchema = z.object({
 	user: z.number(),
 	specialism_id: z.string(),
@@ -70,6 +80,7 @@ export const profileSchema = z.object({
 	course: z.string(),
 	from_date: z.string(),
 	to_date: z.string(),
+	current_school: z.boolean(),
 	company: z.string(),
 	job_title: z
 		.string()

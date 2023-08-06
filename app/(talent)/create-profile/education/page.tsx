@@ -10,6 +10,8 @@ export default async function CandidateEducation() {
 		notFound();
 	}
 
+	const defaultValues = JSON.parse(candidate?.education as string);
+
 	return (
 		<>
 			<Typography
@@ -20,7 +22,7 @@ export default async function CandidateEducation() {
 			>
 				Education experience
 			</Typography>
-			<EducationForm candidate={candidate} />
+			<EducationForm defaultValues={defaultValues} />
 		</>
 	);
 }
