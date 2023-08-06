@@ -1,6 +1,5 @@
 'use client';
 
-import { profileValidationSchema } from '@/lib/validations/profile';
 import { z } from 'zod';
 import { Key, useState } from 'react';
 import { isBrowser } from '@/lib/utils';
@@ -40,16 +39,6 @@ const trainingType = [
 	'Apprenticeship',
 	'Vocational Training/Certification/Licensing',
 ];
-
-type CreateProfileEducationInputSchema = Pick<
-	z.infer<typeof profileValidationSchema>,
-	| 'education_level'
-	| 'institution'
-	| 'course'
-	| 'from_date'
-	| 'to_date'
-	| 'education'
->;
 
 const educationSchema = z.object({
 	education: z.array(
@@ -118,7 +107,7 @@ export default function EducationForm({
 	};
 
 	const handleRemoveEducationTextFields = (index: number) => {
-		const filteredEducation = defaultValues.education.filter(
+		const filteredEducation = defaultValues?.education?.filter(
 			(_: any, i: number) => i !== index,
 		);
 		const resetEducationValues = {

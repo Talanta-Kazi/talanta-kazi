@@ -84,7 +84,6 @@ export default function EducationInput({
 						views={['year', 'month', 'day']}
 						format='LL'
 					/>
-
 					<Date
 						disabled={watch(`education[${id}].current_school`) === true}
 						type='date'

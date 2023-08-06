@@ -6,15 +6,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { profileValidationSchema } from '@/lib/validations/profile';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
-import { Candidate } from '@/types';
-import { useEffect, useMemo, useState } from 'react';
+import { Key, useState } from 'react';
 import { AddCircle } from '@mui/icons-material';
-import { isBrowser, objectToMap, stringifyMap } from '@/lib/utils';
 import * as z from 'zod';
 import SpecialitySkillsInput from '@/app/(talent)/create-profile/speciality/speciality-skills-input';
+import useLocalStorage from '@/lib/hooks/use-local-storage';
+import deepParseJson from '@/lib/deep-parse-json';
 
 interface CandidateSpecialityFormProps {
-	candidate: Candidate;
+	defaultValues: any;
 	allSpeciality: any;
 }
 
@@ -23,140 +23,71 @@ export type CreateProfileSpecialityInputSchema = Pick<
 	'speciality' | 'specialitySkills' | 'skills'
 >;
 
+const skillSchema = z.object({
+	skills: z.array(
+		z.object({
+			speciality: z.string().nonempty(),
+			specialitySkills: z.string().array().nonempty({
+				message: 'Kindly add at least one skill to your speciality',
+			}),
+		}),
+	),
+});
+
 export default function SpecialityForm({
-	candidate,
+	defaultValues,
 	allSpeciality,
 }: CandidateSpecialityFormProps) {
-	const defaultSkills = JSON.parse(
-		candidate?.skills ? candidate.skills : '{"":[""]}',
-	);
-	const defaultSpecialism = Object.keys(defaultSkills);
-
-	const defaultSpecialismsObject = defaultSpecialism?.reduce(
-		(acc, specialism, index) => {
-			// @ts-expect-error
-			acc[index] = {
-				id: index,
-				specialism,
-			};
-			return acc;
-		},
-		{},
-	);
-
-	let allSpecialtiesData: never[] = [];
-	const professionalLevel = isBrowser
-		? window.localStorage.getItem('professionalLevel')
-		: '';
-	const skillType =
-		professionalLevel === 'Skilled / Semi-skilled Workers'
-			? 'semi-skilled'
-			: 'skilled';
-
-	const [speciality, setSpeciality] = useState(
-		allSpeciality.filter(
-			(skills: { type: string }) => skills.type === skillType,
-		),
-	);
-	const [specialitiesSelected, setSelectedSpecialities] = useState(
-		objectToMap(defaultSkills) || new Map<string, string[]>(),
-	);
-
-	const [specialityAndSkillsComp, setSpecialityAndSkillsComp] = useState<
-		Array<Record<string, number | string>>
-	>(Object.values(defaultSpecialismsObject));
-
-	console.log(
-		'Class: default, Function: SpecialityForm, Line 77 specialityAndSkillsComp():',
-		specialityAndSkillsComp,
-	);
-
-	const [removedSpeciality, setRemovedSpeciality] = useState<
-		Set<Record<string, string>>
-	>(new Set());
-
-	const { control, watch, handleSubmit } =
-		useForm<CreateProfileSpecialityInputSchema>({
-			mode: 'onChange',
-			resolver: zodResolver(profileValidationSchema),
-			defaultValues: {
-				skills: candidate?.skills,
+	const [skills, setSkills] = useState(
+		defaultValues?.skills || [
+			{
+				speciality: '',
+				specialitySkills: [],
 			},
-		});
-
-	const specialism = watch('speciality');
-	const skills = watch('specialitySkills');
-
-	const allSpecialties = useMemo(
-		() =>
-			speciality
-				?.filter(
-					(item: { specialty: string | undefined }) =>
-						item.specialty === specialism,
-				)[0]
-				?.specific_specialty.trim(),
-		[speciality, specialism],
+		],
 	);
 
-	if (typeof allSpecialties !== 'undefined') {
-		allSpecialtiesData = JSON.parse(allSpecialties);
-	}
+	const [storedValue] = useLocalStorage('userType', undefined);
+
+	const skillType = storedValue === 'freelancer' ? 'skilled' : 'semi-skilled';
+
+	const speciality = allSpeciality?.filter(
+		(skills: { type: string }) => skills.type === skillType,
+	);
+
+	const { control, watch, reset, handleSubmit } = useForm({
+		mode: 'onChange',
+		resolver: zodResolver(skillSchema),
+		defaultValues,
+	});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
-	const onSubmit = () => {
-		const skills = stringifyMap(specialitiesSelected);
-		updateProfile({ skills });
+	const onSubmit = (data: any) => {
+		updateProfile({ skills: JSON.stringify(data) });
 	};
 
-	useEffect(() => {
-		setSelectedSpecialities(
-			// @ts-expect-error
-			(prevMap) => new Map(prevMap.set(specialism, skills)),
-		);
-	}, [skills, specialism]);
-
-	const handleAddSpecialityAndSkillsTextFields = () => {
-		setSpecialityAndSkillsComp((prevState) =>
-			// @ts-expect-error
-			prevState.concat({
-				id: (prevState[0].id as number)++,
-				specialism: specialism,
-			}),
-		);
-		setSpeciality((prevState: any[]) => {
-			const removedValue = prevState.find(
-				(item) => item.specialty === specialism,
-			);
-			setRemovedSpeciality((prevSet) => new Set([...prevSet, removedValue]));
-			return prevState.filter(
-				(item: { specialty: string | undefined }) =>
-					item.specialty !== specialism,
-			);
-		});
+	const handleAddSpecialityAndSkillTextFields = () => {
+		setSkills((prevState: any[]) => [
+			...prevState,
+			{
+				speciality: '',
+				specialitySkills: [],
+			},
+		]);
 	};
 
-	const handleRemoveSpecialityAndSkillsTextFields = (id: number) => {
-		setSpecialityAndSkillsComp((prevState) =>
-			prevState.filter((item) => item.id !== id),
+	const handleRemoveSpecialityAndSkillTextFields = (id: number) => {
+		const filteredSkills = defaultValues?.skills?.filter(
+			(_: any, index: number) => index !== id,
 		);
-
-		const specialityToBeAddedBack: string = specialityAndSkillsComp.filter(
-			(item) => item.id === id,
-		)[0].specialism as string;
-
-		let tempSpecialityValue: Record<string, string>;
-		removedSpeciality.forEach((item) => {
-			if (item.specialty === specialityToBeAddedBack) {
-				tempSpecialityValue = item;
-			}
-		});
-
-		setSpeciality((prevState: any) => [...prevState, tempSpecialityValue]);
-
-		const newSpecialitiesSelected = new Map(specialitiesSelected);
-		newSpecialitiesSelected.delete(specialityToBeAddedBack);
-		setSelectedSpecialities(newSpecialitiesSelected);
+		const resetSkillsValues = {
+			skills: filteredSkills,
+		};
+		reset(resetSkillsValues);
+		setSkills((prevState: any[]) =>
+			prevState.filter((_: any, index: number) => index !== id),
+		);
 	};
 
 	return (
@@ -181,35 +112,31 @@ export default function SpecialityForm({
 				</Grid>
 
 				<Grid item xs={12}>
-					{specialityAndSkillsComp
-						.slice()
-						.sort((a, b) => +a.id - +b.id)
-						.map((item) => (
-							<Stack
-								direction='row'
-								alignItems='stretch'
-								spacing={2}
-								key={item.id}
-								marginBottom={4}
-							>
-								<SpecialitySkillsInput
-									id={item.id as number}
-									control={control}
-									label='Speciality'
-									allSpeciality={speciality}
-									allSpecialtiesData={allSpecialtiesData}
-									specialism={specialism}
-									handleDelete={handleRemoveSpecialityAndSkillsTextFields}
-								/>
-							</Stack>
-						))}
+					{skills.map((_: any, index: Key | null | undefined | number) => (
+						<Stack
+							direction='row'
+							alignItems='stretch'
+							spacing={2}
+							key={index}
+							marginBottom={4}
+						>
+							<SpecialitySkillsInput
+								id={index as number}
+								control={control}
+								watch={watch}
+								label='Speciality'
+								allSpeciality={deepParseJson(speciality)}
+								handleDelete={handleRemoveSpecialityAndSkillTextFields}
+							/>
+						</Stack>
+					))}
 				</Grid>
 
 				<Grid item xs={12}>
 					<Button
 						startIcon={<AddCircle fontSize='large' />}
 						variant='contained'
-						onClick={handleAddSpecialityAndSkillsTextFields}
+						onClick={handleAddSpecialityAndSkillTextFields}
 						sx={{ fontWeight: 'medium', color: 'unset' }}
 					>
 						ADD SPECIALITY

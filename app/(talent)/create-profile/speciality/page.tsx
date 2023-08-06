@@ -14,6 +14,8 @@ export default async function CandidateSpeciality() {
 		notFound();
 	}
 
+	const defaultValues = JSON.parse(candidate?.skills as string);
+
 	return (
 		<>
 			<Typography
@@ -24,7 +26,10 @@ export default async function CandidateSpeciality() {
 			>
 				What work would you want to do with us?
 			</Typography>
-			<SpecialityForm candidate={candidate} allSpeciality={specialisms} />
+			<SpecialityForm
+				defaultValues={defaultValues}
+				allSpeciality={specialisms}
+			/>
 		</>
 	);
 }
