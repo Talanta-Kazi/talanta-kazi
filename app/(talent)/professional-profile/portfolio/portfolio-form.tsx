@@ -11,7 +11,7 @@ import { Button, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { AddCircle } from '@mui/icons-material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import PortfolioInput from '@/app/(talent)/create-profile/portfolio/portfolio-input';
+import PortfolioInput from '@/app/(talent)/professional-profile/portfolio/portfolio-input';
 
 interface CandidatePortfolioFormProps {
 	candidate: Candidate;

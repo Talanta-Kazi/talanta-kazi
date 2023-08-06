@@ -1,16 +1,14 @@
 import { getCandidateProfile } from '@/app/(talent)/actions';
 import { notFound } from 'next/navigation';
 import { Typography } from '@mui/material';
-import EducationForm from '@/app/(talent)/create-profile/education/education-form';
+import BioForm from '@/app/(talent)/professional-profile/bio/bio-form';
 
-export default async function CandidateEducation() {
+export default async function CandidateBio() {
 	const candidate = await getCandidateProfile();
 
 	if (!candidate) {
 		notFound();
 	}
-
-	const defaultValues = JSON.parse(candidate?.education as string);
 
 	return (
 		<>
@@ -20,9 +18,9 @@ export default async function CandidateEducation() {
 					fontWeight: 700,
 				}}
 			>
-				Education experience
+				Tell us more about yourself.
 			</Typography>
-			<EducationForm defaultValues={defaultValues} />
+			<BioForm candidate={candidate} />
 		</>
 	);
 }

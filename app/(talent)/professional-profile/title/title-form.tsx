@@ -2,7 +2,7 @@
 
 import { Grid, Typography } from '@mui/material';
 import Input from '@/components/forms/input';
-import CountryInput from '@/app/(talent)/create-profile/title/country-input';
+import CountryInput from '@/app/(talent)/professional-profile/title/country-input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

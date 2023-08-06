@@ -1,9 +1,9 @@
-import { getCandidateProfile } from '@/app/(talent)/actions';
-import { notFound } from 'next/navigation';
 import { Typography } from '@mui/material';
-import WorkForm from '@/app/(talent)/create-profile/work/work-form';
+import { getCandidateProfile } from '@/app/(talent)/actions';
+import TitleForm from '@/app/(talent)/professional-profile/title/title-form';
+import { notFound } from 'next/navigation';
 
-export default async function CandidateEducation() {
+export default async function CandidateTitle() {
 	const candidate = await getCandidateProfile();
 
 	if (!candidate) {
@@ -18,9 +18,9 @@ export default async function CandidateEducation() {
 					fontWeight: 700,
 				}}
 			>
-				Add your work experience
+				Tell us about yourself.
 			</Typography>
-			<WorkForm candidate={candidate} />
+			<TitleForm candidate={candidate} />
 		</>
 	);
 }

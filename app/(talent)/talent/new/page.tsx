@@ -39,6 +39,10 @@ const mock = [
 	},
 ];
 
+type LinkToDashboardViews = {
+	[key: string]: string;
+};
+
 const SelectUserType = (): JSX.Element => {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
@@ -50,7 +54,7 @@ const SelectUserType = (): JSX.Element => {
 		'freelancer',
 	);
 
-	const [alignment, setAlignment] = useState('...');
+	const [alignment, setAlignment] = useState<string>('...');
 	const [activeState, setActiveState] = useState('');
 
 	useEffect(() => {
@@ -88,6 +92,12 @@ const SelectUserType = (): JSX.Element => {
 				return;
 		}
 	};
+
+	const linkToDashboardViews: LinkToDashboardViews = {
+		freelancer: '/freelancer-profile/title',
+		professional: '/professional-profile/title',
+		consultant: '/consultant-profile/title',
+	} as const;
 
 	const handleAlignment = (
 		event: MouseEvent<HTMLElement>,
@@ -178,13 +188,14 @@ const SelectUserType = (): JSX.Element => {
 					justifyContent={'center'}
 					marginTop={isMd ? 12 : 4}
 				>
-					<Link href='/create-profile/title'>
+					<Link
+						href={linkToDashboardViews[alignment] ?? '/professional-title/jobs'}
+					>
 						<Button
 							variant='contained'
 							color='primary'
 							size='large'
 							fullWidth={!isMd}
-							// onClick={handlePushToDashboardViews}
 							endIcon={
 								alignment !== '...' ||
 								(alignment === null && (

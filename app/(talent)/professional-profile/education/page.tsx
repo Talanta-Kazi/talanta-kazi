@@ -1,7 +1,7 @@
 import { getCandidateProfile } from '@/app/(talent)/actions';
 import { notFound } from 'next/navigation';
 import { Typography } from '@mui/material';
-import PortfolioForm from '@/app/(talent)/create-profile/portfolio/portfolio-form';
+import EducationForm from '@/app/(talent)/professional-profile/education/education-form';
 
 export default async function CandidateEducation() {
 	const candidate = await getCandidateProfile();
@@ -9,6 +9,8 @@ export default async function CandidateEducation() {
 	if (!candidate) {
 		notFound();
 	}
+
+	const defaultValues = JSON.parse(candidate?.education as string);
 
 	return (
 		<>
@@ -18,9 +20,9 @@ export default async function CandidateEducation() {
 					fontWeight: 700,
 				}}
 			>
-				Add your portfolio
+				Education experience
 			</Typography>
-			<PortfolioForm candidate={candidate} />
+			<EducationForm defaultValues={defaultValues} />
 		</>
 	);
 }

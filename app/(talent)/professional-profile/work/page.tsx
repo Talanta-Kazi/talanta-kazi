@@ -1,9 +1,9 @@
 import { getCandidateProfile } from '@/app/(talent)/actions';
 import { notFound } from 'next/navigation';
 import { Typography } from '@mui/material';
-import BioForm from '@/app/(talent)/create-profile/bio/bio-form';
+import WorkForm from '@/app/(talent)/professional-profile/work/work-form';
 
-export default async function CandidateBio() {
+export default async function CandidateEducation() {
 	const candidate = await getCandidateProfile();
 
 	if (!candidate) {
@@ -18,9 +18,9 @@ export default async function CandidateBio() {
 					fontWeight: 700,
 				}}
 			>
-				Tell us more about yourself.
+				Add your work experience
 			</Typography>
-			<BioForm candidate={candidate} />
+			<WorkForm candidate={candidate} />
 		</>
 	);
 }

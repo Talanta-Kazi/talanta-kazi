@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material';
 import { getCandidateProfile } from '@/app/(talent)/actions';
-import TitleForm from '@/app/(talent)/create-profile/title/title-form';
 import { notFound } from 'next/navigation';
+import { Typography } from '@mui/material';
+import PortfolioForm from '@/app/(talent)/professional-profile/portfolio/portfolio-form';
 
-export default async function CandidateTitle() {
+export default async function CandidateEducation() {
 	const candidate = await getCandidateProfile();
 
 	if (!candidate) {
@@ -18,9 +18,9 @@ export default async function CandidateTitle() {
 					fontWeight: 700,
 				}}
 			>
-				Tell us about yourself.
+				Add your portfolio
 			</Typography>
-			<TitleForm candidate={candidate} />
+			<PortfolioForm candidate={candidate} />
 		</>
 	);
 }

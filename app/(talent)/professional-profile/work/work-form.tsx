@@ -11,7 +11,7 @@ import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Button, Fab, Grid, MenuItem, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Input from '@/components/forms/input';
-import WorkExperienceInput from '@/app/(talent)/create-profile/work/work-experience-input';
+import WorkExperienceInput from '@/app/(talent)/professional-profile/work/work-experience-input';
 import { AddCircle } from '@mui/icons-material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 

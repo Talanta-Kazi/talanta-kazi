@@ -9,7 +9,7 @@ import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Key, useState } from 'react';
 import { AddCircle } from '@mui/icons-material';
 import * as z from 'zod';
-import SpecialitySkillsInput from '@/app/(talent)/create-profile/speciality/speciality-skills-input';
+import SpecialitySkillsInput from '@/app/(talent)/professional-profile/speciality/speciality-skills-input';
 import useLocalStorage from '@/lib/hooks/use-local-storage';
 import deepParseJson from '@/lib/deep-parse-json';
 

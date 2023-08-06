@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Button, Grid, Stack } from '@mui/material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import { AddCircle } from '@mui/icons-material';
-import EducationInput from '@/app/(talent)/create-profile/education/education-input';
+import EducationInput from '@/app/(talent)/professional-profile/education/education-input';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface CandidateEducationFormProps {
