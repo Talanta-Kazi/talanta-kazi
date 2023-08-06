@@ -68,7 +68,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 
 	return (
 		<form name='profile-title' method='post' onSubmit={handleSubmit(onSubmit)}>
-			<Grid container marginTop={2} marginBottom={8}>
+			<Grid container marginTop={0} marginBottom={8}>
 				<Typography
 					variant='body1'
 					marginBottom={2}

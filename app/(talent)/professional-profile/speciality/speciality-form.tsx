@@ -96,7 +96,7 @@ export default function SpecialityForm({
 			method='post'
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<Grid container marginTop={0}>
+			<Grid container marginTop={0} marginBottom={8}>
 				<Grid item xs={12}>
 					<Typography
 						variant='body1'

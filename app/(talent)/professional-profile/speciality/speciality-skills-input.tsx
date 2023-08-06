@@ -10,6 +10,7 @@ import {
 import { Fragment } from 'react';
 import { Controller } from 'react-hook-form';
 import { fancyId, removeDuplicates } from '@/lib/utils';
+import { alpha } from '@mui/material/styles';
 
 interface Props {
 	id: number;
@@ -106,8 +107,11 @@ export default function SpecialitySkillsInput({
 									value?.map((option: string, index: number) => (
 										<Chip
 											key={fancyId()}
-											color='primary'
 											label={option}
+											sx={{
+												backgroundColor: alpha('#117ec9', 0.1),
+												color: '#117ec9',
+											}}
 											{...getTagProps({ index })}
 										/>
 									))

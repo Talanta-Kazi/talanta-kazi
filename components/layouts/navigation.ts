@@ -15,6 +15,10 @@ const sideLayoutNavigation = [
 
 const mainLayoutNavigation = [
 	{
+		title: "Talent's page",
+		href: '/talent-page',
+	},
+	{
 		title: 'Find a job',
 		href: '/find-a-job',
 	},

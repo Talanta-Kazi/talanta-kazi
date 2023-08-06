@@ -12,7 +12,7 @@ import { Button, Fab, Grid, MenuItem, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Input from '@/components/forms/input';
 import WorkExperienceInput from '@/app/(talent)/professional-profile/work/work-experience-input';
-import { AddCircle } from '@mui/icons-material';
+import { Add, AddCircle } from '@mui/icons-material';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 
 interface CandidateEducationFormProps {
@@ -205,7 +205,6 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			</Grid>
 			<Fab
 				variant='extended'
-				size='medium'
 				color='primary'
 				aria-label='add'
 				onClick={handleAddWorkExperienceTextFields}
@@ -218,8 +217,8 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 					right: 30,
 				}}
 			>
-				<AddCircle sx={{ mr: 0.5 }} />
-				WORK EXPERIENCE
+				<Add sx={{ mr: 0.5 }} />
+				WORK
 			</Fab>
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}

@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
 import Container from '@/components/container';
 import {
-	Bookings,
+	BannerConsultants,
+	BannerFreelancers,
+	BannerProfessionals,
 	Hero,
-	Reviews,
 	Services,
 } from '@/app/(marketing)/_components';
 import Jobs from '@/app/(marketing)/_components/jobs';
@@ -26,12 +27,9 @@ export default async function MarketingPage() {
 			</Container>
 			<Box bgcolor='alternate.main'>
 				<Container>
-					<Bookings />
-				</Container>
-			</Box>
-			<Box bgcolor='alternate.main'>
-				<Container>
-					<Reviews />
+					<BannerProfessionals />
+					<BannerFreelancers />
+					<BannerConsultants />
 				</Container>
 			</Box>
 			<Container maxWidth={{ sm: 720, md: 960 }}>

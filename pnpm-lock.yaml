@@ -268,6 +268,9 @@ devDependencies:
   '@types/react-redux':
     specifier: ^7.1.25
     version: 7.1.25
+  '@types/react-slick':
+    specifier: ^0.23.10
+    version: 0.23.10
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.2.1
     version: 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
@@ -4135,6 +4138,12 @@ packages:
       '@types/react': 18.2.18
       hoist-non-react-statics: 3.3.2
       redux: 4.2.1
+    dev: true
+
+  /@types/react-slick@0.23.10:
+    resolution: {integrity: sha512-ZiqdencANDZy6sWOWJ54LDvebuXFEhDlHtXU9FFipQR2BcYU2QJxZhvJPW6YK7cocibUiNn+YvDTbt1HtCIBVA==}
+    dependencies:
+      '@types/react': 18.2.18
     dev: true
 
   /@types/react-transition-group@4.4.6:
