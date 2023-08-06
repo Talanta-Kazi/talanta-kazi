@@ -146,7 +146,7 @@ export default function SpecialityForm({
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/create-profile/bio'
+				nextPageUrl='/professional-profile/bio'
 				nextPageTitle='Add your bio'
 			/>
 		</form>

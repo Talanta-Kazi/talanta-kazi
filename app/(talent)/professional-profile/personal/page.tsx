@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { getCandidateProfile } from '@/app/(talent)/actions';
-import TitleForm from '@/app/(talent)/professional-profile/title/title-form';
+import PersonalForm from '@/app/(talent)/professional-profile/personal/personal-form';
 import { notFound } from 'next/navigation';
 
 export default async function CandidateTitle() {
@@ -18,9 +18,9 @@ export default async function CandidateTitle() {
 					fontWeight: 700,
 				}}
 			>
-				Tell us about yourself.
+				Tell us more about yourself.
 			</Typography>
-			<TitleForm candidate={candidate} />
+			<PersonalForm candidate={candidate} />
 		</>
 	);
 }

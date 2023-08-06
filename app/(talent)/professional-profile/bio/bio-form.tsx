@@ -98,7 +98,7 @@ export default function BioForm({ candidate }: CandidateBioFormProps) {
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/create-profile/education'
+				nextPageUrl='/professional-profile/education'
 				nextPageTitle='Share your skills'
 			/>
 		</form>

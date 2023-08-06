@@ -6,6 +6,7 @@ declare module 'react-select-country-list';
 
 interface Candidate {
 	id: number;
+	user: User;
 	user_id: number;
 	profile_pic: string;
 	specialism_id: string;

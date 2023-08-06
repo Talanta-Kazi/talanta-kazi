@@ -21,7 +21,7 @@ export default function CountryInput({
 	const countries = useMemo(() => countryList().getData(), []);
 	return (
 		<Controller
-			name='country'
+			name={name}
 			control={control}
 			render={({ field: { onChange }, fieldState: { error } }) => (
 				<Autocomplete
@@ -42,7 +42,7 @@ export default function CountryInput({
 					renderInput={(params) => (
 						<TextField
 							{...params}
-							label='Country'
+							label='Location'
 							margin='dense'
 							size='medium'
 							error={!!error}

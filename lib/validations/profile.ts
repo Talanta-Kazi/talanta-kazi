@@ -11,7 +11,12 @@ const educationSchema = z.array(
 );
 
 export const profileCreateOrPatchSchema = z.object({
-	user: z.number(),
+	user: z.object({
+		first_name: z.string(),
+		last_name: z.string(),
+		username: z.string().optional(),
+		email: z.string().optional(),
+	}),
 	specialism_id: z.string(),
 	experience_id: z.string(),
 	job_title: z
@@ -39,6 +44,10 @@ export const profileSchema = z.object({
 	}),
 	website: z.string(),
 	country: z.string(),
+	location: z.string(),
+	other_portfolio_link: z.string(),
+	linkedin: z.string(),
+	twitter: z.string(),
 	speciality: z.string(),
 	skills: z.string(),
 	specialitySkills: z
@@ -92,7 +101,7 @@ export const profileSchema = z.object({
 	work_experience: z.string(),
 	project_title: z.string(),
 	project_description: z.string(),
-	portfolio: z.string(),
+	portfolio_link: z.string(),
 	profile_pic: z.string(),
 });
 

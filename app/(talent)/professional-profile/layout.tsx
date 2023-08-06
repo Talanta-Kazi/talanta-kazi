@@ -10,7 +10,7 @@ interface AuthLayoutProps {
 const steps = [
 	{
 		label: 'Personal details',
-		url: '/professional-profile/title',
+		url: '/professional-profile/personal',
 	},
 	{
 		label: 'Speciality',

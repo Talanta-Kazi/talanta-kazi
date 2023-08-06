@@ -173,7 +173,7 @@ export default function EducationForm({
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/create-profile/work'
+				nextPageUrl='/professional-profile/work'
 				nextPageTitle='Work Experience'
 			/>
 		</form>

@@ -224,7 +224,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/create-profile/portfolio'
+				nextPageUrl='/professional-profile/portfolio'
 				nextPageTitle='Portfolio'
 			/>
 		</form>
