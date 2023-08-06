@@ -93,10 +93,9 @@ export default function BannerConsultants() {
 			}}
 		>
 			<Box position='relative' zIndex={2}>
-				<Box marginBottom={4}>
-					<Box marginTop={2} display='flex' justifyContent='center'>
+				<Box marginBottom={4} justifyContent='flex-end'>
+					<Box marginTop={2} display='flex' justifyContent='flex-end'>
 						<Button
-							variant='contained'
 							color='primary'
 							size='large'
 							endIcon={
@@ -118,7 +117,7 @@ export default function BannerConsultants() {
 								</Box>
 							}
 						>
-							View all professionals
+							View all consultants
 						</Button>
 					</Box>
 				</Box>

@@ -81,11 +81,11 @@ export default function BannerFreelancers() {
 					width: '30%',
 					zIndex: 1,
 					top: 0,
-					right: 0,
+					left: 0,
 					height: '100%',
 					backgroundSize: '18px 18px',
 					backgroundImage: `radial-gradient(${alpha(
-						theme.palette.primary.dark,
+						theme.palette.text.primary,
 						0.4,
 					)} 20%, transparent 20%)`,
 					opacity: 0.2,
@@ -93,10 +93,9 @@ export default function BannerFreelancers() {
 			}}
 		>
 			<Box position='relative' zIndex={2}>
-				<Box marginBottom={4}>
-					<Box marginTop={2} display='flex' justifyContent='center'>
+				<Box marginBottom={4} justifyContent='flex-end'>
+					<Box marginTop={2} display='flex' justifyContent='flex-end'>
 						<Button
-							variant='contained'
 							color='primary'
 							size='large'
 							endIcon={
@@ -118,7 +117,7 @@ export default function BannerFreelancers() {
 								</Box>
 							}
 						>
-							View all professionals
+							View all freelancers
 						</Button>
 					</Box>
 				</Box>

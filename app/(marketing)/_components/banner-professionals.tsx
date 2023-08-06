@@ -104,9 +104,8 @@ export default function BannerProfessionals() {
 					>
 						Take a look what our latest talent
 					</Typography>
-					<Box marginTop={2} display='flex' justifyContent='center'>
+					<Box marginTop={2} display='flex' justifyContent='flex-end'>
 						<Button
-							variant='contained'
 							color='primary'
 							size='large'
 							endIcon={
