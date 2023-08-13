@@ -143,8 +143,12 @@ export default function RegisterForm({
 					aria-label='Work'
 					sx={{ marginBottom: '28px' }}
 				>
-					<ToggleButton value='talent'>Talent</ToggleButton>
-					<ToggleButton value='employer'>Employer</ToggleButton>
+					<ToggleButton color='primary' value='talent'>
+						Talent
+					</ToggleButton>
+					<ToggleButton color='primary' value='employer'>
+						Employer
+					</ToggleButton>
 				</ToggleButtonGroup>
 
 				<form method='post' onSubmit={handleSubmit(onSubmit)}>

@@ -23,9 +23,8 @@ const personalSchema = z.object({
 	other_portfolio_link: z.string().optional(),
 	linkedin: z.string().optional(),
 	twitter: z.string().optional(),
+	whatsapp: z.string().optional(),
 });
-
-export type CreateProfileTitleInputSchema = z.infer<typeof personalSchema>;
 
 export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
@@ -42,6 +41,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 			other_portfolio_link: personal?.other_portfolio_link || '',
 			linkedin: personal?.linkedin || '',
 			twitter: personal?.twitter || '',
+			whatsapp: personal?.whatsapp || '',
 		},
 	});
 
@@ -54,6 +54,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 			other_portfolio_link: values.other_portfolio_link,
 			linkedin: values.linkedin,
 			twitter: values.twitter,
+			whatsapp: values.whatsapp,
 		};
 		const payload = {
 			user: {
@@ -146,6 +147,15 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 						control={control}
 						label='Twitter'
 						placeholder='https://twitter.com/username'
+						type='text'
+					/>
+					<Input
+						name='whatsapp'
+						margin='dense'
+						size='medium'
+						control={control}
+						label='WhatsApp'
+						placeholder='https://wa.me/whatsapp-number'
 						type='text'
 					/>
 					<Input

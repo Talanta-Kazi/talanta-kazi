@@ -7,7 +7,7 @@ import { getSpecialisms } from '@/app/(marketing)/actions';
 export default async function CandidateSpeciality() {
 	const [candidate, specialisms] = await Promise.all([
 		getCandidateProfile(),
-		getSpecialisms(),
+		getSpecialisms('Professionals'),
 	]);
 
 	if (!candidate) {

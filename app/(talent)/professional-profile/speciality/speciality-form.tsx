@@ -125,7 +125,7 @@ export default function SpecialityForm({
 								control={control}
 								watch={watch}
 								label='Speciality'
-								allSpeciality={deepParseJson(speciality)}
+								allSpeciality={deepParseJson(allSpeciality)}
 								handleDelete={handleRemoveSpecialityAndSkillTextFields}
 							/>
 						</Stack>

@@ -11,6 +11,7 @@ import { Fragment } from 'react';
 import { Controller } from 'react-hook-form';
 import { fancyId, removeDuplicates } from '@/lib/utils';
 import { alpha } from '@mui/material/styles';
+import deepParseJson from '@/lib/deep-parse-json';
 
 interface Props {
 	id: number;
@@ -23,6 +24,22 @@ interface Props {
 
 const icon = <CheckBoxOutlineBlank fontSize='small' />;
 const checkedIcon = <CheckBox fontSize='small' />;
+
+/*
+ * @desc Parse the speciality string to array
+ * @param {string} speciality
+ * @return {Array<string>} speciality
+ */
+const parseSpeciality = (speciality: string): Array<string> => {
+	if (speciality) {
+		return speciality
+			?.replace(/\[|\]/g, '')
+			.split(',')
+			.map((item) => item.slice(1, -1));
+	}
+
+	return [];
+};
 
 export default function SpecialitySkillsInput({
 	id,
@@ -37,6 +54,9 @@ export default function SpecialitySkillsInput({
 	const specificSpeciality = allSpeciality?.filter(
 		(item: { specialty: any }) => item.specialty === speciality,
 	);
+
+	const parsedSpeciality =
+		deepParseJson(specificSpeciality[0]?.specific_specialty) || '[]';
 
 	return (
 		<Fragment>
@@ -90,9 +110,9 @@ export default function SpecialitySkillsInput({
 								disabled={!speciality}
 								// limitTags={3}
 								disableCloseOnSelect
-								options={(specificSpeciality[0]?.specific_specialty ?? [])?.map(
-									(item: any) => item,
-								)}
+								options={parseSpeciality(parsedSpeciality)
+									?.sort()
+									.map((item: any) => item)}
 								// freeSolo
 								onChange={(_, data) => onChange(data)}
 								getOptionLabel={(option) => option}

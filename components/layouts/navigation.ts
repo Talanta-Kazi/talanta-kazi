@@ -11,7 +11,7 @@ const sideLayoutNavigation = [
 		title: 'Find candidates',
 		href: '/find-candidates',
 	},
-];
+] as const;
 
 const mainLayoutNavigation = [
 	{
@@ -34,7 +34,7 @@ const mainLayoutNavigation = [
 		title: 'Employers',
 		href: '/employers',
 	},
-];
+] as const;
 
 const candidatesLayoutNavigation = [
 	{
@@ -49,7 +49,7 @@ const candidatesLayoutNavigation = [
 		title: 'My jobs',
 		href: '/candidate/my-jobs',
 	},
-];
+] as const;
 
 const employerLayoutNavigation = [
 	{
@@ -64,7 +64,7 @@ const employerLayoutNavigation = [
 		title: 'Reports',
 		href: '/employer/my-jobs',
 	},
-];
+] as const;
 
 export {
 	sideLayoutNavigation,
