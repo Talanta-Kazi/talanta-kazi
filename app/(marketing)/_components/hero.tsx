@@ -59,9 +59,9 @@ const Hero = (): JSX.Element => {
 						color='primary'
 						size='large'
 						fullWidth={!isMd}
-						href='/job-listing'
+						href='/employers'
 					>
-						Find me a job
+						I&apos;m hiring
 					</Button>
 					<Button
 						component={Link}
@@ -77,9 +77,9 @@ const Hero = (): JSX.Element => {
 						}}
 						size='large'
 						fullWidth={!isMd}
-						href='/profile'
+						href='/job-listing'
 					>
-						I&apos;m hiring
+						Find me a job
 					</Button>
 				</Box>
 			</Box>

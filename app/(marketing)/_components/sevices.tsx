@@ -53,7 +53,8 @@ export default function Services() {
 					align='center'
 					sx={{ fontWeight: 700 }}
 				>
-					Our process to find you a new job is fast
+					Connect with the best of Kenyan Techies, Creatives, Designers or
+					Analysts
 				</Typography>
 				<Typography
 					variant='h6'
@@ -70,7 +71,7 @@ export default function Services() {
 				<Box marginTop={3} display='flex' justifyContent='center'>
 					<Button
 						component={Link}
-						href='/job-listing'
+						href='/employers'
 						variant='contained'
 						color='primary'
 						size='large'
