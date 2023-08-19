@@ -32,7 +32,7 @@ const mock = [
 	{
 		title: 'Consultants',
 		subtitle:
-			'Companies with a track record of delivering complex projects for you.',
+			'Companies or Individuals with a track record of delivering complex projects for you.',
 		icon: <PixTwoTone fontSize='large' color='action' />,
 		href: '/job-listing',
 	},

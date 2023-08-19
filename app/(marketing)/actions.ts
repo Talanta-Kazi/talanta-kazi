@@ -34,7 +34,9 @@ export const getJobById = async (id: string): Promise<Job> => {
 export const getSpecialisms = async (
 	specialismType?: 'Professionals' | 'Freelancers' | 'Consultants',
 ): Promise<Array<string>> => {
-	const res = await fetch(`${env.API_URL}/jobs/list-specialism/`);
+	const res = await fetch(
+		`${env.API_URL}/jobs/list-specialism/?type=${specialismType}`,
+	);
 
 	if (!res.ok) {
 		throw new Error('Failed to fetch data');
@@ -42,11 +44,11 @@ export const getSpecialisms = async (
 
 	const specialisms = await res.json();
 
-	if (specialismType) {
-		return specialisms.filter((specialism: { type: string }) => {
-			return specialism.type === specialismType;
-		});
-	}
+	// if (specialismType) {
+	// 	return specialisms.filter((specialism: { type: string }) => {
+	// 		return specialism.type === specialismType;
+	// 	});
+	// }
 
 	return specialisms;
 };
