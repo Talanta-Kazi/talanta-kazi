@@ -1,4 +1,10 @@
+import { usePathname, useRouter } from 'next/navigation';
+
+import type { MouseEvent } from 'react';
+import { Fragment, useContext, useState } from 'react';
+
 import { ComponentContext } from '@/context/ComponentContext';
+import { fancyId } from '@/lib/utils';
 import {
 	AccountCircleOutlined,
 	AdminPanelSettingsTwoTone,
@@ -24,10 +30,6 @@ import {
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import { signOut, useSession } from 'next-auth/react';
-import { usePathname, useRouter } from 'next/navigation';
-import type { MouseEvent } from 'react';
-import { Fragment, useContext, useState } from 'react';
-import { fancyId } from '@/lib/utils';
 
 const UserAvatar = (): JSX.Element => {
 	const { push } = useRouter();

@@ -1,5 +1,6 @@
-import { FormLabel, Slider as MuiSLider } from '@mui/material';
 import { useEffect, useState } from 'react';
+
+import { FormLabel, Slider as MuiSLider } from '@mui/material';
 import { Controller } from 'react-hook-form';
 
 import type { InputProps } from './input-props';

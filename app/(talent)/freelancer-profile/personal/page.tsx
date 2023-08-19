@@ -1,7 +1,8 @@
-import { Typography } from '@mui/material';
+import { notFound } from 'next/navigation';
+
 import { getCandidateProfile } from '@/app/(talent)/actions';
 import PersonalForm from '@/app/(talent)/professional-profile/personal/personal-form';
-import { notFound } from 'next/navigation';
+import { Typography } from '@mui/material';
 
 export default async function CandidateTitle() {
 	const candidate = await getCandidateProfile();

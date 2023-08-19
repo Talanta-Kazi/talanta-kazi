@@ -1,6 +1,16 @@
 'use client';
 
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import type { MouseEvent } from 'react';
+import { useEffect, useState } from 'react';
+
+import Container from '@/components/container';
+import useLocalStorage from '@/lib/hooks/use-local-storage';
+import { fancyId } from '@/lib/utils';
 import { AllOutTwoTone, SpaTwoTone, WorkTwoTone } from '@mui/icons-material';
+
 /* eslint-disable react/no-unescaped-entities */
 import {
 	Avatar,
@@ -13,13 +23,6 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/navigation';
-import type { MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
-import Container from '@/components/container';
-import { fancyId } from '@/lib/utils';
-import useLocalStorage from '@/lib/hooks/use-local-storage';
-import Link from 'next/link';
 
 const mock = [
 	{
@@ -51,7 +54,7 @@ const SelectUserType = (): JSX.Element => {
 	const { push } = useRouter();
 	const [storedValue, setLocalStorage] = useLocalStorage(
 		'userType',
-		'freelancer',
+		'freelancer'
 	);
 
 	const [alignment, setAlignment] = useState<string>('...');
@@ -101,7 +104,7 @@ const SelectUserType = (): JSX.Element => {
 
 	const handleAlignment = (
 		event: MouseEvent<HTMLElement>,
-		newAlignment: string,
+		newAlignment: string
 	) => {
 		setAlignment(newAlignment);
 	};

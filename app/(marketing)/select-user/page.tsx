@@ -1,6 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
+import type { MouseEvent } from 'react';
+import { useEffect, useState } from 'react';
+
+import Container from '@/components/container';
+import { fancyId } from '@/lib/utils';
 import { MenuBookTwoTone, WorkTwoTone } from '@mui/icons-material';
+
 /* eslint-disable react/no-unescaped-entities */
 import {
 	Avatar,
@@ -13,11 +21,6 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/navigation';
-import type { MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
-import Container from '@/components/container';
-import { fancyId } from '@/lib/utils';
 
 const mock = [
 	{
@@ -73,7 +76,7 @@ const SelectUserType = (): JSX.Element => {
 
 	const handleAlignment = (
 		event: MouseEvent<HTMLElement>,
-		newAlignment: string,
+		newAlignment: string
 	) => {
 		setAlignment(newAlignment);
 	};

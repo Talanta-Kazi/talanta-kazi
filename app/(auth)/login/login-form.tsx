@@ -1,19 +1,21 @@
 'use client';
 
-import { Form } from '@/components/forms/form';
-import { Box, Button, Grid, InputAdornment, Typography } from '@mui/material';
-import { loginAuthSchema } from '@/lib/validations/auth';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { HTMLAttributes, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import useStore from '@/store/index';
-import { LoadingButton } from '@mui/lab';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { HTMLAttributes, useEffect, useState } from 'react';
+
+import * as z from 'zod';
+import { Form } from '@/components/forms/form';
 import Input from '@/components/forms/input';
+import { loginAuthSchema } from '@/lib/validations/auth';
+import useStore from '@/store/index';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { Box, Button, Grid, InputAdornment, Typography } from '@mui/material';
+import { signIn, useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 

@@ -1,3 +1,7 @@
+import { Fragment } from 'react';
+
+import deepParseJson from '@/lib/deep-parse-json';
+import { fancyId, removeDuplicates } from '@/lib/utils';
 import { CheckBox, CheckBoxOutlineBlank, Clear } from '@mui/icons-material';
 import {
 	Autocomplete,
@@ -7,11 +11,8 @@ import {
 	IconButton,
 	TextField,
 } from '@mui/material';
-import { Fragment } from 'react';
-import { Controller } from 'react-hook-form';
-import { fancyId, removeDuplicates } from '@/lib/utils';
 import { alpha } from '@mui/material/styles';
-import deepParseJson from '@/lib/deep-parse-json';
+import { Controller } from 'react-hook-form';
 
 interface Props {
 	id: number;
@@ -52,7 +53,7 @@ export default function SpecialitySkillsInput({
 }: Props) {
 	const speciality = watch(`skills[${id}].speciality`);
 	const specificSpeciality = allSpeciality?.filter(
-		(item: { specialty: any }) => item.specialty === speciality,
+		(item: { specialty: any }) => item.specialty === speciality
 	);
 
 	const parsedSpeciality =
@@ -72,8 +73,8 @@ export default function SpecialitySkillsInput({
 								value={value}
 								options={removeDuplicates(
 									allSpeciality.map(
-										(item: { specialty: any }) => item.specialty,
-									),
+										(item: { specialty: any }) => item.specialty
+									)
 								)}
 								onChange={(_, data) => onChange(data)}
 								renderInput={(params) => (
@@ -122,7 +123,7 @@ export default function SpecialitySkillsInput({
 									value: string[],
 									getTagProps: (arg0: {
 										index: number;
-									}) => JSX.IntrinsicAttributes,
+									}) => JSX.IntrinsicAttributes
 								) =>
 									value?.map((option: string, index: number) => (
 										<Chip

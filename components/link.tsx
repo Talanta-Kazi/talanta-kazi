@@ -1,9 +1,11 @@
-import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { AnchorHTMLAttributes, forwardRef } from 'react';
+
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
-import { AnchorHTMLAttributes, forwardRef } from 'react';
+import clsx from 'clsx';
 
 // Add support for the sx prop for consistency with the other branches.
 const Anchor = styled('a')({});
@@ -132,7 +134,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 				{...other}
 			/>
 		);
-	},
+	}
 );
 
 export default Link;

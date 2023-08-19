@@ -1,12 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+
 import Container from '@/components/container';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { useSession } from 'next-auth/react';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { alpha, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSession } from 'next-auth/react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Link from 'next/link';
 
 const Hero = (): JSX.Element => {
 	const { data: session, status } = useSession();
@@ -34,7 +35,7 @@ const Hero = (): JSX.Element => {
 							sx={{
 								background: `linear-gradient(180deg, transparent 82%, ${alpha(
 									theme.palette.secondary.main,
-									0.3,
+									0.3
 								)} 0%)`,
 							}}
 						>
@@ -223,7 +224,7 @@ const Hero = (): JSX.Element => {
 					backgroundSize: '16px 16px',
 					backgroundImage: `radial-gradient(${alpha(
 						theme.palette.primary.dark,
-						0.4,
+						0.4
 					)} 20%, transparent 20%)`,
 					opacity: 0.2,
 				},

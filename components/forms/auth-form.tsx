@@ -1,8 +1,9 @@
 'use client';
 
 import { HTMLAttributes, useState } from 'react';
-import { Grid } from '@mui/material';
+
 import { LoadingButton } from '@mui/lab';
+import { Grid } from '@mui/material';
 import { signIn } from 'next-auth/react';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;

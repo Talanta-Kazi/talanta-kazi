@@ -1,8 +1,8 @@
 'use client';
 
-import { unified } from 'unified';
-import rehypeParse from 'rehype-parse';
-import { visit } from 'unist-util-visit';
+import { Fragment, ReactNode, createElement } from 'react';
+
+import { fancyId } from '@/lib/utils';
 import {
 	Avatar,
 	Box,
@@ -11,8 +11,9 @@ import {
 	ListItemAvatar,
 	ListItemText,
 } from '@mui/material';
-import { createElement, Fragment, ReactNode } from 'react';
-import { fancyId } from '@/lib/utils';
+import rehypeParse from 'rehype-parse';
+import { unified } from 'unified';
+import { visit } from 'unist-util-visit';
 
 const customBullets = [
 	<svg
@@ -81,7 +82,7 @@ export const htmlBulletList = (html: string) => {
 					const element = createElement(
 						Fragment,
 						{ key: fancyId() },
-						createElement('p', {}, children),
+						createElement('p', {}, children)
 					);
 					result.push(element);
 				}

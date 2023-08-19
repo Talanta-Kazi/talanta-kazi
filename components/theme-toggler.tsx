@@ -1,8 +1,8 @@
+import { useContext } from 'react';
+
+import { ColorModeContext } from '@/components/theme-registry';
 import { Button } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-
-import { useContext } from 'react';
-import { ColorModeContext } from '@/components/theme-registry';
 
 const ThemeToggler = (): JSX.Element => {
 	const theme = useTheme();

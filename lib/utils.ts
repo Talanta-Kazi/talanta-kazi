@@ -1,8 +1,7 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { parse } from 'node-html-parser';
-
 import { env } from '@/env.mjs';
+import { type ClassValue, clsx } from 'clsx';
+import { parse } from 'node-html-parser';
+import { twMerge } from 'tailwind-merge';
 
 function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -95,7 +94,7 @@ const isStringNullOrEmpty = (str: string): boolean =>
 
 const mutateStringObject = (
 	str: string,
-	obj: Record<string, string>,
+	obj: Record<string, string>
 ): string => {
 	console.log('Class: , Function: mutateStringObject, Line 100 ():', str, obj);
 	const stringToObject = JSON.parse(str);

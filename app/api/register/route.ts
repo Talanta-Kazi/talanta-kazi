@@ -1,7 +1,8 @@
 import { NextRequest } from 'next/server';
-import { registerAuthSchema } from '@/lib/validations/auth';
+
 import * as z from 'zod';
 import { env } from '@/env.mjs';
+import { registerAuthSchema } from '@/lib/validations/auth';
 
 export async function POST(req: NextRequest) {
 	try {

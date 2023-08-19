@@ -7,7 +7,7 @@ const educationSchema = z.array(
 		course: z.string(),
 		from_date: z.string(),
 		to_date: z.string(),
-	}),
+	})
 );
 
 export const profileCreateOrPatchSchema = z.object({
@@ -64,12 +64,12 @@ export const profileSchema = z.object({
 				// regular expression to match email
 				const emailRegex = new RegExp(
 					/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/,
-					'gm',
+					'gm'
 				);
 				// exclude strings that contain email
 				return !emailRegex.test(value);
 			},
-			{ message: 'Cannot contain email in text' },
+			{ message: 'Cannot contain email in text' }
 		)
 		.refine(
 			(value) => {
@@ -79,7 +79,7 @@ export const profileSchema = z.object({
 				// exclude strings that contain phone numbers
 				return !phoneRegex.test(value);
 			},
-			{ message: 'Cannot contain phone numbers' },
+			{ message: 'Cannot contain phone numbers' }
 		),
 	videoURL: z.optional(z.string()),
 	personal: z.string(),

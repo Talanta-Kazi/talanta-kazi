@@ -96,6 +96,7 @@
 		"zustand": "^4.4.1"
 	},
 	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^4.2.0",
 		"@types/aos": "^3.0.4",
 		"@types/editorjs__header": "^2.6.0",
 		"@types/react": "^18.2.20",

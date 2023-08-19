@@ -1,6 +1,12 @@
 'use client';
 
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import dayjsTime from '@/lib/dayjsTime';
+import { stripHtml } from '@/lib/utils';
 import { Job } from '@/types';
+import { Bookmark, Favorite, LocationOn } from '@mui/icons-material';
 import {
 	Box,
 	Button,
@@ -14,12 +20,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { Bookmark, Favorite, LocationOn } from '@mui/icons-material';
-import dayjsTime from '@/lib/dayjsTime';
-import Link from 'next/link';
-import { stripHtml } from '@/lib/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useRouter } from 'next/navigation';
 
 interface UserJobCardProps {
 	job: Job;

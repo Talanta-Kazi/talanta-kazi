@@ -1,3 +1,9 @@
+// import EnvironmentControlView from 'views/EnvironmentControlView';
+// import PeopleView from 'views/PeopleView';
+// import SupportView from 'views/SupportView';
+// import UserRolesView from 'views/UserRolesView';
+import type { ReactNode } from 'react';
+
 import {
 	AllOut,
 	BubbleChart,
@@ -10,11 +16,6 @@ import {
 	Spa,
 	WidgetsRounded,
 } from '@mui/icons-material';
-// import EnvironmentControlView from 'views/EnvironmentControlView';
-// import PeopleView from 'views/PeopleView';
-// import SupportView from 'views/SupportView';
-// import UserRolesView from 'views/UserRolesView';
-import type { ReactNode } from 'react';
 
 export interface MenuComponentProps {
 	primaryText: string;

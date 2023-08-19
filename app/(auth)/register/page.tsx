@@ -1,7 +1,7 @@
-import { Box, Grid } from '@mui/material';
-import Container from '@/components/container';
 import RegisterForm from '@/app/(auth)/register/register-form';
 import { StyledGrid } from '@/app/(auth)/styles';
+import Container from '@/components/container';
+import { Box, Grid } from '@mui/material';
 
 export default function Register(): JSX.Element {
 	return (

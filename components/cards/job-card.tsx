@@ -1,6 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import dayjsTime from '@/lib/dayjsTime';
+import { stripHtml } from '@/lib/utils';
+import { Job } from '@/types';
 import { Bookmark, Favorite, LocationOn } from '@mui/icons-material';
 import {
 	Box,
@@ -15,10 +19,6 @@ import {
 	Typography,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/navigation';
-
-import { stripHtml } from '@/lib/utils';
-import { Job } from '@/types';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface JobProps {

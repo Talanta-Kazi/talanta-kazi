@@ -1,6 +1,7 @@
 import { alpha } from '@mui/material/styles';
+
 const shadows = (
-	themeMode = 'light',
+	themeMode = 'light'
 ): [
 	'none',
 	string,

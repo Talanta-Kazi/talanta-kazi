@@ -1,8 +1,10 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import Link from 'next/link';
+
 import logo from '../public/img/logo.png';
-import Image from 'next/image';
 
 const Logo = () => {
 	return (

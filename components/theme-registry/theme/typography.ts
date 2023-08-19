@@ -1,6 +1,7 @@
-import type { ThemeOptions } from '@mui/material/styles';
 import type { CSSProperties } from 'react';
+
 import { fontSans } from '@/lib/fonts';
+import type { ThemeOptions } from '@mui/material/styles';
 
 type Func = () => NonNullable<ThemeOptions['typography']>;
 

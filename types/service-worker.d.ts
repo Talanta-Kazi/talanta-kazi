@@ -96,21 +96,21 @@ interface ServiceWorkerGlobalScope {
 
 	addEventListener(
 		event: 'activate',
-		fn: (event?: ExtendableEvent) => any,
+		fn: (event?: ExtendableEvent) => any
 	): void;
 	addEventListener(
 		event: 'message',
-		fn: (event?: ExtendableMessageEvent) => any,
+		fn: (event?: ExtendableMessageEvent) => any
 	): void;
 	addEventListener(event: 'fetch', fn: (event?: FetchEvent) => any): void;
 	addEventListener(
 		event: 'install',
-		fn: (event?: ExtendableEvent) => any,
+		fn: (event?: ExtendableEvent) => any
 	): void;
 	addEventListener(event: 'push', fn: (event?: PushEvent) => any): void;
 	addEventListener(
 		event: 'notificationclick',
-		fn: (event?: NotificationEvent) => any,
+		fn: (event?: NotificationEvent) => any
 	): void;
 	addEventListener(event: 'sync', fn: (event?: SyncEvent) => any): void;
 

@@ -1,15 +1,15 @@
 'use client';
 
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+import JobCard from '@/components/cards/job-card';
+import { fancyId } from '@/lib/utils';
+import { ContractType, Job } from '@/types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
-
-import { fancyId } from '@/lib/utils';
-import { ContractType, Job } from '@/types';
-import JobCard from '@/components/cards/job-card';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: 'Jobs Listing',
@@ -27,7 +27,7 @@ export default function Jobs({
 		contractObject = contract.reduce(
 			// @ts-expect-error
 			(r, { id, contract_types_name }) => ((r[id] = contract_types_name), r),
-			{},
+			{}
 		);
 
 	const modifiedJobs = jobs.map((job) => {

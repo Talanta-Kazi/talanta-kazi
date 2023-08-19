@@ -1,8 +1,8 @@
+import { updateProfileFn } from '@/app/(talent)/actions';
+import { isArrayEmpty } from '@/lib/utils';
+import { ProfileInputSchema } from '@/lib/validations/profile';
 import useStore from '@/store/index';
 import { useMutation } from '@tanstack/react-query';
-import { isArrayEmpty } from '@/lib/utils';
-import { updateProfileFn } from '@/app/(talent)/actions';
-import { ProfileInputSchema } from '@/lib/validations/profile';
 import { useSession } from 'next-auth/react';
 
 export default function useUpdateProfile() {
@@ -38,7 +38,7 @@ export default function useUpdateProfile() {
 						displaySnackMessage({
 							message: el.message,
 							severity: 'error',
-						}),
+						})
 					);
 				} else {
 					displaySnackMessage({
@@ -47,7 +47,7 @@ export default function useUpdateProfile() {
 					});
 				}
 			},
-		},
+		}
 	);
 
 	return {

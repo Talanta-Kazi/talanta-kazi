@@ -1,5 +1,6 @@
 'use client';
 
+import { Candidate } from '@/types';
 import {
 	Avatar,
 	Box,
@@ -13,7 +14,6 @@ import {
 	useMediaQuery,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { Candidate } from '@/types';
 import Slider from 'react-slick';
 
 const mock = [
@@ -86,7 +86,7 @@ export default function BannerFreelancers() {
 					backgroundSize: '18px 18px',
 					backgroundImage: `radial-gradient(${alpha(
 						theme.palette.text.primary,
-						0.4,
+						0.4
 					)} 20%, transparent 20%)`,
 					opacity: 0.2,
 				},

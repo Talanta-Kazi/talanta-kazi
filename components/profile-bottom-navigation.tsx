@@ -1,10 +1,11 @@
 'use client';
 
+import { usePathname, useRouter } from 'next/navigation';
+
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Box, Button, Paper, Stack } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
 	nextPageUrl: string;

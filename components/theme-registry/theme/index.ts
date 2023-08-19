@@ -67,7 +67,7 @@ const getTheme = (mode: PaletteMode): Theme =>
 					} as ComponentsOverrides['MuiCard'],
 				},
 			},
-		}),
+		})
 	);
 
 export default getTheme;

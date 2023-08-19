@@ -1,9 +1,10 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import { InputProps } from '@/components/forms/input-props';
 import { Autocomplete, Box, TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { useMemo } from 'react';
 // @ts-ignore
 import countryList from 'react-select-country-list';
 
@@ -30,7 +31,7 @@ export default function CountryInput({
 					options={countries}
 					defaultValue={countries.find(
 						(country: { label: string | undefined }) =>
-							country.label === defaultCountry,
+							country.label === defaultCountry
 					)}
 					autoHighlight
 					getOptionLabel={(option) => option?.label}

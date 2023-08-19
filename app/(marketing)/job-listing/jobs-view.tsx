@@ -1,8 +1,12 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import { ContractType, Job } from '@/types';
+
+import JobCard from '@/components/cards/job-card';
 import Container from '@/components/container';
+import { cn, fancyId } from '@/lib/utils';
+import { ContractType, Job } from '@/types';
+import { Search } from '@mui/icons-material';
 import {
 	Box,
 	Button,
@@ -14,10 +18,7 @@ import {
 	Paper,
 	Typography,
 } from '@mui/material';
-import JobCard from '@/components/cards/job-card';
-import { cn, fancyId } from '@/lib/utils';
 import { alpha, useTheme } from '@mui/material/styles';
-import { Search } from '@mui/icons-material';
 
 interface JobsViewProps {
 	jobs: Array<Job>;
@@ -47,7 +48,7 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 		contractObject = contract?.reduce(
 			// @ts-expect-error
 			(r, { id, contract_types_name }) => ((r[id] = contract_types_name), r),
-			{},
+			{}
 		);
 
 	const modifiedJobs = displayJobs?.map((job) => {
@@ -86,7 +87,7 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 						backgroundSize: '16px 16px',
 						backgroundImage: `radial-gradient(${alpha(
 							'#c9ad24',
-							0.4,
+							0.4
 						)} 20%, transparent 20%)`,
 						opacity: 0.2,
 					},

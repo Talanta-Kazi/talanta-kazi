@@ -1,10 +1,11 @@
-import { CheckBox, CheckBoxOutlineBlank, Clear } from '@mui/icons-material';
-import { Grid, IconButton, MenuItem, Stack } from '@mui/material';
 import { Fragment } from 'react';
+
+import Checkbox from '@/components/forms/checkbox';
+import Date from '@/components/forms/date';
 import Input from '@/components/forms/input';
 import { fancyId } from '@/lib/utils';
-import Date from '@/components/forms/date';
-import Checkbox from '@/components/forms/checkbox';
+import { CheckBox, CheckBoxOutlineBlank, Clear } from '@mui/icons-material';
+import { Grid, IconButton, MenuItem, Stack } from '@mui/material';
 
 interface Props {
 	id: number;

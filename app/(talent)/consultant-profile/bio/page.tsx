@@ -1,7 +1,8 @@
-import { getCandidateProfile } from '@/app/(talent)/actions';
 import { notFound } from 'next/navigation';
-import { Typography } from '@mui/material';
+
+import { getCandidateProfile } from '@/app/(talent)/actions';
 import BioForm from '@/app/(talent)/professional-profile/bio/bio-form';
+import { Typography } from '@mui/material';
 
 export default async function CandidateBio() {
 	const candidate = await getCandidateProfile();

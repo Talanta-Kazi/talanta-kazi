@@ -1,11 +1,12 @@
 'use client';
 
-import { useTheme } from '@mui/material/styles';
-import { Box, Button, Typography, useMediaQuery } from '@mui/material';
-import Container from '@/components/container';
-import { ArrowBack } from '@mui/icons-material';
-import { Main } from '@/components/layouts';
 import Link from 'next/link';
+
+import Container from '@/components/container';
+import { Main } from '@/components/layouts';
+import { ArrowBack } from '@mui/icons-material';
+import { Box, Button, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 export function NotFoundPage() {
 	const theme = useTheme();

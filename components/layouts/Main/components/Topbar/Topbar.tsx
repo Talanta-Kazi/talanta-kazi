@@ -1,13 +1,14 @@
-import { Box, Typography } from '@mui/material';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import { useEffect, useState } from 'react';
 
-import Link from 'next/link';
-import { fancyId } from '@/lib/utils';
-import { mainLayoutNavigation } from '@/components/layouts/navigation';
-import Logo from '@/components/logo';
 import AuthButtonLink from '@/components/auth-button-link';
 import { MobileNav } from '@/components/layouts/Main/components';
+import { mainLayoutNavigation } from '@/components/layouts/navigation';
+import Logo from '@/components/logo';
+import { fancyId } from '@/lib/utils';
+import { Box, Typography } from '@mui/material';
 
 const Topbar = (): JSX.Element => {
 	const [activeLink, setActiveLink] = useState('');

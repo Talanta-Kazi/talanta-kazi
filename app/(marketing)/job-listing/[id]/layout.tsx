@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import Container from '@/components/container';
 
 interface SingleJobListingLayoutProps {

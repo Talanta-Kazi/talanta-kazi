@@ -1,7 +1,13 @@
 'use client';
 
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRouter } from 'next/navigation';
+
+import { Suspense } from 'react';
+
+import { htmlBulletList } from '@/lib/htmlBulletedList';
+import { isBrowser } from '@/lib/utils';
+import { ContractType, Job } from '@/types';
+import { ArrowBackRounded } from '@mui/icons-material';
 import {
 	Box,
 	Button,
@@ -10,12 +16,8 @@ import {
 	IconButton,
 	Typography,
 } from '@mui/material';
-import { ContractType, Job } from '@/types';
-import { useRouter } from 'next/navigation';
-import { ArrowBackRounded } from '@mui/icons-material';
-import { isBrowser } from '@/lib/utils';
-import { htmlBulletList } from '@/lib/htmlBulletedList';
-import { Suspense } from 'react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface SingleJobViewProps {
 	job: Job;
@@ -36,7 +38,7 @@ export default function SingleJobView({
 		contractObject = contract?.reduce(
 			// @ts-expect-error
 			(r, { id, contract_types_name }) => ((r[id] = contract_types_name), r),
-			{},
+			{}
 		);
 
 	const modifiedJob = {

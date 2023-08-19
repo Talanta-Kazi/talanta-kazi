@@ -1,9 +1,9 @@
 import { LocalizationProvider, MobileDatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 import { Controller } from 'react-hook-form';
 
 import type { InputProps } from './input-props';
-import dayjs from 'dayjs';
 
 function Date({ name, control, label, ...rest }: InputProps) {
 	return (

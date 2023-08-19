@@ -1,4 +1,5 @@
-import { Controller } from 'react-hook-form';
+import { useRef } from 'react';
+
 import { InputProps } from '@/components/forms/input-props';
 import StarterKit from '@tiptap/starter-kit';
 import {
@@ -10,7 +11,7 @@ import {
 	RichTextEditor,
 	RichTextEditorRef,
 } from 'mui-tiptap';
-import { useRef } from 'react';
+import { Controller } from 'react-hook-form';
 
 export default function TextEditor({
 	name,
@@ -21,7 +22,7 @@ export default function TextEditor({
 	const rteRef = useRef<RichTextEditorRef>(null);
 	console.log(
 		'Class: default, Function: TextEditor, Line 22 rteRef():',
-		rteRef.current?.editor?.getHTML(),
+		rteRef.current?.editor?.getHTML()
 	);
 	return (
 		<Controller

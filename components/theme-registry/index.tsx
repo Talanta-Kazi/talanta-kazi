@@ -1,11 +1,13 @@
 'use client';
 
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { NextAppDirEmotionCacheProvider } from '@/components/theme-registry/emotion-cache';
 import { createContext, useMemo, useState } from 'react';
-import getTheme from './theme';
+
+import { NextAppDirEmotionCacheProvider } from '@/components/theme-registry/emotion-cache';
 import { PaletteMode } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+
+import getTheme from './theme';
 
 export const ColorModeContext = createContext({
 	toggleColorMode: () => {},
@@ -25,7 +27,7 @@ export default function ThemeRegistry({
 				setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
 			},
 		}),
-		[],
+		[]
 	);
 
 	return (

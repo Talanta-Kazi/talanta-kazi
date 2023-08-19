@@ -1,14 +1,14 @@
 'use client';
 
-import { Grid, Typography } from '@mui/material';
-import Input from '@/components/forms/input';
+import * as z from 'zod';
 import CountryInput from '@/app/(talent)/professional-profile/personal/country-input';
+import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Candidate } from '@/types';
-import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Grid, Typography } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
 interface CandidateTitleFormProps {
 	candidate: Candidate;

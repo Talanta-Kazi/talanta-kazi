@@ -1,10 +1,11 @@
+import { useRouter } from 'next/navigation';
+
+import UserAvatar from '@/components/user-avatar';
 import { ArrowBackRounded } from '@mui/icons-material';
 import { Avatar, Chip, IconButton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import UserAvatar from '@/components/user-avatar';
 
 const Topbar = (): JSX.Element => {
 	const { push } = useRouter();

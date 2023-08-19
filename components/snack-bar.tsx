@@ -1,11 +1,12 @@
+import type { SyntheticEvent } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
+
 import useStore from '@/lib/../store';
+import { SnackMessage } from '@/store/slices/createSnackSlice';
 import type { AlertProps } from '@mui/material';
 import { Snackbar, useMediaQuery } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
-import type { SyntheticEvent } from 'react';
-import { forwardRef, useEffect, useState } from 'react';
-import { SnackMessage } from '@/store/slices/createSnackSlice';
 
 interface SnackMessageProps {
 	snack: SnackMessage;
@@ -14,7 +15,7 @@ interface SnackMessageProps {
 const Alert = forwardRef<HTMLDivElement, AlertProps>(
 	function Alert(props, ref) {
 		return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
-	},
+	}
 );
 
 export function SnackBar({ snack }: SnackMessageProps): JSX.Element {
@@ -35,7 +36,7 @@ export function SnackBar({ snack }: SnackMessageProps): JSX.Element {
 
 	const handleCloseSnack = (
 		event?: SyntheticEvent | Event,
-		reason?: string,
+		reason?: string
 	) => {
 		if (reason === 'clickaway') return;
 		setSnackOpen(false);

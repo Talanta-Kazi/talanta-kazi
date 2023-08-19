@@ -1,12 +1,14 @@
 'use client';
 
-import styles from '@/assets/css/mobile-menu.module.css';
 import Link from 'next/link';
+
 import { useEffect, useState } from 'react';
-import useDelayedRender from 'use-delayed-render';
+
+import styles from '@/assets/css/mobile-menu.module.css';
 import { cn, lockScroll } from '@/lib/utils';
 import { Button, Divider } from '@mui/material';
 import { useSession } from 'next-auth/react';
+import useDelayedRender from 'use-delayed-render';
 
 function MenuIcon(props: JSX.IntrinsicElements['svg']) {
 	return (
@@ -65,7 +67,7 @@ const MobileNav = () => {
 		{
 			enterDelay: 20,
 			exitDelay: 300,
-		},
+		}
 	);
 
 	const onToggleNav = () => {
@@ -102,7 +104,7 @@ const MobileNav = () => {
 					className={cn(
 						styles.menu,
 						'absolute flex flex-col bg-white antialiased transition duration-500 dark:bg-gray-900',
-						isMenuRendered && styles.menuRendered,
+						isMenuRendered && styles.menuRendered
 					)}
 				>
 					<li

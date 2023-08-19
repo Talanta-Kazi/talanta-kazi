@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { Minimal } from '@/components/layouts';
 
 interface AuthLayoutProps {

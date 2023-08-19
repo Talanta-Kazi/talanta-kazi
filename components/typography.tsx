@@ -1,6 +1,7 @@
-import clsx from 'clsx';
 import type { ElementType, ReactNode } from 'react';
 import { createElement } from 'react';
+
+import clsx from 'clsx';
 
 type TitleProps = {
 	variant?: 'primary' | 'secondary';

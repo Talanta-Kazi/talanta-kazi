@@ -1,11 +1,11 @@
-import { ProfileInputSchema } from '@/lib/validations/profile';
-import { Candidate } from '@/types';
 import { env } from '@/env.mjs';
 import { getSession } from '@/lib/auth';
+import { ProfileInputSchema } from '@/lib/validations/profile';
+import { Candidate } from '@/types';
 
 const updateProfileFn = async (
 	id: string,
-	profile: Partial<ProfileInputSchema>,
+	profile: Partial<ProfileInputSchema>
 ) => {
 	try {
 		const response = await fetch(`/api/profile/${id}`, {
@@ -36,7 +36,7 @@ const getCandidateProfile = async (id?: string): Promise<Candidate> => {
 	try {
 		const res = await fetch(
 			`${env.API_URL}/candidate/profile/${userId}`,
-			config,
+			config
 		);
 
 		if (!res.ok) {

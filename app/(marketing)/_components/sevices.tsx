@@ -1,5 +1,9 @@
 'use client';
 
+/* eslint-disable react/no-unescaped-entities */
+import Link from 'next/link';
+
+import { fancyId } from '@/lib/utils';
 import {
 	ConstructionTwoTone,
 	PixTwoTone,
@@ -9,11 +13,8 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { alpha, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-/* eslint-disable react/no-unescaped-entities */
-import Link from 'next/link';
-import { fancyId } from '@/lib/utils';
+import { alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const mock = [

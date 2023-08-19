@@ -1,3 +1,5 @@
+import { InputProps } from '@/components/forms/input-props';
+import { fancyId } from '@/lib/utils';
 import {
 	FormControl,
 	FormControlLabel,
@@ -6,9 +8,6 @@ import {
 	RadioGroup,
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
-
-import { fancyId } from '@/lib/utils';
-import { InputProps } from '@/components/forms/input-props';
 
 const options = [
 	{

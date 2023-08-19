@@ -1,7 +1,7 @@
-import { PutBlobResult } from '@vercel/blob';
-import { toast } from 'sonner';
 import { EditorState, Plugin, PluginKey } from '@tiptap/pm/state';
 import { Decoration, DecorationSet, EditorView } from '@tiptap/pm/view';
+import { PutBlobResult } from '@vercel/blob';
+import { toast } from 'sonner';
 
 const uploadKey = new PluginKey('upload-image');
 
@@ -25,7 +25,7 @@ const UploadImagesPlugin = () =>
 					const image = document.createElement('img');
 					image.setAttribute(
 						'class',
-						'opacity-40 rounded-lg border border-stone-200',
+						'opacity-40 rounded-lg border border-stone-200'
 					);
 					image.src = src;
 					placeholder.appendChild(image);
@@ -36,7 +36,7 @@ const UploadImagesPlugin = () =>
 				} else if (action && action.remove) {
 					set = set.remove(
 						// @ts-expect-error
-						set.find(null, null, (spec) => spec.id == action.remove.id),
+						set.find(null, null, (spec) => spec.id == action.remove.id)
 					);
 				}
 				return set;
@@ -138,7 +138,7 @@ export const handleImageUpload = (file: File) => {
 					resolve(file);
 
 					throw new Error(
-						'`BLOB_READ_WRITE_TOKEN` environment variable not found, reading image locally instead.',
+						'`BLOB_READ_WRITE_TOKEN` environment variable not found, reading image locally instead.'
 					);
 					// Unknown error
 				} else {
@@ -149,7 +149,7 @@ export const handleImageUpload = (file: File) => {
 				loading: 'Uploading image...',
 				success: 'Image uploaded successfully.',
 				error: (e: { message: any }) => e.message,
-			},
+			}
 		);
 	});
 };

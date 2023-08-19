@@ -1,6 +1,7 @@
+import { Dispatch, FC, SetStateAction } from 'react';
+
 import { Editor } from '@tiptap/core';
 import { Check, ChevronDown } from 'lucide-react';
-import { Dispatch, FC, SetStateAction } from 'react';
 
 export interface BubbleColorMenuItem {
 	name: string;
@@ -97,11 +98,11 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
 	setIsOpen,
 }) => {
 	const activeColorItem = TEXT_COLORS.find(({ color }) =>
-		editor.isActive('textStyle', { color }),
+		editor.isActive('textStyle', { color })
 	);
 
 	const activeHighlightItem = HIGHLIGHT_COLORS.find(({ color }) =>
-		editor.isActive('highlight', { color }),
+		editor.isActive('highlight', { color })
 	);
 
 	return (

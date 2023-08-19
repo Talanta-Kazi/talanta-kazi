@@ -1,12 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Link from 'next/link';
 
 export default function Bookings(): JSX.Element {
 	const theme = useTheme();

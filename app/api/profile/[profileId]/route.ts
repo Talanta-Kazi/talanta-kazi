@@ -1,7 +1,7 @@
-import { z } from 'zod';
-import { getSession } from '@/lib/auth';
 import { env } from '@/env.mjs';
+import { getSession } from '@/lib/auth';
 import { profileCreateOrPatchSchema } from '@/lib/validations/profile';
+import { z } from 'zod';
 
 const routeContextSchema = z.object({
 	params: z.object({
@@ -11,7 +11,7 @@ const routeContextSchema = z.object({
 
 export async function PUT(
 	req: Request,
-	context: z.infer<typeof routeContextSchema>,
+	context: z.infer<typeof routeContextSchema>
 ) {
 	const session = await getSession();
 
@@ -45,7 +45,7 @@ export async function PUT(
 					Authorization: `Token ${session?.user?.token}`,
 					'Content-Type': 'application/json',
 				},
-			},
+			}
 		);
 
 		const data = await profile.json();

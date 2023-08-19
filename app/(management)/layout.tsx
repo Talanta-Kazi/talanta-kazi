@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { Main } from '@/components/layouts';
+
 import Container from '@/components/container';
+import { Main } from '@/components/layouts';
 
 interface ManagementLayoutProps {
 	children: ReactNode;

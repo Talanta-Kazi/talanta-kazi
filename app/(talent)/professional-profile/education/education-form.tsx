@@ -1,16 +1,17 @@
 'use client';
 
-import { z } from 'zod';
 import { Key, useState } from 'react';
-import { isBrowser } from '@/lib/utils';
-import { useForm } from 'react-hook-form';
-import useUpdateProfile from '@/lib/hooks/use-update-profile';
-import Typography from '@mui/material/Typography';
-import { Button, Grid, Stack } from '@mui/material';
-import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import { AddCircle } from '@mui/icons-material';
+
 import EducationInput from '@/app/(talent)/professional-profile/education/education-input';
+import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { isBrowser } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AddCircle } from '@mui/icons-material';
+import { Button, Grid, Stack } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 interface CandidateEducationFormProps {
 	defaultValues: any;
@@ -49,7 +50,7 @@ const educationSchema = z.object({
 			from_date: z.coerce.date(),
 			to_date: z.coerce.date(),
 			current_school: z.boolean(),
-		}),
+		})
 	),
 });
 
@@ -68,7 +69,7 @@ export default function EducationForm({
 				to_date: '',
 				current_school: false,
 			},
-		],
+		]
 	);
 
 	const professionalLevel = isBrowser
@@ -108,7 +109,7 @@ export default function EducationForm({
 
 	const handleRemoveEducationTextFields = (index: number) => {
 		const filteredEducation = defaultValues?.education?.filter(
-			(_: any, i: number) => i !== index,
+			(_: any, i: number) => i !== index
 		);
 		const resetEducationValues = {
 			education: filteredEducation,

@@ -1,7 +1,8 @@
-import { getCandidateProfile } from '@/app/(talent)/actions';
 import { notFound } from 'next/navigation';
-import { Typography } from '@mui/material';
+
+import { getCandidateProfile } from '@/app/(talent)/actions';
 import PortfolioForm from '@/app/(talent)/professional-profile/portfolio/portfolio-form';
+import { Typography } from '@mui/material';
 
 export default async function CandidateEducation() {
 	const candidate = await getCandidateProfile();

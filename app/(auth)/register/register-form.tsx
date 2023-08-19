@@ -1,5 +1,21 @@
 'use client';
 
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import type { MouseEvent } from 'react';
+import { HTMLAttributes, useState } from 'react';
+
+import { registerUserFn } from '@/app/(auth)/actions';
+import Input from '@/components/forms/input';
+import {
+	RegisterInputSchema,
+	registerAuthSchema,
+} from '@/lib/validations/auth';
+import useStore from '@/store/index';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
 	Box,
 	Button,
@@ -9,24 +25,10 @@ import {
 	ToggleButtonGroup,
 	Typography,
 } from '@mui/material';
-import {
-	registerAuthSchema,
-	RegisterInputSchema,
-} from '@/lib/validations/auth';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import type { MouseEvent } from 'react';
-import { HTMLAttributes, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import useStore from '@/store/index';
-import { LoadingButton } from '@mui/lab';
-import Link from 'next/link';
-import Input from '@/components/forms/input';
-import { useMutation } from '@tanstack/react-query';
-import { registerUserFn } from '@/app/(auth)/actions';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
@@ -71,7 +73,7 @@ export default function RegisterForm({
 
 	const handleFormTypeChange = (
 		event: MouseEvent<HTMLElement>,
-		newAlignment: string,
+		newAlignment: string
 	) => {
 		setAlignment(newAlignment);
 	};
@@ -95,7 +97,7 @@ export default function RegisterForm({
 					displaySnackMessage({
 						message: el.message,
 						severity: 'error',
-					}),
+					})
 				);
 			} else {
 				displaySnackMessage({

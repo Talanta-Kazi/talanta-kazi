@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Box, Collapse, Typography } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+
 import Input from '@/components/forms/input';
 import { fancyId } from '@/lib/utils';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { Box, Collapse, Typography } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
 export default function FilterSpecialism({
 	specialisms,

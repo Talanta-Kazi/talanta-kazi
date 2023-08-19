@@ -1,7 +1,7 @@
-import { Box, Grid } from '@mui/material';
-import Container from '@/components/container';
 import { LoginForm } from '@/app/(auth)/login/login-form';
 import { StyledGrid } from '@/app/(auth)/styles';
+import Container from '@/components/container';
+import { Box, Grid } from '@mui/material';
 
 const Login = (): JSX.Element => {
 	return (

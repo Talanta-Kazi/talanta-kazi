@@ -1,10 +1,10 @@
-import Container from '@/components/container';
 import {
 	getContractTypes,
 	getJobs,
 	getSpecialisms,
 } from '@/app/(marketing)/actions';
 import Sidebar from '@/app/(talent)/talent/jobs/sidebar';
+import Container from '@/components/container';
 
 export default async function CandidateJobs() {
 	const [allJobs, contractTypes, specialisms] = await Promise.all([
@@ -17,7 +17,7 @@ export default async function CandidateJobs() {
 		contractObject = contract?.reduce(
 			// @ts-expect-error
 			(r, { id, contract_types_name }) => ((r[id] = contract_types_name), r),
-			{},
+			{}
 		);
 
 	const modifiedJobs = allJobs?.map((job) => {

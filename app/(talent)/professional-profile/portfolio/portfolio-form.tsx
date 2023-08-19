@@ -1,17 +1,18 @@
 'use client';
 
-import { Candidate } from '@/types';
 import { useEffect, useState } from 'react';
-import { stringifyMap } from '@/lib/utils';
-import { useForm } from 'react-hook-form';
-import { profileValidationSchema } from '@/lib/validations/profile';
-import { z } from 'zod';
+
+import PortfolioInput from '@/app/(talent)/professional-profile/portfolio/portfolio-input';
+import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { stringifyMap } from '@/lib/utils';
+import { profileValidationSchema } from '@/lib/validations/profile';
+import { Candidate } from '@/types';
+import { AddCircle } from '@mui/icons-material';
 import { Button, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { AddCircle } from '@mui/icons-material';
-import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import PortfolioInput from '@/app/(talent)/professional-profile/portfolio/portfolio-input';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 interface CandidatePortfolioFormProps {
 	candidate: Candidate;
@@ -60,7 +61,7 @@ export default function PortfolioForm({
 		const subscription = watch((value, { name }) => {
 			setPortfolioExperienceSelected(
 				// @ts-expect-error
-				(prevMap) => new Map(prevMap.set(name, value[name])),
+				(prevMap) => new Map(prevMap.set(name, value[name]))
 			);
 		});
 
@@ -95,13 +96,13 @@ export default function PortfolioForm({
 			prevState.concat({
 				id: prevState[0].id++ as number,
 				portfolioExperience: stringifyMap(portfolioExperienceSelected),
-			}),
+			})
 		);
 	};
 
 	const handleRemovePortfolioTextFields = (id: number) => {
 		setPortfolioComponent((prevState) =>
-			prevState.filter((item) => item.id !== id),
+			prevState.filter((item) => item.id !== id)
 		);
 	};
 

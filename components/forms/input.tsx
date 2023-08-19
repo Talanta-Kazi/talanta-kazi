@@ -1,7 +1,7 @@
+import { InputProps } from '@/components/forms/input-props';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Controller } from 'react-hook-form';
-import { InputProps } from '@/components/forms/input-props';
 
 const ValidationTextField = styled(TextField)({
 	'& label.Mui-focused': {

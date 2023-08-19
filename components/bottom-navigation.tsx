@@ -1,3 +1,7 @@
+import { useRouter } from 'next/router';
+
+import { useContext } from 'react';
+
 import {
 	AdminBottomNavigationMenus,
 	BottomNavigationMenus,
@@ -13,8 +17,6 @@ import {
 	Paper,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/router';
-import { useContext } from 'react';
 
 const PageBottomNavigation = (): JSX.Element => {
 	const { selectedIndex, setSelectedIndex } = useContext(ComponentContext);

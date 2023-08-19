@@ -1,14 +1,15 @@
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import 'aos/dist/aos.css';
-import '../assets/css/global.css';
-import '@/assets/css/fonts.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-import { fontMono, fontSans } from '@/lib/fonts';
-import { ClientProvider } from '@/components/client-provider';
 import type { ReactNode } from 'react';
+
+import '@/assets/css/fonts.css';
+import { ClientProvider } from '@/components/client-provider';
+import { fontMono, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+import 'aos/dist/aos.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+
+import '../assets/css/global.css';
 
 export const metadata = {
 	title: 'Talanta Kazi',
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			className={cn(
 				'min-h-screen font-sans text-black',
 				fontSans.variable,
-				fontMono.variable,
+				fontMono.variable
 			)}
 			suppressHydrationWarning
 		>

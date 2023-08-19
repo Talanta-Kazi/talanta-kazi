@@ -1,19 +1,21 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { EditorContent, useEditor } from '@tiptap/react';
-import { TiptapEditorProps } from './props';
-import { TiptapExtensions } from './extensions';
-import { useDebouncedCallback } from 'use-debounce';
-import DEFAULT_EDITOR_CONTENT from './default-content';
-import { EditorBubbleMenu } from './components';
+
 import { getPrevText } from '@/lib/editor';
 import useLocalStorage from '@/lib/hooks/use-local-storage';
+import { EditorContent, useEditor } from '@tiptap/react';
+import { useDebouncedCallback } from 'use-debounce';
+
+import { EditorBubbleMenu } from './components';
+import DEFAULT_EDITOR_CONTENT from './default-content';
+import { TiptapExtensions } from './extensions';
+import { TiptapEditorProps } from './props';
 
 export default function Editor() {
 	const [content, setContent] = useLocalStorage(
 		'content',
-		DEFAULT_EDITOR_CONTENT,
+		DEFAULT_EDITOR_CONTENT
 	);
 	const [saveStatus, setSaveStatus] = useState('Saved');
 

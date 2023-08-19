@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
+
+import Container from '@/components/container';
 import { Minimal } from '@/components/layouts';
 import ProfileStepper from '@/components/profile-stepper';
-import Container from '@/components/container';
 
 interface AuthLayoutProps {
 	children: ReactNode;

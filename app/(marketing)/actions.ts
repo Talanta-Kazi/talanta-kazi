@@ -32,10 +32,10 @@ export const getJobById = async (id: string): Promise<Job> => {
 };
 
 export const getSpecialisms = async (
-	specialismType?: 'Professionals' | 'Freelancers' | 'Consultants',
+	specialismType?: 'Professionals' | 'Freelancers' | 'Consultants'
 ): Promise<Array<string>> => {
 	const res = await fetch(
-		`${env.API_URL}/jobs/list-specialism/?type=${specialismType}`,
+		`${env.API_URL}/jobs/list-specialism/?type=${specialismType}`
 	);
 
 	if (!res.ok) {

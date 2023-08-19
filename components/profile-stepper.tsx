@@ -1,5 +1,7 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import {
 	Step,
 	StepLabel,
@@ -8,7 +10,6 @@ import {
 	Typography,
 	useMediaQuery,
 } from '@mui/material';
-import { usePathname } from 'next/navigation';
 
 interface Steps {
 	steps: Array<{

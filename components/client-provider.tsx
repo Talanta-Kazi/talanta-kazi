@@ -1,18 +1,19 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
 import { ReactNode, useEffect, useState } from 'react';
-import { SWRConfig } from 'swr';
-import { AnimatePresence, motion } from 'framer-motion';
+
 import { ErrorBoundary } from '@/components/error-boundary';
 import ErrorBoundaryPage from '@/components/error-boundary-page';
-import { ComponentProvider } from '@/context/ComponentContext';
 import SnackBar from '@/components/snack-bar';
-import AOS from 'aos';
 import ThemeRegistry from '@/components/theme-registry';
+import { ComponentProvider } from '@/context/ComponentContext';
 import useStore from '@/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AOS from 'aos';
+import { AnimatePresence, motion } from 'framer-motion';
+import { SessionProvider } from 'next-auth/react';
 import { Provider as Balancer } from 'react-wrap-balancer';
+import { SWRConfig } from 'swr';
 
 export function ClientProvider({ children }: { children: ReactNode }) {
 	const { snack } = useStore();

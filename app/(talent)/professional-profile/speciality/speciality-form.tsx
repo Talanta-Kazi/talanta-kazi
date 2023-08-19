@@ -1,17 +1,18 @@
 'use client';
 
-import { Button, Grid, Stack, Typography } from '@mui/material';
-import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { profileValidationSchema } from '@/lib/validations/profile';
-import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { Key, useState } from 'react';
-import { AddCircle } from '@mui/icons-material';
+
 import * as z from 'zod';
 import SpecialitySkillsInput from '@/app/(talent)/professional-profile/speciality/speciality-skills-input';
-import useLocalStorage from '@/lib/hooks/use-local-storage';
+import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import deepParseJson from '@/lib/deep-parse-json';
+import useLocalStorage from '@/lib/hooks/use-local-storage';
+import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { profileValidationSchema } from '@/lib/validations/profile';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AddCircle } from '@mui/icons-material';
+import { Button, Grid, Stack, Typography } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
 interface CandidateSpecialityFormProps {
 	defaultValues: any;
@@ -30,7 +31,7 @@ const skillSchema = z.object({
 			specialitySkills: z.string().array().nonempty({
 				message: 'Kindly add at least one skill to your speciality',
 			}),
-		}),
+		})
 	),
 });
 
@@ -44,7 +45,7 @@ export default function SpecialityForm({
 				speciality: '',
 				specialitySkills: [],
 			},
-		],
+		]
 	);
 
 	const [storedValue] = useLocalStorage('userType', undefined);
@@ -52,7 +53,7 @@ export default function SpecialityForm({
 	const skillType = storedValue === 'freelancer' ? 'skilled' : 'semi-skilled';
 
 	const speciality = allSpeciality?.filter(
-		(skills: { type: string }) => skills.type === skillType,
+		(skills: { type: string }) => skills.type === skillType
 	);
 
 	const { control, watch, reset, handleSubmit } = useForm({
@@ -79,14 +80,14 @@ export default function SpecialityForm({
 
 	const handleRemoveSpecialityAndSkillTextFields = (id: number) => {
 		const filteredSkills = defaultValues?.skills?.filter(
-			(_: any, index: number) => index !== id,
+			(_: any, index: number) => index !== id
 		);
 		const resetSkillsValues = {
 			skills: filteredSkills,
 		};
 		reset(resetSkillsValues);
 		setSkills((prevState: any[]) =>
-			prevState.filter((_: any, index: number) => index !== id),
+			prevState.filter((_: any, index: number) => index !== id)
 		);
 	};
 

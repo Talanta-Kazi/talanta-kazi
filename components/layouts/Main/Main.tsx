@@ -1,13 +1,14 @@
 'use client';
 
-import { KeyboardArrowUpRounded } from '@mui/icons-material';
-import { AppBar, Box, Fab, useScrollTrigger, Zoom } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import type { MouseEvent, ReactElement, ReactNode } from 'react';
 
-import { Footer, Topbar } from './components';
 import Container from '@/components/container';
+import { KeyboardArrowUpRounded } from '@mui/icons-material';
+import { AppBar, Box, Fab, Zoom, useScrollTrigger } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { Footer, Topbar } from './components';
 
 interface Props {
 	children: ReactNode;

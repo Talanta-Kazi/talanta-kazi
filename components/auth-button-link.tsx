@@ -1,12 +1,14 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { useEffect, useState } from 'react';
+
 import UserAvatar from '@/components/user-avatar';
 import { Button, Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
 
 export default function AuthButtonLink() {
 	const [activeLink, setActiveLink] = useState('');

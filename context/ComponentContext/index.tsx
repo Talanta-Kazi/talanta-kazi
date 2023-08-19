@@ -1,15 +1,16 @@
-import { useSession } from 'next-auth/react';
 import type { MouseEvent, SyntheticEvent } from 'react';
 import { createContext, useState } from 'react';
+
+import { isBrowser } from '@/lib/utils';
+import { useSession } from 'next-auth/react';
 
 import type {
 	ComponentContextProps,
 	ComponentContextState,
 } from './interfaces';
-import { isBrowser } from '@/lib/utils';
 
 const selectedIndex = JSON.parse(
-	isBrowser ? (window.localStorage.getItem('selectedIndex') as string) : '0',
+	isBrowser ? (window.localStorage.getItem('selectedIndex') as string) : '0'
 ) as number;
 
 const currentRoleBasedAccess =
@@ -42,7 +43,7 @@ const ComponentContext = createContext({
 	snackMessage: '',
 	toggleActivityDrawer: (
 		_isActivityDrawerOpen: boolean,
-		_activityLogsViewed: boolean,
+		_activityLogsViewed: boolean
 	) => {},
 	toggleRoleChangeDialog: () => {},
 });
@@ -58,7 +59,7 @@ const ComponentProvider = ({
 			JSON.parse(
 				typeof window !== 'undefined'
 					? (window.localStorage.getItem('selectedIndex') as string)
-					: '0',
+					: '0'
 			) ?? 0,
 		// JSON.parse(window.localStorage.getItem('selectedIndex') as string) || 0,
 		isSelectDeviceModalOpen: false,
@@ -117,7 +118,7 @@ const ComponentProvider = ({
 
 	const toggleActivityDrawer = (
 		isActivityDrawerOpen: boolean,
-		activityLogsViewed: boolean,
+		activityLogsViewed: boolean
 	) => {
 		setState((prevState) => ({
 			...prevState,
@@ -150,7 +151,7 @@ const ComponentProvider = ({
 
 	const handleCloseSnack = (
 		event: SyntheticEvent | MouseEvent,
-		reason?: string,
+		reason?: string
 	) => {
 		if (reason === 'clickaway') {
 			return;

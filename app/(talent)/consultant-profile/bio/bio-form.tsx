@@ -1,15 +1,15 @@
 'use client';
 
-import { Grid, Typography } from '@mui/material';
+import * as z from 'zod';
 import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { profileValidationSchema } from '@/lib/validations/profile';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
-import { Candidate } from '@/types';
-import * as z from 'zod';
 import { mutateStringObject } from '@/lib/utils';
+import { profileValidationSchema } from '@/lib/validations/profile';
+import { Candidate } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Grid, Typography } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface CandidateBioFormProps {
 	candidate: Candidate;

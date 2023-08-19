@@ -6,10 +6,12 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
+
+import { startImageUpload } from '@/components/editor/plugins/upload-images';
+import Magic from '@/components/icons/magic';
 import { Editor, Extension, Range } from '@tiptap/core';
-import Suggestion from '@tiptap/suggestion';
 import { ReactRenderer } from '@tiptap/react';
-import tippy from 'tippy.js';
+import Suggestion from '@tiptap/suggestion';
 import {
 	CheckSquare,
 	Code,
@@ -23,8 +25,7 @@ import {
 	Text,
 	TextQuote,
 } from 'lucide-react';
-import Magic from '@/components/icons/magic';
-import { startImageUpload } from '@/components/editor/plugins/upload-images';
+import tippy from 'tippy.js';
 
 interface CommandItemProps {
 	title: string;
@@ -258,7 +259,7 @@ const CommandList = ({
 				command(item);
 			}
 		},
-		[command, editor, items],
+		[command, editor, items]
 	);
 
 	useEffect(() => {

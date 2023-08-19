@@ -1,6 +1,6 @@
+import { getCandidateProfile } from '@/app/(talent)/actions';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { getCandidateProfile } from '@/app/(talent)/actions';
 
 export interface Profile {
 	id: number;
@@ -58,7 +58,7 @@ const profileStore = (set) => ({
 		const data = await getCandidateProfile(id);
 		console.log(
 			'Class: profileStore, Function: fetchProfile, Line 59 data():',
-			data,
+			data
 		);
 		set({ profile: data });
 	},
@@ -68,8 +68,8 @@ const useProfileStore = create<ProfileState>()(
 	devtools(
 		persist(profileStore, {
 			name: 'profile',
-		}),
-	),
+		})
+	)
 );
 
 export default useProfileStore;

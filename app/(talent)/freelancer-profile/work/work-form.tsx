@@ -1,19 +1,20 @@
 'use client';
 
-import { Candidate } from '@/types';
 import { useEffect, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import { fancyId, isBrowser, stringifyMap } from '@/lib/utils';
-import { useForm } from 'react-hook-form';
-import { profileValidationSchema } from '@/lib/validations/profile';
-import { z } from 'zod';
+
+import WorkExperienceInput from '@/app/(talent)/professional-profile/work/work-experience-input';
+import Input from '@/components/forms/input';
+import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { fancyId, isBrowser, stringifyMap } from '@/lib/utils';
+import { profileValidationSchema } from '@/lib/validations/profile';
+import { Candidate } from '@/types';
+import { AddCircle } from '@mui/icons-material';
 import { Button, Fab, Grid, MenuItem, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Input from '@/components/forms/input';
-import WorkExperienceInput from '@/app/(talent)/professional-profile/work/work-experience-input';
-import { AddCircle } from '@mui/icons-material';
-import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
+import dayjs, { Dayjs } from 'dayjs';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 interface CandidateEducationFormProps {
 	candidate: Candidate;
@@ -49,7 +50,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 	const [toDate, setToDate] = useState<Dayjs | null>(dayjs(''));
 	const [isCurrentWork, setIsCurrentWork] = useState(false);
 	const [workExperienceSelected, setWorkExperienceSelected] = useState(
-		new Map<string, string[]>(),
+		new Map<string, string[]>()
 	);
 
 	const professionalWorkLevel = isBrowser
@@ -70,7 +71,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 		const subscription = watch((value, { name }) => {
 			setWorkExperienceSelected(
 				// @ts-expect-error
-				(prevMap) => new Map(prevMap.set(name, value[name])),
+				(prevMap) => new Map(prevMap.set(name, value[name]))
 			);
 		});
 
@@ -96,7 +97,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			experience: JSON.stringify(experience),
 			// @ts-expect-error
 			experiences_id: workLevel.findIndex(
-				(work) => work === values.work_experience,
+				(work) => work === values.work_experience
 			),
 		});
 	};
@@ -109,7 +110,7 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			prevState.concat({
 				id: prevState[0].id++ as number,
 				workExperience: stringifyMap(workExperienceSelected),
-			}),
+			})
 		);
 	};
 

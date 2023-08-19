@@ -1,11 +1,10 @@
+import { env } from '@/env.mjs';
+import { isArrayEmpty } from '@/lib/utils';
+import { CandidateProfile } from '@/types';
 import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-
-import { env } from '@/env.mjs';
 import { JWT } from 'next-auth/jwt';
-import { CandidateProfile } from '@/types';
-import { isArrayEmpty } from '@/lib/utils';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 interface AuthResponse {
 	token: string;

@@ -1,5 +1,6 @@
-import { getContractTypes, getJobById } from '@/app/(marketing)/actions';
 import { notFound } from 'next/navigation';
+
+import { getContractTypes, getJobById } from '@/app/(marketing)/actions';
 import SingleJobView from '@/app/(marketing)/job-listing/[id]/single-job-view';
 import { env } from '@/env.mjs';
 

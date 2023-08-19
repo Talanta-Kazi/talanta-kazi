@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import {
 	Checkbox,
 	FormControl,
 	FormControlLabel,
 	FormLabel,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { Controller } from 'react-hook-form';
 
 import type { InputProps } from './input-props';

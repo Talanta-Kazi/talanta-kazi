@@ -1,14 +1,15 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Box, Button, Divider, Drawer, Grid, Pagination } from '@mui/material';
+
+import FilterSpecialism from '@/app/(talent)/talent/jobs/filter-specialism';
 import Topbar from '@/app/(talent)/talent/jobs/topbar';
 import UserJobCard from '@/app/(talent)/talent/jobs/user-job-card';
 import { fancyId } from '@/lib/utils';
 import { Job } from '@/types';
-import FilterSpecialism from '@/app/(talent)/talent/jobs/filter-specialism';
+import { Box, Button, Divider, Drawer, Grid, Pagination } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface SidebarProps {
 	specialisms: any;

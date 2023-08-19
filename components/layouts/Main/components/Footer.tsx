@@ -1,11 +1,12 @@
+import Link from 'next/link';
+
+import ThemeToggler from '@/components/theme-toggler';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
-import Link from 'next/link';
-import ThemeToggler from '@/components/theme-toggler';
 
 const Footer = (): JSX.Element => {
 	const theme = useTheme();

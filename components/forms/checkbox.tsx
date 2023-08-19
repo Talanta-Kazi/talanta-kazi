@@ -1,6 +1,6 @@
-import { Checkbox as MuiCheckbox, FormControlLabel } from '@mui/material';
-import { Controller } from 'react-hook-form';
 import { InputProps } from '@/components/forms/input-props';
+import { FormControlLabel, Checkbox as MuiCheckbox } from '@mui/material';
+import { Controller } from 'react-hook-form';
 
 export default function Checkbox({
 	name,

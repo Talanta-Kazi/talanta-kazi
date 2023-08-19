@@ -1,4 +1,7 @@
+import type { ReactNode } from 'react';
+
 import { Close } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
 	Button,
 	Dialog,
@@ -7,12 +10,10 @@ import {
 	DialogContentText,
 	DialogTitle,
 	IconButton,
-	styled,
 	Typography,
+	styled,
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import type { ReactNode } from 'react';
-import { LoadingButton } from '@mui/lab';
 
 interface ModalProps {
 	isModalOpen: boolean;

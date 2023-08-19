@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import Container from '@/components/container';
+import { Fragment } from 'react';
+
 import {
 	BannerConsultants,
 	BannerFreelancers,
@@ -9,7 +9,8 @@ import {
 } from '@/app/(marketing)/_components';
 import Jobs from '@/app/(marketing)/_components/jobs';
 import { getContractTypes, getJobs } from '@/app/(marketing)/actions';
-import { Fragment } from 'react';
+import Container from '@/components/container';
+import { Box } from '@mui/material';
 
 export default async function MarketingPage() {
 	const [allJobs, contractTypes] = await Promise.all([

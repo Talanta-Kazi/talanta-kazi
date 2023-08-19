@@ -1,4 +1,5 @@
-import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
+
 import {
 	Box,
 	Button,
@@ -7,7 +8,7 @@ import {
 	Select,
 	Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
