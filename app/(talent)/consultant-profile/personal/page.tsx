@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import PersonalForm from '@/app/(talent)/_components/personal-form';
 import { getCandidateProfile } from '@/app/(talent)/actions';
-import PersonalForm from '@/app/(talent)/professional-profile/personal/personal-form';
 import { Typography } from '@mui/material';
 
 export default async function CandidateTitle() {

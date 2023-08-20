@@ -18,6 +18,7 @@ export const profileCreateOrPatchSchema = z.object({
 		email: z.string().optional(),
 	}),
 	specialism_id: z.string(),
+	profile_pic: z.string(),
 	experience_id: z.string(),
 	job_title: z
 		.string()

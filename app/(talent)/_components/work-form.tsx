@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
-import WorkExperienceInput from '@/app/(talent)/professional-profile/work/work-experience-input';
+import WorkExperienceInput from '@/app/(talent)/_components/work-experience-input';
 import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { fancyId, isBrowser, stringifyMap } from '@/lib/utils';
 import { profileValidationSchema } from '@/lib/validations/profile';
 import { Candidate } from '@/types';
-import { AddCircle } from '@mui/icons-material';
+import { Add, AddCircle } from '@mui/icons-material';
 import { Button, Fab, Grid, MenuItem, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import dayjs, { Dayjs } from 'dayjs';
@@ -206,21 +206,19 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			</Grid>
 			<Fab
 				variant='extended'
-				size='medium'
 				color='primary'
 				aria-label='add'
 				onClick={handleAddWorkExperienceTextFields}
 				sx={{
 					fontWeight: 'medium',
-					color: 'unset',
 					display: { xs: 'flex', md: 'none' },
 					position: 'fixed',
 					bottom: 72,
 					right: 30,
 				}}
 			>
-				<AddCircle sx={{ mr: 0.5 }} />
-				WORK EXPERIENCE
+				<Add sx={{ mr: 0.5 }} />
+				WORK
 			</Fab>
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}

@@ -27,6 +27,7 @@ export async function PUT(
 
 		const bodyPayload = {
 			user: session?.user?.id,
+			profile_pic: body.profile_pic,
 			job_level: 'Experienced Professional',
 			county: 'Nairobi',
 			availability_status: 0,

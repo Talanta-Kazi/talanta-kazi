@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
 import { getSpecialisms } from '@/app/(marketing)/actions';
+import SpecialityForm from '@/app/(talent)/_components/speciality-form';
 import { getCandidateProfile } from '@/app/(talent)/actions';
-import SpecialityForm from '@/app/(talent)/professional-profile/speciality/speciality-form';
 import { Typography } from '@mui/material';
 
 export default async function CandidateSpeciality() {

@@ -66,3 +66,32 @@ a {
         opacity: 1;
     }
 }
+
+.uploadthing-class {
+    background-color: none;
+}
+
+/* applied to button */
+.uploadthing-class > *[data-ut-element="button"] {
+    color: rgb(0 0 0 / 1);
+    background-color: rgb(0 194 203);
+}
+
+/* applied to button when uploading */
+.uploadthing-class > *[data-ut-element="button"][data-state="readying"] {
+    background-color: rgb(66 204 211);
+    color: rgb(0 0 0 / 0.5);
+    cursor: not-allowed;
+}
+
+/* applied to button when uploading */
+.uploadthing-class > *[data-ut-element="button"][data-state="uploading"] {
+    background-color: rgb(66 204 211);
+    color: rgb(0 0 0 / 0.5);
+    cursor: not-allowed;
+}
+
+/* applied to upload indicator when uploading */
+.uploadthing-class > *[data-ut-element="button"][data-state="uploading"]::after {
+    background-color: rgb(0 194 203);
+}

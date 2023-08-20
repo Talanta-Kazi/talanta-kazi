@@ -1,14 +1,20 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
+import { Fragment } from 'react';
+
 import * as z from 'zod';
 import CountryInput from '@/app/(talent)/professional-profile/personal/country-input';
 import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
+import { UploadButton } from '@/lib/uploadthing';
+import useStore from '@/store';
 import { Candidate } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Grid, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { Avatar, Grid, Stack, Typography } from '@mui/material';
+import { Controller, useForm } from 'react-hook-form';
 
 interface CandidateTitleFormProps {
 	candidate: Candidate;
@@ -24,26 +30,34 @@ const personalSchema = z.object({
 	linkedin: z.string().optional(),
 	twitter: z.string().optional(),
 	whatsapp: z.string().optional(),
+	profile_pic: z.string().optional(),
 });
+
+export type CreateProfileTitleInputSchema = z.infer<typeof personalSchema>;
 
 export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
+	const { displaySnackMessage } = useStore();
+	const pathname = usePathname();
+	const navigationPath = pathname.split('/')[1];
 
-	const { handleSubmit, control } = useForm({
-		mode: 'onChange',
-		resolver: zodResolver(personalSchema),
-		defaultValues: {
-			first_name: candidate?.user?.first_name || '',
-			last_name: candidate?.user?.last_name || '',
-			job_title: candidate?.job_title || '',
-			location: personal?.location || '',
-			portfolio_link: personal?.portfolio_link || '',
-			other_portfolio_link: personal?.other_portfolio_link || '',
-			linkedin: personal?.linkedin || '',
-			twitter: personal?.twitter || '',
-			whatsapp: personal?.whatsapp || '',
-		},
-	});
+	const { handleSubmit, control, setValue, watch } =
+		useForm<CreateProfileTitleInputSchema>({
+			mode: 'onChange',
+			resolver: zodResolver(personalSchema),
+			defaultValues: {
+				first_name: candidate?.user?.first_name || '',
+				last_name: candidate?.user?.last_name || '',
+				job_title: candidate?.job_title || '',
+				location: personal?.location || '',
+				portfolio_link: personal?.portfolio_link || '',
+				other_portfolio_link: personal?.other_portfolio_link || '',
+				linkedin: personal?.linkedin || '',
+				twitter: personal?.twitter || '',
+				whatsapp: personal?.whatsapp || 'https://wa.me/',
+				profile_pic: personal?.profile_pic || '/img/avatar_male.svg',
+			},
+		});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
@@ -61,6 +75,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 				first_name: values.first_name,
 				last_name: values.last_name,
 			},
+			profile_pic: values.profile_pic,
 			job_title: values.job_title,
 			personal: JSON.stringify(customPersonal),
 		};
@@ -111,6 +126,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 							type='text'
 						/>
 					</Grid>
+
 					<Grid item xs={12} md={6}>
 						<CountryInput
 							name='location'
@@ -118,6 +134,77 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 							label='location'
 							defaultCountry={personal?.location}
 						/>
+					</Grid>
+
+					<Grid item xs={12} md={6}>
+						<Typography
+							variant='body1'
+							marginBottom={2}
+							color='primary'
+							sx={{
+								fontWeight: 600,
+							}}
+						>
+							Profile image
+						</Typography>
+						<Stack
+							direction='row'
+							justifyContent='flex-start'
+							alignItems='flex-start'
+							spacing={4}
+						>
+							<Controller
+								name='profile_pic'
+								control={control}
+								render={({
+									field: { onChange, value },
+									fieldState: { error },
+								}) => (
+									<Fragment>
+										<Avatar
+											alt='...'
+											src={value}
+											aria-describedby='menu-popover'
+											aria-controls='menu-popover'
+											aria-haspopup='true'
+											sx={{
+												width: 56,
+												height: 56,
+											}}
+										/>
+										<UploadButton
+											endpoint='imageUploader'
+											onClientUploadComplete={(res: any) => {
+												setValue('profile_pic', res[0]?.url as string);
+												displaySnackMessage({
+													message: 'Upload Completed',
+												});
+											}}
+											onUploadError={(error: Error) => {
+												displaySnackMessage({
+													message: 'Something went wrong. Try once more.',
+													severity: 'error',
+												});
+											}}
+											className='uploadthing-class'
+											content={{
+												button({ ready, isUploading }) {
+													if (ready) return <div>Upload image</div>;
+													if (isUploading) return <div>Uploading image...</div>;
+													return 'Getting ready...';
+												},
+												allowedContent({ ready, fileTypes, isUploading }) {
+													if (!ready) return 'Checking what you allow';
+													if (isUploading)
+														return 'Uploading image, please wait...';
+													return 'Image (jpg, png) 4MB max';
+												},
+											}}
+										/>
+									</Fragment>
+								)}
+							/>
+						</Stack>
 					</Grid>
 				</Grid>
 				<Grid item xs={12} marginTop={2}>
@@ -154,7 +241,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 						margin='dense'
 						size='medium'
 						control={control}
-						label='WhatsApp'
+						label='WhatsApp number'
 						placeholder='https://wa.me/whatsapp-number'
 						type='text'
 					/>
@@ -181,7 +268,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/professional-profile/speciality'
+				nextPageUrl={`/${navigationPath}/speciality`}
 				nextPageTitle='Share your skills'
 			/>
 		</form>

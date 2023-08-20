@@ -1,9 +1,11 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import { Key, useState } from 'react';
 
 import * as z from 'zod';
-import SpecialitySkillsInput from '@/app/(talent)/professional-profile/speciality/speciality-skills-input';
+import SpecialitySkillsInput from '@/app/(talent)/_components/speciality-skills-input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import deepParseJson from '@/lib/deep-parse-json';
 import useLocalStorage from '@/lib/hooks/use-local-storage';
@@ -39,6 +41,8 @@ export default function SpecialityForm({
 	defaultValues,
 	allSpeciality,
 }: CandidateSpecialityFormProps) {
+	const pathname = usePathname();
+	const navigationPath = pathname.split('/')[1];
 	const [skills, setSkills] = useState(
 		defaultValues?.skills || [
 			{
@@ -147,7 +151,7 @@ export default function SpecialityForm({
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/professional-profile/bio'
+				nextPageUrl={`/${navigationPath}/speciality`}
 				nextPageTitle='Add your bio'
 			/>
 		</form>
