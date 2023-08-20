@@ -173,7 +173,6 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 						<Input
 							required
 							name='job_title'
-							margin='dense'
 							size='medium'
 							control={control}
 							label='Title'
