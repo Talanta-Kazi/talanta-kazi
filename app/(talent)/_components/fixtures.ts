@@ -50,4 +50,10 @@ const counties = [
 	'West Pokot',
 ];
 
-const country = ['Global - Off Site', 'Africa - Off Site', 'Kenya (On Site)'];
+const siteLocation = [
+	'Global - Off Site',
+	'Africa - Off Site',
+	'Kenya (On Site)',
+];
+
+export { counties, siteLocation };

@@ -5,16 +5,53 @@ import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';
 
 import * as z from 'zod';
-import CountryInput from '@/app/(talent)/professional-profile/personal/country-input';
+import { counties, siteLocation } from '@/app/(talent)/_components/fixtures';
+import Conditional from '@/components/conditional';
 import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { UploadButton } from '@/lib/uploadthing';
+import { fancyId } from '@/lib/utils';
 import useStore from '@/store';
 import { Candidate } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Avatar, Grid, Stack, Typography } from '@mui/material';
+import { CheckBox, CheckBoxOutlineBlank } from '@mui/icons-material';
+import {
+	Autocomplete,
+	Avatar,
+	Checkbox,
+	Chip,
+	Grid,
+	MenuItem,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material';
+import { Theme, alpha, useTheme } from '@mui/material/styles';
 import { Controller, useForm } from 'react-hook-form';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+	PaperProps: {
+		style: {
+			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+			width: 250,
+		},
+	},
+};
+
+function getStyles(name: string, countyName: readonly string[], theme: Theme) {
+	return {
+		fontWeight:
+			countyName.indexOf(name) === -1
+				? theme.typography.fontWeightRegular
+				: theme.typography.fontWeightMedium,
+	};
+}
+
+const icon = <CheckBoxOutlineBlank fontSize='small' />;
+const checkedIcon = <CheckBox fontSize='small' />;
 
 interface CandidateTitleFormProps {
 	candidate: Candidate;
@@ -31,11 +68,14 @@ const personalSchema = z.object({
 	twitter: z.string().optional(),
 	whatsapp: z.string().optional(),
 	profile_pic: z.string().optional(),
+	counties: z.array(z.string()).optional(),
+	email: z.string().email(),
 });
 
 export type CreateProfileTitleInputSchema = z.infer<typeof personalSchema>;
 
 export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
+	const theme = useTheme();
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
 	const { displaySnackMessage } = useStore();
 	const pathname = usePathname();
@@ -49,6 +89,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 				first_name: candidate?.user?.first_name || '',
 				last_name: candidate?.user?.last_name || '',
 				job_title: candidate?.job_title || '',
+				email: candidate?.user?.email || '',
 				location: personal?.location || '',
 				portfolio_link: personal?.portfolio_link || '',
 				other_portfolio_link: personal?.other_portfolio_link || '',
@@ -56,8 +97,12 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 				twitter: personal?.twitter || '',
 				whatsapp: personal?.whatsapp || 'https://wa.me/',
 				profile_pic: personal?.profile_pic || '/img/avatar_male.svg',
+				counties: personal?.counties || [],
 			},
 		});
+
+	const location = watch('location');
+	const countyName = (watch('counties') as string[]) || [''];
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
@@ -74,6 +119,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 			user: {
 				first_name: values.first_name,
 				last_name: values.last_name,
+				email: values.email,
 			},
 			profile_pic: values.profile_pic,
 			job_title: values.job_title,
@@ -117,6 +163,15 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 					<Grid item xs={12} md={6}>
 						<Input
 							required
+							name='email'
+							control={control}
+							label='Email'
+							type='email'
+						/>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<Input
+							required
 							name='job_title'
 							margin='dense'
 							size='medium'
@@ -127,16 +182,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 						/>
 					</Grid>
 
-					<Grid item xs={12} md={6}>
-						<CountryInput
-							name='location'
-							control={control}
-							label='location'
-							defaultCountry={personal?.location}
-						/>
-					</Grid>
-
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12} md={12} marginTop={2}>
 						<Typography
 							variant='body1'
 							marginBottom={2}
@@ -207,6 +253,127 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 						</Stack>
 					</Grid>
 				</Grid>
+
+				<Grid container item xs={12} md={12} marginTop={4} spacing={2}>
+					<Grid item xs={12} md={12}>
+						<Typography
+							variant='body1'
+							marginBottom={2}
+							color='primary'
+							sx={{
+								fontWeight: 600,
+							}}
+						>
+							Location of work
+						</Typography>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<Input
+							required
+							select
+							autoFocus={false}
+							margin='dense'
+							name='location'
+							placeholder=''
+							size='medium'
+							control={control}
+							label='Location'
+							type='text'
+						>
+							{siteLocation.map((item: string) => (
+								<MenuItem key={fancyId()} value={item}>
+									{item}
+								</MenuItem>
+							))}
+						</Input>
+					</Grid>
+					<Conditional condition={location === 'Kenya (On Site)'}>
+						<Grid item xs={12} md={6}>
+							<Controller
+								name='counties'
+								control={control}
+								render={({
+									field: { onChange, value, ...props },
+									fieldState: { error },
+								}) => (
+									<Autocomplete
+										{...props}
+										id='add-counties'
+										multiple
+										// limitTags={3}
+										disableCloseOnSelect
+										options={counties?.sort().map((item: any) => item)}
+										// freeSolo
+										onChange={(_, data) => onChange(data)}
+										getOptionLabel={(option) => option}
+										isOptionEqualToValue={(option, value) => option === value}
+										value={value}
+										renderTags={(
+											value: string[],
+											getTagProps: (arg0: {
+												index: number;
+											}) => JSX.IntrinsicAttributes
+										) =>
+											value?.map((option: string, index: number) => (
+												<Chip
+													key={fancyId()}
+													label={option}
+													sx={{
+														backgroundColor: alpha('#117ec9', 0.1),
+														color: '#117ec9',
+													}}
+													{...getTagProps({ index })}
+												/>
+											))
+										}
+										renderOption={(props, option, { selected }) => (
+											<li {...props} key={fancyId()}>
+												<Checkbox
+													icon={icon}
+													checkedIcon={checkedIcon}
+													style={{ marginRight: 8 }}
+													checked={selected}
+												/>
+												{option}
+											</li>
+										)}
+										renderInput={(params) => (
+											<TextField
+												{...params}
+												name='counties'
+												size='medium'
+												margin='dense'
+												label='Counties'
+												placeholder={
+													!!value
+														? '+ Add more counties'
+														: '+ Add a county location'
+												}
+												error={!!error}
+												helperText={error ? error.message : null}
+												inputProps={{
+													...params.inputProps,
+													onKeyDown: (e) => {
+														if (e.key === 'Enter' && error) {
+															e.stopPropagation();
+														}
+													},
+												}}
+											/>
+										)}
+									/>
+								)}
+							/>
+						</Grid>
+					</Conditional>
+					{/*<CountryInput*/}
+					{/*	name='location'*/}
+					{/*	control={control}*/}
+					{/*	label='location'*/}
+					{/*	defaultCountry={personal?.location}*/}
+					{/*/>*/}
+				</Grid>
+
 				<Grid item xs={12} marginTop={2}>
 					<Typography
 						variant='body1'
