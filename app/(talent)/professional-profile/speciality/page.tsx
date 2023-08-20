@@ -11,11 +11,6 @@ export default async function CandidateSpeciality() {
 		getSpecialisms('Professionals'),
 	]);
 
-	console.log(
-		'Class: default, Function: CandidateSpeciality, Line 13 specialisms():',
-		specialisms
-	);
-
 	if (!candidate) {
 		notFound();
 	}
