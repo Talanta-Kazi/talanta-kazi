@@ -95,9 +95,7 @@ export const htmlBulletList = (html: string) => {
 	};
 
 	// Parse the HTML into an Abstract Syntax Tree (AST)
-	// @ts-expect-error
 	const ast = unified().use(rehypeParse).parse(html);
-
-	// @ts-expect-error
+	
 	return renderNodes(ast.children);
 };

@@ -4,6 +4,7 @@ import '@/assets/css/fonts.css';
 import { ClientProvider } from '@/components/client-provider';
 import { fontMono, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+import Heimdall from '@heimdall-logs/tracker/react';
 import '@uploadthing/react/styles.css';
 import 'aos/dist/aos.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -29,7 +30,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			suppressHydrationWarning
 		>
 			<body className='antialiased'>
-				<ClientProvider>{children}</ClientProvider>
+				<ClientProvider>
+					{children}
+					<Heimdall
+						config={{
+							id: 'talantakazi',
+							consent: 'granted',
+							host: '/api/heimdall',
+							// host: 'http://localhost:8000',
+							autoTrack: true,
+						}}
+					/>
+				</ClientProvider>
 			</body>
 		</html>
 	);
