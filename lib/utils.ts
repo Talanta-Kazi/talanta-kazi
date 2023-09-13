@@ -96,7 +96,6 @@ const mutateStringObject = (
 	str: string,
 	obj: Record<string, string>
 ): string => {
-	console.log('Class: , Function: mutateStringObject, Line 100 ():', str, obj);
 	const stringToObject = JSON.parse(str);
 	return JSON.stringify({ ...stringToObject, ...obj });
 };

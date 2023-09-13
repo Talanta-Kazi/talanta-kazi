@@ -25,6 +25,8 @@ export async function PUT(
 		const json = await req.json();
 		const body = profileCreateOrPatchSchema.partial().parse(json);
 
+		console.log('Class: PUT, Function: PUT, Line 28 body():', body);
+
 		const bodyPayload = {
 			user: session?.user?.id,
 			profile_pic: body.profile_pic,

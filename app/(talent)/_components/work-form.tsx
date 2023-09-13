@@ -1,5 +1,7 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import { useEffect, useState } from 'react';
 
 import WorkExperienceInput from '@/app/(talent)/_components/work-experience-input';
@@ -43,6 +45,8 @@ type CreateProfileWorkExperienceInputSchema = z.infer<
 >;
 
 export default function WorkForm({ candidate }: CandidateEducationFormProps) {
+	const pathname = usePathname();
+	const navigationPath = pathname.split('/')[1];
 	const [workComponent, setWorkComponent] = useState<
 		Array<Record<string, any>>
 	>([{ id: 0, workExperience: '' }]);
@@ -61,6 +65,10 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 		professionalWorkLevel === 'Graduate / Professional'
 			? graduateWorkLevel
 			: semiSkilledJobLevel;
+
+	const defaultValues = {
+		work_experience: candidate?.experience || '',
+	};
 
 	const { control, watch, handleSubmit } =
 		useForm<CreateProfileWorkExperienceInputSchema>({
@@ -223,8 +231,10 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/professional-profile/portfolio'
-				nextPageTitle='Portfolio'
+				nextPageUrl='/profile'
+				nextPageTitle='Finish'
+				// nextPageUrl={`/${navigationPath}/portfolio`}
+				// nextPageTitle='Portfolio'
 			/>
 		</form>
 	);

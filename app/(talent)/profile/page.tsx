@@ -10,6 +10,7 @@ export default async function CandidateProfile() {
 	const education = JSON.parse(user?.education as string);
 	const skills = JSON.parse(user?.skills as string);
 	const experience = JSON.parse(user?.experience as string);
+	const personal = JSON.parse(user?.personal as string);
 
 	return (
 		<>
@@ -25,7 +26,7 @@ export default async function CandidateProfile() {
 							<Stack spacing={2} direction='row' alignItems='center'>
 								<Avatar
 									alt='...'
-									src={user.profile_pic}
+									src={personal.profile_pic}
 									aria-describedby='menu-popover'
 									aria-controls='menu-popover'
 									aria-haspopup='true'

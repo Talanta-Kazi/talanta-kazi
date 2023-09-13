@@ -1,5 +1,7 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import * as z from 'zod';
 import Input from '@/components/forms/input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
@@ -21,6 +23,8 @@ type CreateProfileBioInputSchema = Pick<
 >;
 
 export default function BioForm({ candidate }: CandidateBioFormProps) {
+	const pathname = usePathname();
+	const navigationPath = pathname.split('/')[1];
 	const personal = candidate?.personal ? JSON.parse(candidate.personal) : {};
 
 	const defaultValues = {
@@ -98,7 +102,7 @@ export default function BioForm({ candidate }: CandidateBioFormProps) {
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/professional-profile/education'
+				nextPageUrl={`/${navigationPath}/education`}
 				nextPageTitle='Share your skills'
 			/>
 		</form>

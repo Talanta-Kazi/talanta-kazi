@@ -94,7 +94,8 @@ export default function EducationForm({
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
 	const onSubmit = async (data: any) => {
-		updateProfile({ education: JSON.stringify(data) });
+		const payload = { education: JSON.stringify(data) };
+		updateProfile(payload);
 	};
 
 	const handleAddEducationTextFields = () => {

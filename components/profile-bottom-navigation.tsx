@@ -69,6 +69,7 @@ const ProfileBottomNavigation = ({
 						<div />
 					)}
 					<LoadingButton
+						aria-disabled={loading}
 						variant='contained'
 						type='submit'
 						color='primary'

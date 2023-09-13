@@ -114,6 +114,7 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 			linkedin: values.linkedin,
 			twitter: values.twitter,
 			whatsapp: values.whatsapp,
+			profile_pic: values.profile_pic,
 		};
 		const payload = {
 			user: {
@@ -121,7 +122,6 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 				last_name: values.last_name,
 				email: values.email,
 			},
-			profile_pic: values.profile_pic,
 			job_title: values.job_title,
 			personal: JSON.stringify(customPersonal),
 		};
@@ -129,7 +129,11 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 	};
 
 	return (
-		<form name='profile-title' method='post' onSubmit={handleSubmit(onSubmit)}>
+		<form
+			name='profile-personal'
+			method='put'
+			onSubmit={handleSubmit(onSubmit)}
+		>
 			<Grid container marginTop={2} marginBottom={8}>
 				<Typography
 					variant='body1'

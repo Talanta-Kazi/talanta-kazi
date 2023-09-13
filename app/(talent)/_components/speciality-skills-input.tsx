@@ -36,7 +36,7 @@ const parseSpeciality = (speciality: string): Array<string> => {
 		return speciality
 			?.replace(/\[|\]/g, '')
 			.split(',')
-			.map((item) => item.slice(1, -1));
+			.map((item) => item.trim().slice(1, -1));
 	}
 
 	return [];
