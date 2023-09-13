@@ -1,8 +1,10 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import { Key, useState } from 'react';
 
-import EducationInput from '@/app/(talent)/professional-profile/education/education-input';
+import EducationInput from '@/app/(talent)/_components/education-input';
 import ProfileBottomNavigation from '@/components/profile-bottom-navigation';
 import useUpdateProfile from '@/lib/hooks/use-update-profile';
 import { isBrowser } from '@/lib/utils';
@@ -59,6 +61,8 @@ type FormData = z.infer<typeof educationSchema>;
 export default function EducationForm({
 	defaultValues,
 }: CandidateEducationFormProps) {
+	const pathname = usePathname();
+	const navigationPath = pathname.split('/')[1];
 	const [education, setEducation] = useState(
 		defaultValues?.education || [
 			{
@@ -174,7 +178,7 @@ export default function EducationForm({
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl='/professional-profile/work'
+				nextPageUrl={`/${navigationPath}/work`}
 				nextPageTitle='Work Experience'
 			/>
 		</form>

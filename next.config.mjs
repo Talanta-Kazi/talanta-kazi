@@ -16,6 +16,7 @@ const nextConfig = {
 			'firebasestorage.googleapis.com',
 			'res.cloudinary.com',
 			'localhost',
+			'assets.maccarianagency.com',
 		],
 		remotePatterns: [
 			{ hostname: 'source.unsplash.com' },

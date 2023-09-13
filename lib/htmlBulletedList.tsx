@@ -96,6 +96,6 @@ export const htmlBulletList = (html: string) => {
 
 	// Parse the HTML into an Abstract Syntax Tree (AST)
 	const ast = unified().use(rehypeParse).parse(html);
-	
+
 	return renderNodes(ast.children);
 };

@@ -151,7 +151,7 @@ export default function SpecialityForm({
 			<ProfileBottomNavigation
 				isSuccess={isSuccess}
 				loading={loading}
-				nextPageUrl={`/${navigationPath}/speciality`}
+				nextPageUrl={`/${navigationPath}/bio`}
 				nextPageTitle='Add your bio'
 			/>
 		</form>
