@@ -41,9 +41,11 @@ const UserAvatar = (): JSX.Element => {
 	const { setCurrentRoleBasedAccess, currentRoleBasedAccess = 'USER' } =
 		useContext(ComponentContext);
 
+	const profilePic = localStorage.getItem('profile_pic');
+
 	const { username, image, role } = session?.user || {
 		username: 'Anonymous User',
-		image: '/img/avatar_male.svg',
+		image: profilePic || '/img/avatar_male.svg',
 	};
 
 	const handleToggleProfileMenu = (event: MouseEvent<HTMLElement>) => {
@@ -119,7 +121,10 @@ const UserAvatar = (): JSX.Element => {
 					<Avatar
 						onClick={handleToggleProfileMenu}
 						alt={username || 'Anonymous User'}
-						src={image || '/img/avatar_male.svg'}
+						src={
+							profilePic ||
+							'https://res.cloudinary.com/mashafrancis/image/upload/v1670917120/musings/illustrations/avatar.svg'
+						}
 						aria-describedby='menu-popover'
 						aria-controls='menu-popover'
 						aria-haspopup='true'
@@ -139,7 +144,10 @@ const UserAvatar = (): JSX.Element => {
 						avatar={
 							<Avatar
 								alt={username || 'Anonymous User'}
-								src={image || '/img/avatar_male.svg'}
+								src={
+									profilePic ||
+									'https://res.cloudinary.com/mashafrancis/image/upload/v1670917120/musings/illustrations/avatar.svg'
+								}
 								aria-describedby='menu-popover'
 								aria-controls='menu-popover'
 								aria-haspopup='true'

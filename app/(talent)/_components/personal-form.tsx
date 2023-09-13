@@ -225,6 +225,10 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 											endpoint='imageUploader'
 											onClientUploadComplete={(res: any) => {
 												setValue('profile_pic', res[0]?.url as string);
+												localStorage.setItem(
+													'profile_pic',
+													res[0]?.url as string
+												);
 												displaySnackMessage({
 													message: 'Upload Completed',
 												});
