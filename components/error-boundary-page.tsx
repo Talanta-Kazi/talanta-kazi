@@ -24,7 +24,7 @@ const ErrorBoundaryPage = ({ error, resetErrorBoundary }: any): JSX.Element => {
 			justifyContent={'center'}
 			height={1}
 		>
-			<Container maxWidth={{ sm: 720, md: 720 }}>
+			<Container maxWidth={{ md: 720, sm: 720 }}>
 				<Typography
 					variant='body1'
 					component='p'
@@ -47,7 +47,7 @@ const ErrorBoundaryPage = ({ error, resetErrorBoundary }: any): JSX.Element => {
 				<Box
 					marginTop={4}
 					display={'flex'}
-					justifyContent={{ xs: 'center', md: 'flex-start' }}
+					justifyContent={{ md: 'flex-start', xs: 'center' }}
 				>
 					<Button
 						variant='contained'

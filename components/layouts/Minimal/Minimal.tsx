@@ -1,6 +1,6 @@
 'use client';
 
-import type { MouseEvent, ReactElement, ReactNode } from 'react';
+import { type MouseEvent, type ReactElement, type ReactNode } from 'react';
 
 import Container from '@/components/container';
 import { KeyboardArrowUpRounded } from '@mui/icons-material';
@@ -20,8 +20,8 @@ interface ScrollTopProps {
 
 const ScrollTop = ({ window, children }: ScrollTopProps) => {
 	const trigger = useScrollTrigger({
-		target: window ? window() : undefined,
 		disableHysteresis: true,
+		target: window ? window() : undefined,
 		threshold: 100,
 	});
 
@@ -43,7 +43,7 @@ const ScrollTop = ({ window, children }: ScrollTopProps) => {
 			<Box
 				onClick={handleClick}
 				role='presentation'
-				sx={{ position: 'fixed', bottom: 16, right: 16 }}
+				sx={{ bottom: 16, position: 'fixed', right: 16 }}
 			>
 				{children}
 			</Box>
@@ -64,19 +64,19 @@ const Minimal = ({ children }: Props): JSX.Element => {
 			<AppBar
 				position={'sticky'}
 				sx={{
-					top: 0,
+					backdropFilter: trigger ? 'blur(15px)' : 'none',
 					backgroundColor: trigger
 						? 'hsla(0,0%,100%,.8)'
 						: theme.palette.background.paper,
-					backdropFilter: trigger ? 'blur(15px)' : 'none',
 					borderBottom: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+					top: 0,
 				}}
 				elevation={0}
 			>
 				<Container
 					maxWidth={1}
-					paddingY={{ xs: 2, md: 1 }}
-					paddingX={{ xs: 1, md: 4 }}
+					paddingY={{ md: 1, xs: 2 }}
+					paddingX={{ md: 4, xs: 1 }}
 				>
 					<Topbar />
 				</Container>

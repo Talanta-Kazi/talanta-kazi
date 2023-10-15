@@ -54,15 +54,15 @@ export default function UserJobCard({
 				borderRadius={0}
 				boxShadow={0}
 				display='flex'
-				flexDirection={{ xs: 'column', md: 'row' }}
+				flexDirection={{ md: 'row', xs: 'column' }}
 				padding={isMd ? 2 : 0}
 				sx={{
-					backgroundImage: 'none',
-					bgcolor: 'transparent',
 					':hover': {
 						bgcolor: alpha(theme.palette.primary.main, 0.1),
 						color: theme.palette.primary.dark,
 					},
+					backgroundImage: 'none',
+					bgcolor: 'transparent',
 				}}
 			>
 				<CardContent
@@ -112,7 +112,7 @@ export default function UserJobCard({
 						<Typography
 							variant='body2'
 							color='text.secondary'
-							sx={{ paddingY: 0, paddingRight: 1 }}
+							sx={{ paddingRight: 1, paddingY: 0 }}
 						>
 							{contract_type_id}
 						</Typography>
@@ -120,7 +120,7 @@ export default function UserJobCard({
 						<Typography
 							variant='body2'
 							color='text.secondary'
-							sx={{ paddingY: 0, paddingRight: 1 }}
+							sx={{ paddingRight: 1, paddingY: 0 }}
 						>
 							Est. Salary: {offered_salary}
 						</Typography>
@@ -137,11 +137,11 @@ export default function UserJobCard({
 						color='text.secondary'
 						sx={{
 							display: '-webkit-box',
-							WebkitLineClamp: { xs: 3, md: 2 },
-							WebkitBoxOrient: 'vertical',
 							overflow: 'hidden',
-							textOverflow: 'ellipsis',
 							paddingY: 0,
+							textOverflow: 'ellipsis',
+							WebkitBoxOrient: 'vertical',
+							WebkitLineClamp: { md: 2, xs: 3 },
 						}}
 					>
 						{stripHtml(jobs_description)}
@@ -160,7 +160,7 @@ export default function UserJobCard({
 									variant='text'
 									color='text.secondary'
 									startIcon={<LocationOn />}
-									sx={{ paddingY: 0, paddingX: 0 }}
+									sx={{ paddingX: 0, paddingY: 0 }}
 								>
 									{`${city}, ${country}`}
 								</Box>

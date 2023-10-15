@@ -6,8 +6,8 @@ export default function Loading() {
 			<Box
 				display={'flex'}
 				justifyContent={'space-between'}
-				alignItems={{ xs: 'flex-start', sm: 'center' }}
-				flexDirection={{ xs: 'column', sm: 'row' }}
+				alignItems={{ sm: 'center', xs: 'flex-start' }}
+				flexDirection={{ sm: 'row', xs: 'column' }}
 			>
 				<Box>
 					<Typography fontWeight={700} variant={'h4'} gutterBottom>
@@ -17,7 +17,7 @@ export default function Loading() {
 						<Skeleton width={210} />
 					</Typography>
 				</Box>
-				<Box display='flex' marginTop={{ xs: 2, md: 0 }}>
+				<Box display='flex' marginTop={{ md: 0, xs: 2 }}>
 					<Button variant='contained' color='primary' size='large'>
 						Apply now
 					</Button>

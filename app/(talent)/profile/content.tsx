@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import { useState } from 'react';
 
 import dayjsTime from '@/lib/dayjsTime';
 import { fancyId } from '@/lib/utils';
@@ -30,7 +30,7 @@ const Content = ({ bio, skills, experience }: Props): JSX.Element => {
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
 		defaultMatches: true,
 	});
-	const [summaryMore, setSummaryMore] = React.useState(true);
+	const [summaryMore, setSummaryMore] = useState(true);
 
 	const modifiedExperience: any[] = [];
 	experience.forEach((element: {}) => {
@@ -41,7 +41,7 @@ const Content = ({ bio, skills, experience }: Props): JSX.Element => {
 
 	return (
 		<Box component={Card} variant={'outlined'} padding={2}>
-			<Box paddingX={{ xs: 0, sm: 2 }} paddingY={1}>
+			<Box paddingX={{ sm: 2, xs: 0 }} paddingY={1}>
 				<Typography variant={'h6'} gutterBottom>
 					Summary
 				</Typography>
@@ -51,11 +51,11 @@ const Content = ({ bio, skills, experience }: Props): JSX.Element => {
 						summaryMore
 							? {
 									display: '-webkit-box',
-									WebkitLineClamp: { xs: 3, md: 2 },
-									WebkitBoxOrient: 'vertical',
 									overflow: 'hidden',
-									textOverflow: 'ellipsis',
 									paddingY: 0,
+									textOverflow: 'ellipsis',
+									WebkitBoxOrient: 'vertical',
+									WebkitLineClamp: { md: 2, xs: 3 },
 							  }
 							: {}
 					}
@@ -75,15 +75,15 @@ const Content = ({ bio, skills, experience }: Props): JSX.Element => {
 				<Divider />
 			</Box>
 
-			<Box paddingX={{ xs: 0, sm: 2 }} paddingY={1}>
+			<Box paddingX={{ sm: 2, xs: 0 }} paddingY={1}>
 				<Typography variant={'h6'} gutterBottom>
 					Skills
 				</Typography>
 				<Box
 					sx={{
 						display: 'flex',
-						justifyContent: 'start',
 						flexWrap: 'wrap',
+						justifyContent: 'start',
 						listStyle: 'none',
 						m: 0,
 					}}
@@ -105,7 +105,7 @@ const Content = ({ bio, skills, experience }: Props): JSX.Element => {
 			<Box paddingY={4}>
 				<Divider />
 			</Box>
-			<Box paddingX={{ xs: 0, sm: 2 }}>
+			<Box paddingX={{ sm: 2, xs: 0 }}>
 				<Typography variant={'h6'} gutterBottom>
 					Experience
 				</Typography>

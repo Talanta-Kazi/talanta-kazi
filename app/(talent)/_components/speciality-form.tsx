@@ -61,9 +61,9 @@ export default function SpecialityForm({
 	);
 
 	const { control, watch, reset, handleSubmit } = useForm({
+		defaultValues,
 		mode: 'onChange',
 		resolver: zodResolver(skillSchema),
-		defaultValues,
 	});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
@@ -142,7 +142,7 @@ export default function SpecialityForm({
 						startIcon={<AddCircle fontSize='large' />}
 						variant='contained'
 						onClick={handleAddSpecialityAndSkillTextFields}
-						sx={{ fontWeight: 'medium', color: 'unset' }}
+						sx={{ color: 'unset', fontWeight: 'medium' }}
 					>
 						ADD SPECIALITY
 					</Button>

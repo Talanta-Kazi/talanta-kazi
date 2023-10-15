@@ -11,7 +11,7 @@ import {
 	IconButton,
 	Stack,
 } from '@mui/material';
-import type { Dayjs } from 'dayjs';
+import { type Dayjs } from 'dayjs';
 
 interface Props {
 	id: number;

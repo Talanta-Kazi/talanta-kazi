@@ -104,14 +104,14 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
 		const linkAs = linkAsProp || as;
 		const nextjsProps = {
-			to: href,
+			legacyBehavior,
 			linkAs,
+			locale,
+			prefetch,
 			replace,
 			scroll,
 			shallow,
-			prefetch,
-			legacyBehavior,
-			locale,
+			to: href,
 		};
 
 		if (noLinkStyle) {

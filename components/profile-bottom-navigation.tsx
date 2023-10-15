@@ -33,14 +33,17 @@ const ProfileBottomNavigation = ({
 		<Box sx={{ minWidth: 500, position: 'absolute', zIndex: 10 }}>
 			<Paper
 				sx={{
-					position: 'fixed',
+					borderTop: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 					bottom: 0,
+
 					left: 0,
-					right: 0,
+
+					paddingX: 0,
+
 					// background: theme.palette.alternate.main,
 					paddingY: 1,
-					borderTop: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-					paddingX: 0,
+					position: 'fixed',
+					right: 0,
 					// borderTop: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 				}}
 				elevation={0}

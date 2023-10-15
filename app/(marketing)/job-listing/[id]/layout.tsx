@@ -9,5 +9,5 @@ interface SingleJobListingLayoutProps {
 export default async function SingleJobListingLayout({
 	children,
 }: SingleJobListingLayoutProps) {
-	return <Container maxWidth={{ sm: 720, md: 960 }}>{children}</Container>;
+	return <Container maxWidth={{ md: 960, sm: 720 }}>{children}</Container>;
 }

@@ -46,12 +46,12 @@ const trainingType = [
 const educationSchema = z.object({
 	education: z.array(
 		z.object({
-			institution: z.string().nonempty(),
-			education_level: z.string().nonempty(),
 			course: z.string().nonempty(),
-			from_date: z.coerce.date(),
-			to_date: z.coerce.date(),
 			current_school: z.boolean(),
+			education_level: z.string().nonempty(),
+			from_date: z.coerce.date(),
+			institution: z.string().nonempty(),
+			to_date: z.coerce.date(),
 		})
 	),
 });
@@ -66,12 +66,12 @@ export default function EducationForm({
 	const [education, setEducation] = useState(
 		defaultValues?.education || [
 			{
-				institution: '',
-				education_level: '',
 				course: '',
-				from_date: '',
-				to_date: '',
 				current_school: false,
+				education_level: '',
+				from_date: '',
+				institution: '',
+				to_date: '',
 			},
 		]
 	);
@@ -86,9 +86,9 @@ export default function EducationForm({
 			: semiSkilledEducationLevel;
 
 	const { control, handleSubmit, reset, watch } = useForm({
+		defaultValues,
 		mode: 'onChange',
 		resolver: zodResolver(educationSchema),
-		defaultValues,
 	});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
@@ -102,12 +102,12 @@ export default function EducationForm({
 		setEducation((prevState: any) => [
 			...prevState,
 			{
-				institution: '',
-				education_level: '',
 				course: '',
-				from_date: '',
-				to_date: '',
 				current_school: false,
+				education_level: '',
+				from_date: '',
+				institution: '',
+				to_date: '',
 			},
 		]);
 	};
@@ -169,7 +169,7 @@ export default function EducationForm({
 						startIcon={<AddCircle fontSize='large' />}
 						variant='contained'
 						onClick={handleAddEducationTextFields}
-						sx={{ fontWeight: 'medium', color: 'unset' }}
+						sx={{ color: 'unset', fontWeight: 'medium' }}
 					>
 						ADD EDUCATION LEVEL
 					</Button>

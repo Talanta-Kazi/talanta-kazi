@@ -41,7 +41,7 @@ function EducationCard({
 				// borderBottom={1}
 				boxShadow={0}
 				display='flex'
-				flexDirection={{ xs: 'column', md: 'row' }}
+				flexDirection={{ md: 'row', xs: 'column' }}
 				sx={{
 					backgroundImage: 'none',
 					bgcolor: 'transparent',

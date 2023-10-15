@@ -9,8 +9,8 @@ const updateProfileFn = async (
 ) => {
 	try {
 		const response = await fetch(`/api/profile/${id}`, {
-			method: 'PUT',
 			body: JSON.stringify(profile),
+			method: 'PUT',
 		});
 
 		return await response.json();

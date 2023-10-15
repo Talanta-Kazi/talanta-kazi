@@ -2,34 +2,34 @@ import { JetBrains_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const fontSans = localFont({
+	display: 'swap',
 	src: [
 		{
 			path: '../assets/fonts/CircularStd-Book.woff2',
+			style: 'normal',
 			weight: '400',
-			style: 'normal',
 		},
 		{
 			path: '../assets/fonts/CircularStd-Book.woff2',
+			style: 'normal',
 			weight: '500',
-			style: 'normal',
 		},
 		{
 			path: '../assets/fonts/CircularStd-Book.woff2',
-			weight: '600',
 			style: 'normal',
+			weight: '600',
 		},
 		{
 			path: '../assets/fonts/CircularStd-Bold.woff2',
-			weight: '700',
 			style: 'normal',
+			weight: '700',
 		},
 	],
 	variable: '--font-sans',
-	display: 'swap',
 });
 
 export const fontMono = JetBrains_Mono({
-	weight: '400',
 	subsets: ['latin'],
 	variable: '--font-jetbrains',
+	weight: '400',
 });

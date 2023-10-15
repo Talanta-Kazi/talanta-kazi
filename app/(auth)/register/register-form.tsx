@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import type { MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import { HTMLAttributes, useState } from 'react';
 
 import { registerUserFn } from '@/app/(auth)/actions';
@@ -27,7 +27,7 @@ import {
 } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import type { SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
@@ -50,19 +50,19 @@ export default function RegisterForm({
 	const { data: authSession, status: authStatus } = useSession();
 
 	const initialValues = {
+		confirmPassword: '',
+		email: '',
 		firstName: '',
 		lastName: '',
-		userName: '',
-		email: '',
 		password: '',
-		confirmPassword: '',
+		userName: '',
 		userType: '',
 	};
 
 	const form = useForm<RegisterInputSchema>({
-		resolver: zodResolver(registerAuthSchema),
 		defaultValues: initialValues,
 		mode: 'onChange',
+		resolver: zodResolver(registerAuthSchema),
 	});
 
 	const {
@@ -83,14 +83,6 @@ export default function RegisterForm({
 		data,
 		isSuccess,
 	} = useMutation((userData: RegisterInputSchema) => registerUserFn(userData), {
-		onMutate(variables) {},
-		onSuccess(data) {
-			displaySnackMessage({
-				message:
-					'Account registration successful. Kindly login to view your profile.',
-			});
-			push('/login');
-		},
 		onError(error: any) {
 			if (Array.isArray((error as any).response.data.error)) {
 				(error as any).response.data.error.forEach((el: any) =>
@@ -105,6 +97,14 @@ export default function RegisterForm({
 					severity: 'error',
 				});
 			}
+		},
+		onMutate(variables) {},
+		onSuccess(data) {
+			displaySnackMessage({
+				message:
+					'Account registration successful. Kindly login to view your profile.',
+			});
+			push('/login');
 		},
 	});
 

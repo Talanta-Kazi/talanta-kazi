@@ -27,10 +27,10 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 		}
 
 		AOS.init({
-			once: true,
 			delay: 50,
 			duration: 500,
 			easing: 'ease-in-out',
+			once: true,
 		});
 	}, []);
 
@@ -42,20 +42,20 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 				onExitComplete={() => window.scrollTo(0, 0)}
 			>
 				<motion.div
-					initial={{ x: 300, opacity: 0 }}
-					animate={{ x: 0, opacity: 1 }}
-					exit={{ x: 300, opacity: 0 }}
+					initial={{ opacity: 0, x: 300 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, x: 300 }}
 					transition={{
-						type: 'spring',
-						stiffness: 260,
 						damping: 20,
+						stiffness: 260,
+						type: 'spring',
 					}}
 				>
 					<SWRConfig
 						value={{
-							refreshInterval: 3000,
 							fetcher: (resource, init) =>
 								fetch(resource, init).then((res) => res.json()),
+							refreshInterval: 3000,
 						}}
 					>
 						<QueryClientProvider client={queryClient}>

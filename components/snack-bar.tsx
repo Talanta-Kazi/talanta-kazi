@@ -1,9 +1,9 @@
-import type { SyntheticEvent } from 'react';
+import { type SyntheticEvent } from 'react';
 import { forwardRef, useEffect, useState } from 'react';
 
 import useStore from '@/lib/../store';
 import { SnackMessage } from '@/store/slices/createSnackSlice';
-import type { AlertProps } from '@mui/material';
+import { type AlertProps } from '@mui/material';
 import { Snackbar, useMediaQuery } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
@@ -47,8 +47,8 @@ export function SnackBar({ snack }: SnackMessageProps): JSX.Element {
 		<Snackbar
 			anchorOrigin={
 				isSm
-					? { vertical: 'top', horizontal: 'center' }
-					: { vertical: 'bottom', horizontal: 'center' }
+					? { horizontal: 'center', vertical: 'top' }
+					: { horizontal: 'center', vertical: 'bottom' }
 			}
 			open={isSnackOpen}
 			autoHideDuration={6000}

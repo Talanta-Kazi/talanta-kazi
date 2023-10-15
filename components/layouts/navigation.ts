@@ -1,68 +1,68 @@
 const sideLayoutNavigation = [
 	{
-		title: 'Find a job',
 		href: '/find-a-job',
+		title: 'Find a job',
 	},
 	{
-		title: 'Post a job',
 		href: '/post-a-job',
+		title: 'Post a job',
 	},
 	{
-		title: 'Find candidates',
 		href: '/find-candidates',
+		title: 'Find candidates',
 	},
 ] as const;
 
 const mainLayoutNavigation = [
 	{
-		title: "Talent's page",
 		href: '/talent-page',
+		title: "Talent's page",
 	},
 	{
-		title: 'Find a job',
 		href: '/find-a-job',
+		title: 'Find a job',
 	},
 	{
-		title: 'Post a job',
 		href: '/post-a-job',
+		title: 'Post a job',
 	},
 	{
-		title: 'Find candidates',
 		href: '/find-candidates',
+		title: 'Find candidates',
 	},
 	{
-		title: 'Employers',
 		href: '/employers',
+		title: 'Employers',
 	},
 ] as const;
 
 const candidatesLayoutNavigation = [
 	{
-		title: 'Find work',
 		href: '/candidate/jobs',
+		title: 'Find work',
 	},
 	{
-		title: 'Saved jobs',
 		href: '/candidate/saved-jobs',
+		title: 'Saved jobs',
 	},
 	{
-		title: 'My jobs',
 		href: '/candidate/my-jobs',
+		title: 'My jobs',
 	},
 ] as const;
 
 const employerLayoutNavigation = [
 	{
-		title: 'All jobs',
 		href: '/employer/jobs',
+		title: 'All jobs',
 	},
 	{
-		title: 'Candidates',
 		href: '/employer/saved-jobs',
+		title: 'Candidates',
 	},
 	{
-		title: 'Reports',
 		href: '/employer/my-jobs',
+		title: 'Reports',
 	},
 ] as const;
 

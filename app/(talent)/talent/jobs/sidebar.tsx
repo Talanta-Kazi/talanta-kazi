@@ -59,14 +59,14 @@ export default function Sidebar({
 				variant={isMd ? 'permanent' : 'temporary'}
 				sx={{
 					'& .MuiPaper-root': {
-						position: 'sticky',
-						width: '100%',
-						maxWidth: { xs: 300, md: 260 },
-						minWidth: { xs: 300, md: 260 },
-						zIndex: 1100,
-						top: theme.spacing(10),
 						border: `1px solid ${theme.palette.divider}`,
 						borderRadius: 2,
+						maxWidth: { md: 260, xs: 300 },
+						minWidth: { md: 260, xs: 300 },
+						position: 'sticky',
+						top: theme.spacing(10),
+						width: '100%',
+						zIndex: 1100,
 					},
 				}}
 			>
@@ -87,12 +87,12 @@ export default function Sidebar({
 					</Button>
 				</Box>
 			</Drawer>
-			<Box marginLeft={{ xs: 0, md: 4 }} width={1}>
+			<Box marginLeft={{ md: 4, xs: 0 }} width={1}>
 				<Topbar onSidebarOpen={handleSidebarOpen} jobsCount={jobsCount ?? 0} />
 				<Box paddingY={4}>
 					<Grid
 						container
-						spacing={{ xs: 4, md: 2 }}
+						spacing={{ md: 2, xs: 4 }}
 						bgcolor='background.paper'
 						sx={{
 							borderRadius: 2,

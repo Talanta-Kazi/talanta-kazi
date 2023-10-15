@@ -28,26 +28,26 @@ export async function PUT(
 		console.log('Class: PUT, Function: PUT, Line 28 body():', body);
 
 		const bodyPayload = {
-			user: session?.user?.id,
-			profile_pic: body.profile_pic,
-			job_level: 'Experienced Professional',
-			county: 'Nairobi',
 			availability_status: 0,
-			specialism_id: '[5]',
-			experiences_id: 1,
+			county: 'Nairobi',
 			education_levels_id: 0,
+			experiences_id: 1,
+			job_level: 'Experienced Professional',
+			profile_pic: body.profile_pic,
+			specialism_id: '[5]',
+			user: session?.user?.id,
 			...body,
 		};
 
 		const profile = await fetch(
 			`${env.API_URL}/candidate/profile/update/${params.profileId}`,
 			{
-				method: 'PUT',
 				body: JSON.stringify(bodyPayload),
 				headers: {
 					Authorization: `Token ${session?.user?.token}`,
 					'Content-Type': 'application/json',
 				},
+				method: 'PUT',
 			}
 		);
 
@@ -68,10 +68,10 @@ export async function PUT(
 		}
 
 		return new Response(JSON.stringify(data ?? null), {
-			status: 200,
 			headers: {
 				'content-type': 'application/json',
 			},
+			status: 200,
 		});
 	} catch (error) {
 		if (error instanceof z.ZodError) {

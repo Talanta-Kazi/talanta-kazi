@@ -1,12 +1,14 @@
-import type {
-	ComponentType,
-	ErrorInfo,
-	FunctionComponent,
-	PropsWithChildren,
-	PropsWithRef,
-	ReactElement,
+import {
+	Component,
+	type ComponentType,
+	type ErrorInfo,
+	type FunctionComponent,
+	type PropsWithChildren,
+	type PropsWithRef,
+	type ReactElement,
+	isValidElement,
+	useState,
 } from 'react';
-import { Component, isValidElement, useState } from 'react';
 
 const changedArray = (a: Array<unknown> = [], b: Array<unknown> = []) =>
 	a.length !== b.length || a.some((item, index) => !Object.is(item, b[index]));
@@ -90,7 +92,7 @@ class ErrorBoundary extends Component<
 		this.setState(initialState);
 	}
 
-	componentDidCatch(error: Error, info: ErrorInfo) {
+	componentDidCatch(error: Error, info: ErrorInfo | any) {
 		this.props.onError?.(error, info);
 	}
 
@@ -152,7 +154,8 @@ function useErrorHandler(givenError?: unknown): (error: unknown) => void {
 	return setError;
 }
 
-export { ErrorBoundary, useErrorHandler };
+export { ErrorBoundary,
+useErrorHandler };
 export type {
 	FallbackProps,
 	ErrorBoundaryPropsWithComponent,

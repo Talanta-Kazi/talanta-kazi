@@ -20,39 +20,39 @@ export async function POST(req: NextRequest) {
 		} = validatedJson;
 
 		const body = {
+			availability_status: '0',
+			education_levels_id: '5',
+			experiences_id: '1',
+			is_both_employer_and_candidate: userType === 'Both Candidate & Employer',
+			is_candidate: userType === 'candidate',
+			is_employer: userType === 'employer',
 			user: {
 				email,
-				password,
-				password2: confirmPassword,
 				first_name: firstName,
 				last_name: lastName,
+				password,
+				password2: confirmPassword,
 				username: userName,
 			},
-			availability_status: '0',
-			is_employer: userType === 'employer',
-			is_candidate: userType === 'candidate',
-			is_both_employer_and_candidate: userType === 'Both Candidate & Employer',
-			experiences_id: '1',
-			education_levels_id: '5',
 			// profile_pic:
 			// 	"https://res.cloudinary.com/mashafrancis/image/upload/v1670917120/musings/illustrations/avatar.svg",
 		};
 
 		const registerResponse = await fetch(`${env.API_URL}/users/register/`, {
-			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
 				'Content-Type': 'application/json',
 			},
+			method: 'POST',
 		});
 
 		const data = await registerResponse.json();
 
 		return new Response(JSON.stringify(data ?? null), {
-			status: 200,
 			headers: {
 				'content-type': 'application/json',
 			},
+			status: 200,
 		});
 	} catch (error: any) {
 		if (error instanceof z.ZodError) {

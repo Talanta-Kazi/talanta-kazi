@@ -44,12 +44,12 @@ const PageBottomNavigation = (): JSX.Element => {
 			<CssBaseline />
 			<Paper
 				sx={{
-					position: 'fixed',
-					bottom: 0,
-					left: 0,
-					right: 0,
 					backgroundColor: 'alternate.main',
 					borderTop: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+					bottom: 0,
+					left: 0,
+					position: 'fixed',
+					right: 0,
 				}}
 				elevation={0}
 				data-testid='bottom-navigation'

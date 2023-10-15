@@ -26,12 +26,6 @@ export default function useUpdateProfile() {
 	} = useMutation(
 		(payload: Partial<ProfileInputSchema>) => updateProfileFn(id, payload),
 		{
-			onSuccess(data) {
-				setProfile(data);
-				displaySnackMessage({
-					message: 'Profile updated successful.',
-				});
-			},
 			onError(error: Error) {
 				if (isArrayEmpty((error as any).response.data.error)) {
 					(error as any).response.data.error.forEach((el: any) =>
@@ -47,14 +41,20 @@ export default function useUpdateProfile() {
 					});
 				}
 			},
+			onSuccess(data) {
+				setProfile(data);
+				displaySnackMessage({
+					message: 'Profile updated successful.',
+				});
+			},
 		}
 	);
 
 	return {
+		isSuccess,
 		loading: status === 'loading',
 		status,
 		updateProfile,
-		isSuccess,
 	};
 }
 

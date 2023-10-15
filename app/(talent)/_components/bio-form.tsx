@@ -33,19 +33,19 @@ export default function BioForm({ candidate }: CandidateBioFormProps) {
 	};
 
 	const { handleSubmit, control } = useForm<CreateProfileBioInputSchema>({
+		defaultValues,
 		mode: 'onChange',
 		resolver: zodResolver(profileValidationSchema),
-		defaultValues,
 	});
 
 	const { loading, updateProfile, isSuccess } = useUpdateProfile();
 
 	const onSubmit: SubmitHandler<CreateProfileBioInputSchema> = (values) => {
 		const payload = {
-			personal_statement: values.personal_statement,
 			personal: mutateStringObject(candidate.personal, {
 				videoURL: values.videoURL as string,
 			}),
+			personal_statement: values.personal_statement,
 		};
 		updateProfile(payload);
 	};

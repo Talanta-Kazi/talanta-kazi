@@ -51,8 +51,8 @@ const Hero = (): JSX.Element => {
 				</Box>
 				<Box
 					display='flex'
-					flexDirection={{ xs: 'column', sm: 'row' }}
-					alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+					flexDirection={{ sm: 'row', xs: 'column' }}
+					alignItems={{ sm: 'flex-start', xs: 'stretched' }}
 				>
 					<Button
 						component={Link}
@@ -68,13 +68,13 @@ const Hero = (): JSX.Element => {
 						component={Link}
 						variant='outlined'
 						sx={{
-							marginTop: { xs: 2, sm: 0 },
-							marginLeft: { sm: 2 },
-							color: 'text.primary',
-							backgroundColor: 'background.paper',
 							'&:hover': {
 								backgroundColor: '#f4f4f6',
 							},
+							backgroundColor: 'background.paper',
+							color: 'text.primary',
+							marginLeft: { sm: 2 },
+							marginTop: { sm: 0, xs: 2 },
 						}}
 						size='large'
 						fullWidth={!isMd}
@@ -98,9 +98,9 @@ const Hero = (): JSX.Element => {
 					xs={4}
 					sx={{
 						'& .lazy-load-image-loaded': {
-							width: '80%',
-							height: '80%',
 							display: 'flex !important',
+							height: '80%',
+							width: '80%',
 						},
 					}}
 				>
@@ -113,9 +113,9 @@ const Hero = (): JSX.Element => {
 						alt='...'
 						effect='blur'
 						sx={{
-							objectFit: 'cover',
 							filter:
 								theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+							objectFit: 'cover',
 						}}
 					/>
 				</Grid>
@@ -141,9 +141,9 @@ const Hero = (): JSX.Element => {
 						alt='...'
 						effect='blur'
 						sx={{
-							objectFit: 'cover',
 							filter:
 								theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+							objectFit: 'cover',
 						}}
 					/>
 				</Grid>
@@ -169,9 +169,9 @@ const Hero = (): JSX.Element => {
 						alt='...'
 						effect='blur'
 						sx={{
-							objectFit: 'cover',
 							filter:
 								theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+							objectFit: 'cover',
 						}}
 					/>
 				</Grid>
@@ -183,9 +183,9 @@ const Hero = (): JSX.Element => {
 					xs={4}
 					sx={{
 						'& .lazy-load-image-loaded': {
-							width: '80%',
-							height: '80%',
 							display: 'flex !important',
+							height: '80%',
+							width: '80%',
 						},
 					}}
 				>
@@ -198,9 +198,9 @@ const Hero = (): JSX.Element => {
 						alt='...'
 						effect='blur'
 						sx={{
-							objectFit: 'cover',
 							filter:
 								theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+							objectFit: 'cover',
 						}}
 					/>
 				</Grid>
@@ -212,42 +212,42 @@ const Hero = (): JSX.Element => {
 		<Box
 			bgcolor={'alternate.main'}
 			sx={{
-				position: 'relative',
 				'&::after': {
-					position: 'absolute',
-					content: '""',
-					width: '30%',
-					zIndex: 1,
-					top: 0,
-					left: '5%',
-					height: '100%',
-					backgroundSize: '16px 16px',
 					backgroundImage: `radial-gradient(${alpha(
 						theme.palette.primary.dark,
 						0.4
 					)} 20%, transparent 20%)`,
+					backgroundSize: '16px 16px',
+					content: '""',
+					height: '100%',
+					left: '5%',
 					opacity: 0.2,
+					position: 'absolute',
+					top: 0,
+					width: '30%',
+					zIndex: 1,
 				},
+				position: 'relative',
 			}}
 		>
 			<Box position={'relative'} zIndex={3}>
 				<Box
 					sx={{
-						width: 1,
 						height: 1,
 						overflow: 'hidden',
+						width: 1,
 					}}
 				>
 					<Container paddingX={0} paddingY={0}>
 						<Box
 							display={'flex'}
-							flexDirection={{ xs: 'column', md: 'row' }}
+							flexDirection={{ md: 'row', xs: 'column' }}
 							position={'relative'}
 							minHeight={{ md: 600 }}
 						>
 							<Box
 								width={1}
-								order={{ xs: 2, md: 1 }}
+								order={{ md: 1, xs: 2 }}
 								display={'flex'}
 								alignItems={'center'}
 							>
@@ -258,24 +258,24 @@ const Hero = (): JSX.Element => {
 							<Box
 								margin={2}
 								sx={{
-									flex: { xs: '0 0 100%', md: '0 0 50%' },
+									flex: { md: '0 0 50%', xs: '0 0 100%' },
+									maxWidth: { md: '50%', xs: '100%' },
+									order: { md: 2, xs: 1 },
 									position: 'relative',
-									maxWidth: { xs: '100%', md: '50%' },
-									order: { xs: 1, md: 2 },
 								}}
 							>
 								<Box
 									sx={{
-										width: { xs: 1, md: '30vw' },
 										height: '100%',
 										position: 'relative',
+										width: { md: '30vw', xs: 1 },
 									}}
 								>
 									<Box
 										sx={{
-											width: '100%',
 											height: '100%',
 											overflow: 'hidden',
+											width: '100%',
 										}}
 									>
 										<RightSide />

@@ -19,23 +19,23 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const mock = [
 	{
-		title: 'Professionals',
-		subtitle: 'Who you look to employ.',
+		href: '/job-listing',
 		icon: <WorkTwoTone fontSize='large' color='action' />,
-		href: '/job-listing',
+		subtitle: 'Who you look to employ.',
+		title: 'Professionals',
 	},
 	{
-		title: 'Freelancers',
-		subtitle: 'Individual experts for short ad hoc projects.',
+		href: '/job-listing',
 		icon: <ConstructionTwoTone fontSize='large' color='action' />,
-		href: '/job-listing',
+		subtitle: 'Individual experts for short ad hoc projects.',
+		title: 'Freelancers',
 	},
 	{
-		title: 'Consultants',
+		href: '/job-listing',
+		icon: <PixTwoTone fontSize='large' color='action' />,
 		subtitle:
 			'Companies or Individuals with a track record of delivering complex projects for you.',
-		icon: <PixTwoTone fontSize='large' color='action' />,
-		href: '/job-listing',
+		title: 'Consultants',
 	},
 ];
 
@@ -106,7 +106,7 @@ export default function Services() {
 								component={Link}
 								href={item.href}
 								display='flex'
-								flexDirection={{ xs: 'row', md: 'column' }}
+								flexDirection={{ md: 'column', xs: 'row' }}
 								alignItems='center'
 								data-aos='fade-up'
 								data-aos-delay={i * 100}
@@ -129,7 +129,7 @@ export default function Services() {
 								<Box
 									display='flex'
 									flexDirection='column'
-									alignItems={{ xs: 'start', md: 'center' }}
+									alignItems={{ md: 'center', xs: 'start' }}
 								>
 									<Typography
 										variant='h6'

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import '@/assets/css/fonts.css';
 import { ClientProvider } from '@/components/client-provider';
@@ -14,8 +14,8 @@ import 'slick-carousel/slick/slick.css';
 import '../assets/css/global.css';
 
 export const metadata = {
-	title: 'Talanta Kazi',
 	description: 'Unleash Kenyan talent.',
+	title: 'Talanta Kazi',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

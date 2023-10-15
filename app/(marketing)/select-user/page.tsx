@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import type { MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 import Container from '@/components/container';
@@ -24,13 +24,13 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 const mock = [
 	{
-		title: 'I am a candidate',
 		icon: <MenuBookTwoTone color='action' />,
+		title: 'I am a candidate',
 		value: 'candidate',
 	},
 	{
-		title: 'I am an employer',
 		icon: <WorkTwoTone color='action' />,
+		title: 'I am an employer',
 		value: 'employer',
 	},
 ];
@@ -181,8 +181,8 @@ const SelectUserType = (): JSX.Element => {
 				</ToggleButtonGroup>
 				<Box
 					display='flex'
-					flexDirection={{ xs: 'column', sm: 'row' }}
-					alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+					flexDirection={{ sm: 'row', xs: 'column' }}
+					alignItems={{ sm: 'flex-start', xs: 'stretched' }}
 					justifyContent={'center'}
 					marginTop={isMd ? 12 : 4}
 				>

@@ -13,9 +13,9 @@ const Logo = () => {
 			href={'/'}
 			role='presentation'
 			sx={{
-				display: 'flex',
-				cursor: 'pointer',
 				alignItems: 'center',
+				cursor: 'pointer',
+				display: 'flex',
 			}}
 		>
 			<Image src={logo} alt='...' width={96} height={96} className='h-8 w-8' />

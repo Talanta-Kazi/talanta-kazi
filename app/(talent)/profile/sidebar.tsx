@@ -1,8 +1,6 @@
 'use client';
 
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
-
 import Conditional from '@/components/conditional';
 import dayjsTime from '@/lib/dayjsTime';
 import Box from '@mui/material/Box';
@@ -19,44 +17,44 @@ interface Props {
 
 const mock = [
 	{
+		author: {
+			name: 'Clara Bertoletti',
+		},
+		date: '04 Aug',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		title: 'Lorem ipsum dolor sit amet',
-		author: {
-			name: 'Clara Bertoletti',
-		},
-		date: '04 Aug',
 	},
 	{
+		author: {
+			name: 'Jhon Anderson',
+		},
+		date: '12 Sep',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		title: 'Consectetur adipiscing elit',
-		author: {
-			name: 'Jhon Anderson',
-		},
-		date: '12 Sep',
 	},
 	{
-		image: 'https://assets.maccarianagency.com/backgrounds/img15.jpg',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-		title: 'Lorem ipsum dolor sit amet',
 		author: {
 			name: 'Clara Bertoletti',
 		},
 		date: '04 Aug',
-	},
-	{
-		image: 'https://assets.maccarianagency.com/backgrounds/img16.jpg',
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-		title: 'Consectetur adipiscing elit',
+		image: 'https://assets.maccarianagency.com/backgrounds/img15.jpg',
+		title: 'Lorem ipsum dolor sit amet',
+	},
+	{
 		author: {
 			name: 'Jhon Anderson',
 		},
 		date: '12 Sep',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+		image: 'https://assets.maccarianagency.com/backgrounds/img16.jpg',
+		title: 'Consectetur adipiscing elit',
 	},
 ];
 
@@ -88,7 +86,7 @@ export default function Sidebar({ education }: Props) {
 					sx={{ backgroundImage: 'none', bgcolor: 'transparent' }}
 				>
 					<CardContent
-						sx={{ padding: 2, '&:last-child': { paddingBottom: 1 } }}
+						sx={{ '&:last-child': { paddingBottom: 1 }, padding: 2 }}
 					>
 						<Typography
 							variant='h6'

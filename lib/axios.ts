@@ -1,4 +1,4 @@
-import type { HeadersDefaults } from 'axios';
+import { type HeadersDefaults } from 'axios';
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
@@ -14,8 +14,8 @@ type headers = {
 
 // @ts-ignore
 axiosClient.defaults.headers = {
-	'Content-Type': 'application/json',
 	Accept: 'application/json',
+	'Content-Type': 'application/json',
 } as headers & HeadersDefaults;
 
 axiosClient.interceptors.request.use(

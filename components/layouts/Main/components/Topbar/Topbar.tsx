@@ -32,21 +32,21 @@ const Topbar = (): JSX.Element => {
 			<Box sx={{ display: { xs: 'flex' } }} alignItems={'center'}>
 				<Logo />
 			</Box>
-			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+			<Box sx={{ display: { md: 'flex', xs: 'none' } }} alignItems={'center'}>
 				{mainLayoutNavigation.map((page, index) => (
 					<Box key={fancyId()} marginLeft={index === 0 ? 0 : 4}>
 						<Link href={page.href}>
 							<Typography
 								color='primary'
 								sx={{
+									'&:hover': {
+										color: 'text.primary',
+									},
 									color:
 										activeLink === page.href
 											? 'primary.main'
 											: 'text.secondary',
 									cursor: 'pointer',
-									'&:hover': {
-										color: 'text.primary',
-									},
 								}}
 							>
 								{page.title}

@@ -17,10 +17,10 @@ const ThemeToggler = (): JSX.Element => {
 			aria-label='Dark mode toggler'
 			color={mode === 'light' ? 'primary' : 'secondary'}
 			sx={{
+				borderColor: alpha(theme.palette.divider, 0.2),
 				borderRadius: 1,
 				minWidth: 'auto',
 				padding: 0.5,
-				borderColor: alpha(theme.palette.divider, 0.2),
 			}}
 		>
 			{mode === 'light' ? (

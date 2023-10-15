@@ -12,8 +12,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 export const metadata: Metadata = {
-	title: 'Jobs Listing',
 	description: 'List of all jobs available on the platform.',
+	title: 'Jobs Listing',
 };
 
 export default function Jobs({

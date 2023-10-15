@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from 'next/navigation';
 
-import type { MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import { Fragment, useContext, useState } from 'react';
 
 import { ComponentContext } from '@/context/ComponentContext';
@@ -15,7 +15,7 @@ import {
 	Logout,
 	OpenInNew,
 } from '@mui/icons-material';
-import type { Theme } from '@mui/material';
+import { type Theme } from '@mui/material';
 import {
 	Avatar,
 	Button,
@@ -44,8 +44,8 @@ const UserAvatar = (): JSX.Element => {
 	const profilePic = localStorage.getItem('profile_pic');
 
 	const { username, image, role } = session?.user || {
-		username: 'Anonymous User',
 		image: profilePic || '/img/avatar_male.svg',
+		username: 'Anonymous User',
 	};
 
 	const handleToggleProfileMenu = (event: MouseEvent<HTMLElement>) => {
@@ -65,9 +65,9 @@ const UserAvatar = (): JSX.Element => {
 	};
 
 	const almondRoles = [
-		{ name: 'USER', icon: <FaceTwoTone fontSize='small' /> },
-		{ name: 'ADMIN', icon: <AdminPanelSettingsTwoTone fontSize='small' /> },
-		{ name: 'DEVELOPER', icon: <CodeTwoTone fontSize='small' /> },
+		{ icon: <FaceTwoTone fontSize='small' />, name: 'USER' },
+		{ icon: <AdminPanelSettingsTwoTone fontSize='small' />, name: 'ADMIN' },
+		{ icon: <CodeTwoTone fontSize='small' />, name: 'DEVELOPER' },
 	];
 
 	const roleSwitch = (role: string) => {
@@ -89,27 +89,27 @@ const UserAvatar = (): JSX.Element => {
 
 	const menuItems = [
 		{
-			name: 'Dashboard',
 			icon: <AllOutTwoTone fontSize='small' color='action' />,
 			link: '/candidate/jobs',
+			name: 'Dashboard',
 			secondaryText: 'Manage your space',
 		},
 		{
-			name: 'Profile',
 			icon: <AccountCircleOutlined fontSize='small' color='action' />,
 			link: 'account',
+			name: 'Profile',
 			secondaryText: 'All about you',
 		},
 		{
-			name: 'Help',
 			icon: <HelpOutline fontSize='small' color='action' />,
 			link: 'help',
+			name: 'Help',
 			secondaryText: 'Find support',
 		},
 		{
-			name: 'Feedback',
 			icon: <OpenInNew fontSize='small' color='action' />,
 			link: 'send-feedback',
+			name: 'Feedback',
 			secondaryText: 'Help improve our service',
 		},
 	];
@@ -131,8 +131,8 @@ const UserAvatar = (): JSX.Element => {
 						typeof='button'
 						variant='rounded'
 						sx={{
-							width: 32,
 							height: 32,
+							width: 32,
 						}}
 					/>
 				) : (
@@ -167,19 +167,22 @@ const UserAvatar = (): JSX.Element => {
 				PaperProps={{
 					elevation: 0,
 					sx: {
-						border: `0.6px solid ${alpha(theme.palette.divider, 0.3)}`,
-						width: 270,
-						maxWidth: '100%',
-						zIndex: theme.zIndex.appBar + 1,
-						overflow: 'visible',
-						// filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-						mt: 1.5,
 						'& .MuiAvatar-root': {
-							width: 32,
 							height: 32,
 							ml: -0.5,
 							mr: 1,
+							width: 32,
 						},
+						border: `0.6px solid ${alpha(theme.palette.divider, 0.3)}`,
+						maxWidth: '100%',
+						// filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+						mt: 1.5,
+
+						overflow: 'visible',
+
+						width: 270,
+
+						zIndex: theme.zIndex.appBar + 1,
 					},
 				}}
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -243,12 +246,12 @@ const UserAvatar = (): JSX.Element => {
 								paddingY: 1,
 							}}
 						>
-							<ListItemIcon sx={{ minWidth: 44, marginRight: 1 }}>
+							<ListItemIcon sx={{ marginRight: 1, minWidth: 44 }}>
 								<Avatar
 									sx={{
 										backgroundColor: alpha(theme.palette.primary.main, 0.3),
-										color: theme.palette.primary.main,
 										borderRadius: 1,
+										color: theme.palette.primary.main,
 									}}
 								>
 									{item.icon}
@@ -268,12 +271,12 @@ const UserAvatar = (): JSX.Element => {
 						paddingY: 1,
 					}}
 				>
-					<ListItemIcon sx={{ minWidth: 44, marginRight: 1 }}>
+					<ListItemIcon sx={{ marginRight: 1, minWidth: 44 }}>
 						<Avatar
 							sx={{
 								backgroundColor: alpha(theme.palette.primary.main, 0.3),
-								color: theme.palette.primary.main,
 								borderRadius: 1,
+								color: theme.palette.primary.main,
 							}}
 						>
 							<Logout fontSize='small' color='action' />

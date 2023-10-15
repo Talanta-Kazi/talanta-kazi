@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
+import { type NextPage } from 'next';
 
-import type { ReactElement, ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 export type NextPageWithAuthAndLayout = NextPage & {
 	auth?: boolean;

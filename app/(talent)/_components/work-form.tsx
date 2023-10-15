@@ -202,9 +202,9 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 							variant='contained'
 							onClick={handleAddWorkExperienceTextFields}
 							sx={{
-								fontWeight: 'medium',
 								color: 'unset',
-								display: { xs: 'none', md: 'flex' },
+								display: { md: 'flex', xs: 'none' },
+								fontWeight: 'medium',
 							}}
 						>
 							ADD WORK EXPERIENCE
@@ -218,10 +218,10 @@ export default function WorkForm({ candidate }: CandidateEducationFormProps) {
 				aria-label='add'
 				onClick={handleAddWorkExperienceTextFields}
 				sx={{
-					fontWeight: 'medium',
-					display: { xs: 'flex', md: 'none' },
-					position: 'fixed',
 					bottom: 72,
+					display: { md: 'none', xs: 'flex' },
+					fontWeight: 'medium',
+					position: 'fixed',
 					right: 30,
 				}}
 			>

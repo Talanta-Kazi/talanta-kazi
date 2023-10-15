@@ -65,10 +65,10 @@ export default function SingleJobView({
 		<Box>
 			<Box
 				sx={{
-					left: { xs: 0, md: 24 },
-					marginY: { xs: 4, md: 0 },
 					display: 'flex',
-					position: { xs: 'relative', md: 'absolute' },
+					left: { md: 24, xs: 0 },
+					marginY: { md: 0, xs: 4 },
+					position: { md: 'absolute', xs: 'relative' },
 				}}
 				alignItems={'center'}
 				onClick={() => back()}
@@ -83,8 +83,8 @@ export default function SingleJobView({
 			<Box
 				display={'flex'}
 				justifyContent={'space-between'}
-				alignItems={{ xs: 'flex-start', sm: 'center' }}
-				flexDirection={{ xs: 'column', sm: 'row' }}
+				alignItems={{ sm: 'center', xs: 'flex-start' }}
+				flexDirection={{ sm: 'row', xs: 'column' }}
 			>
 				<Box>
 					<Typography fontWeight={700} variant={'h4'} gutterBottom>
@@ -94,7 +94,7 @@ export default function SingleJobView({
 						variant={'h6'}
 					>{`${city}, ${country} - ${contract_type_id}`}</Typography>
 				</Box>
-				<Box display='flex' marginTop={{ xs: 2, md: 0 }}>
+				<Box display='flex' marginTop={{ md: 0, xs: 2 }}>
 					<Button variant='contained' color='primary' size='large'>
 						Apply now
 					</Button>

@@ -23,7 +23,7 @@ export default async function MarketingPage() {
 	return (
 		<Fragment>
 			<Hero />
-			<Container paddingY={{ xs: 2, sm: 4, md: 6 }}>
+			<Container paddingY={{ md: 6, sm: 4, xs: 2 }}>
 				<Services />
 			</Container>
 			<Box bgcolor='alternate.main'>
@@ -33,7 +33,7 @@ export default async function MarketingPage() {
 					<BannerConsultants />
 				</Container>
 			</Box>
-			<Container maxWidth={{ sm: 720, md: 960 }}>
+			<Container maxWidth={{ md: 960, sm: 720 }}>
 				<Jobs jobs={jobs} contractTypes={contractTypes} />
 			</Container>
 		</Fragment>

@@ -26,18 +26,18 @@ export default function AuthButtonLink() {
 	return status === 'authenticated' ? (
 		<UserAvatar />
 	) : (
-		<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+		<Box sx={{ display: { md: 'flex', xs: 'none' } }}>
 			<Button
 				component={Link}
 				href='/login'
 				variant='text'
 				color='inherit'
 				sx={{
-					color: activeLink === '/login' ? 'secondary.main' : 'text.secondary',
-					cursor: 'pointer',
 					'&:hover': {
 						color: 'text.primary',
 					},
+					color: activeLink === '/login' ? 'secondary.main' : 'text.secondary',
+					cursor: 'pointer',
 				}}
 			>
 				Login
@@ -49,14 +49,14 @@ export default function AuthButtonLink() {
 				variant='text'
 				color='inherit'
 				sx={{
-					marginLeft: 2,
-					paddingY: 0.5,
-					color:
-						activeLink === '/register' ? 'secondary.main' : 'text.secondary',
-					cursor: 'pointer',
 					'&:hover': {
 						color: 'text.primary',
 					},
+					color:
+						activeLink === '/register' ? 'secondary.main' : 'text.secondary',
+					cursor: 'pointer',
+					marginLeft: 2,
+					paddingY: 0.5,
 				}}
 			>
 				Sign up

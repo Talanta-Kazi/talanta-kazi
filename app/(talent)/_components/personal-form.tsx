@@ -59,17 +59,17 @@ interface CandidateTitleFormProps {
 
 const personalSchema = z.object({
 	first_name: z.string(),
-	last_name: z.string(),
+	counties: z.array(z.string()).optional(),
 	job_title: z.string(),
-	location: z.string().optional(),
-	portfolio_link: z.string().optional(),
-	other_portfolio_link: z.string().optional(),
+	email: z.string().email(),
+	last_name: z.string(),
 	linkedin: z.string().optional(),
+	location: z.string().optional(),
+	other_portfolio_link: z.string().optional(),
+	portfolio_link: z.string().optional(),
+	profile_pic: z.string().optional(),
 	twitter: z.string().optional(),
 	whatsapp: z.string().optional(),
-	profile_pic: z.string().optional(),
-	counties: z.array(z.string()).optional(),
-	email: z.string().email(),
 });
 
 export type CreateProfileTitleInputSchema = z.infer<typeof personalSchema>;
@@ -83,22 +83,22 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 
 	const { handleSubmit, control, setValue, watch } =
 		useForm<CreateProfileTitleInputSchema>({
-			mode: 'onChange',
-			resolver: zodResolver(personalSchema),
 			defaultValues: {
-				first_name: candidate?.user?.first_name || '',
-				last_name: candidate?.user?.last_name || '',
-				job_title: candidate?.job_title || '',
 				email: candidate?.user?.email || '',
-				location: personal?.location || '',
-				portfolio_link: personal?.portfolio_link || '',
-				other_portfolio_link: personal?.other_portfolio_link || '',
+				first_name: candidate?.user?.first_name || '',
+				job_title: candidate?.job_title || '',
+				last_name: candidate?.user?.last_name || '',
+				counties: personal?.counties || [],
 				linkedin: personal?.linkedin || '',
+				location: personal?.location || '',
+				other_portfolio_link: personal?.other_portfolio_link || '',
+				portfolio_link: personal?.portfolio_link || '',
+				profile_pic: personal?.profile_pic || '/img/avatar_male.svg',
 				twitter: personal?.twitter || '',
 				whatsapp: personal?.whatsapp || 'https://wa.me/',
-				profile_pic: personal?.profile_pic || '/img/avatar_male.svg',
-				counties: personal?.counties || [],
 			},
+			mode: 'onChange',
+			resolver: zodResolver(personalSchema),
 		});
 
 	const location = watch('location');
@@ -108,22 +108,22 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 
 	const onSubmit = async (values: any) => {
 		const customPersonal = {
-			location: values.location,
-			portfolio_link: values.portfolio_link,
-			other_portfolio_link: values.other_portfolio_link,
 			linkedin: values.linkedin,
+			location: values.location,
+			other_portfolio_link: values.other_portfolio_link,
+			portfolio_link: values.portfolio_link,
+			profile_pic: values.profile_pic,
 			twitter: values.twitter,
 			whatsapp: values.whatsapp,
-			profile_pic: values.profile_pic,
 		};
 		const payload = {
-			user: {
-				first_name: values.first_name,
-				last_name: values.last_name,
-				email: values.email,
-			},
 			job_title: values.job_title,
 			personal: JSON.stringify(customPersonal),
+			user: {
+				email: values.email,
+				first_name: values.first_name,
+				last_name: values.last_name,
+			},
 		};
 		updateProfile(payload);
 	};
@@ -217,8 +217,8 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 											aria-controls='menu-popover'
 											aria-haspopup='true'
 											sx={{
-												width: 56,
 												height: 56,
+												width: 56,
 											}}
 										/>
 										<UploadButton
@@ -241,16 +241,16 @@ export default function PersonalForm({ candidate }: CandidateTitleFormProps) {
 											}}
 											className='uploadthing-class'
 											content={{
-												button({ ready, isUploading }) {
-													if (ready) return <div>Upload image</div>;
-													if (isUploading) return <div>Uploading image...</div>;
-													return 'Getting ready...';
-												},
 												allowedContent({ ready, fileTypes, isUploading }) {
 													if (!ready) return 'Checking what you allow';
 													if (isUploading)
 														return 'Uploading image, please wait...';
 													return 'Image (jpg, png) 4MB max';
+												},
+												button({ ready, isUploading }) {
+													if (ready) return <div>Upload image</div>;
+													if (isUploading) return <div>Uploading image...</div>;
+													return 'Getting ready...';
 												},
 											}}
 										/>

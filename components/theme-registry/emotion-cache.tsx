@@ -4,9 +4,9 @@ import { useServerInsertedHTML } from 'next/navigation';
 
 import * as React from 'react';
 
-import type {
-	EmotionCache,
-	Options as OptionsOfCreateCache,
+import {
+	type EmotionCache,
+	type Options as OptionsOfCreateCache,
 } from '@emotion/cache';
 import createCache from '@emotion/cache';
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react';

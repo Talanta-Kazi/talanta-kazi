@@ -72,25 +72,25 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 		<>
 			<Box
 				bgcolor='alternate.main'
-				padding={{ xs: 2, md: 4 }}
+				padding={{ md: 4, xs: 2 }}
 				borderRadius={2}
 				sx={{
-					position: 'relative',
 					'&::after': {
-						position: 'absolute',
-						content: '""',
-						width: '30%',
-						zIndex: 1,
-						top: 0,
-						left: '5%',
-						height: '100%',
-						backgroundSize: '16px 16px',
 						backgroundImage: `radial-gradient(${alpha(
 							'#c9ad24',
 							0.4
 						)} 20%, transparent 20%)`,
+						backgroundSize: '16px 16px',
+						content: '""',
+						height: '100%',
+						left: '5%',
 						opacity: 0.2,
+						position: 'absolute',
+						top: 0,
+						width: '30%',
+						zIndex: 1,
 					},
+					position: 'relative',
 				}}
 			>
 				<Box position={'relative'} zIndex={3}>
@@ -131,9 +131,9 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 										noValidate
 										autoComplete='off'
 										sx={{
-											p: '2px 4px',
-											display: 'flex',
 											alignItems: 'center',
+											display: 'flex',
+											p: '2px 4px',
 											width: 'auto',
 										}}
 									>
@@ -141,7 +141,7 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 											<Search />
 										</IconButton>
 										<InputBase
-											sx={{ ml: 1, flex: 1 }}
+											sx={{ flex: 1, ml: 1 }}
 											placeholder='Search jobs'
 											inputProps={{ 'aria-label': 'search google maps' }}
 											onChange={({ target }) => setSearchValue(target.value)}
@@ -181,7 +181,7 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 									<Box
 										height={1}
 										width={1}
-										maxWidth={{ xs: 600, md: '100%' }}
+										maxWidth={{ md: '100%', xs: 600 }}
 										maxHeight={400}
 									>
 										<Box
@@ -204,7 +204,7 @@ export default function JobsView({ jobs, contractTypes }: JobsViewProps) {
 				</Box>
 			</Box>
 
-			<Container maxWidth={{ sm: 720, md: 960 }}>
+			<Container maxWidth={{ md: 960, sm: 720 }}>
 				<Box>
 					<Grid marginY={4} justifyContent='center' alignItems='center'>
 						{getPaginatedJobs()?.map((job: Job) => (

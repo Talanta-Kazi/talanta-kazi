@@ -9,7 +9,7 @@
 		"build": "next build",
 		"dev": "next dev",
 		"format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
-		"lint": "next lint",
+		"lint": "next lint --fix",
 		"start": "node .next/standalone/server.js"
 	},
 	"dependencies": {
@@ -116,6 +116,7 @@
 		"eslint": "^8.51.0",
 		"eslint-config-next": "13.5.4",
 		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-canonical": "^4.15.1",
 		"eslint-plugin-tailwindcss": "^3.13.0",
 		"postcss": "^8.4.31",
 		"prettier": "^3.0.3",

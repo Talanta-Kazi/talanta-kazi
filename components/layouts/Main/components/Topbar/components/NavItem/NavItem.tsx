@@ -49,12 +49,12 @@ const NavItem = ({ title, id, items }: Props): JSX.Element => {
 				</Typography>
 				<ExpandMoreIcon
 					sx={{
-						marginLeft: theme.spacing(1),
-						transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
 						color:
 							openedPopoverId === id
 								? theme.palette.primary.dark
 								: theme.palette.text.primary,
+						marginLeft: theme.spacing(1),
+						transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
 					}}
 					fontSize='small'
 				/>
@@ -66,19 +66,19 @@ const NavItem = ({ title, id, items }: Props): JSX.Element => {
 				anchorEl={anchorEl}
 				onClose={handleClose}
 				anchorOrigin={{
-					vertical: 'bottom',
 					horizontal: 'center',
+					vertical: 'bottom',
 				}}
 				transformOrigin={{
-					vertical: 'top',
 					horizontal: 'center',
+					vertical: 'top',
 				}}
 				sx={{
 					'.MuiPaper-root': {
+						borderRadius: 2,
+						marginTop: 2,
 						maxWidth: 600,
 						padding: 4,
-						marginTop: 2,
-						borderRadius: 2,
 					},
 				}}
 			>
@@ -89,9 +89,9 @@ const NavItem = ({ title, id, items }: Props): JSX.Element => {
 								variant='caption'
 								color='primary'
 								sx={{
+									display: 'block',
 									fontWeight: 700,
 									textTransform: 'uppercase',
-									display: 'block',
 								}}
 							>
 								{item.groupTitle}
@@ -105,11 +105,11 @@ const NavItem = ({ title, id, items }: Props): JSX.Element => {
 											href={p.href}
 											color={activeLink === p.href ? 'primary' : 'text.primary'}
 											sx={{
-												fontWeight: activeLink === p.href ? 600 : 400,
 												'&:hover': {
-													textDecoration: 'none',
 													color: theme.palette.primary.dark,
+													textDecoration: 'none',
 												},
+												fontWeight: activeLink === p.href ? 600 : 400,
 												textDecoration: 'none',
 											}}
 										>

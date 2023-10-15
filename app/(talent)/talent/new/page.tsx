@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import type { MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 import Container from '@/components/container';
@@ -26,18 +26,18 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 const mock = [
 	{
-		title: 'I am a freelancer',
 		icon: <SpaTwoTone fontSize='large' color='action' />,
+		title: 'I am a freelancer',
 		value: 'freelancer',
 	},
 	{
-		title: 'I am a professional',
 		icon: <AllOutTwoTone fontSize='large' color='action' />,
+		title: 'I am a professional',
 		value: 'professional',
 	},
 	{
-		title: 'I am a consultant',
 		icon: <WorkTwoTone fontSize='large' color='action' />,
+		title: 'I am a consultant',
 		value: 'consultant',
 	},
 ];
@@ -97,9 +97,9 @@ const SelectUserType = (): JSX.Element => {
 	};
 
 	const linkToDashboardViews: LinkToDashboardViews = {
+		consultant: '/consultant-profile/personal',
 		freelancer: '/freelancer-profile/personal',
 		professional: '/professional-profile/personal',
-		consultant: '/consultant-profile/personal',
 	} as const;
 
 	const handleAlignment = (
@@ -186,8 +186,8 @@ const SelectUserType = (): JSX.Element => {
 				</ToggleButtonGroup>
 				<Box
 					display='flex'
-					flexDirection={{ xs: 'column', sm: 'row' }}
-					alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+					flexDirection={{ sm: 'row', xs: 'column' }}
+					alignItems={{ sm: 'flex-start', xs: 'stretched' }}
 					justifyContent={'center'}
 					marginTop={isMd ? 12 : 4}
 				>

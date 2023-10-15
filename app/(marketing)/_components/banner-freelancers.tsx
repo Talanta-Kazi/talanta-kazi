@@ -18,36 +18,36 @@ import Slider from 'react-slick';
 
 const mock = [
 	{
+		avatar:
+			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349527/talantakazi/tyler-nix-sh3LSNbyj7k-unsplash.jpg',
 		feedback:
 			'An Administrative who constantly applies administration ideas toward the creation of a bigger profit margin. Adept at training and developing administration professionals, discussing office administration issues with larger customers and working with other executives to improve the customer experience. Purpose creating organizational success and bettering brand reputation through serving customers. Considered a value creator who operates ahead of the curve to promote customer satisfaction.',
 		name: 'Martha',
 		title: 'Customer service executive',
-		avatar:
-			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349527/talantakazi/tyler-nix-sh3LSNbyj7k-unsplash.jpg',
 	},
 	{
+		avatar:
+			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349531/talantakazi/prince-akachi-l3IHXOdMyHQ-unsplash.jpg',
 		feedback:
 			'Am a competent, ambitious and self- motivated person with excellent communication and interpersonal skills, I sets goals and through hard work achieve them. Having attained excellent combination of good leadership and organizational skills I can lead in any situation that presents itself. Always ensure that I achieve my best. Being an organizer, fast learner and a team player, I consider options with an open mind before arriving at conclusions.',
 		name: 'Margaret',
 		title: 'Business development',
-		avatar:
-			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349531/talantakazi/prince-akachi-l3IHXOdMyHQ-unsplash.jpg',
 	},
 	{
-		feedback:
-			'I am a driver and i also have cars for hire. I am located in Eldoret and my prices are fair.',
-		name: 'Douglas',
-		title: 'Driver - Cars and ight vans',
 		avatar:
 			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349516/talantakazi/elizeu-dias-2EGNqazbAMk-unsplash.jpg',
-	},
-	{
 		feedback:
 			'I am a driver and i also have cars for hire. I am located in Eldoret and my prices are fair.',
 		name: 'Douglas',
 		title: 'Driver - Cars and ight vans',
+	},
+	{
 		avatar:
 			'https://res.cloudinary.com/mashafrancis/image/upload/v1691349524/talantakazi/prince-akachi-4Yv84VgQkRM-unsplash.jpg',
+		feedback:
+			'I am a driver and i also have cars for hire. I am located in Eldoret and my prices are fair.',
+		name: 'Douglas',
+		title: 'Driver - Cars and ight vans',
 	},
 ];
 
@@ -62,34 +62,34 @@ export default function BannerFreelancers() {
 	const candidates: Candidate[] = data?.slice(0, 3);
 
 	const sliderOpts = {
+		arrows: isMd,
 		dots: !isMd,
 		infinite: true,
-		speed: 500,
-		slidesToShow: isMd ? 3 : 1,
 		slidesToScroll: 1,
-		arrows: isMd,
+		slidesToShow: isMd ? 3 : 1,
+		speed: 500,
 	};
 
 	return (
 		<Box
 			marginY={12}
 			sx={{
-				position: 'relative',
 				'&::after': {
-					position: 'absolute',
-					content: '""',
-					width: '30%',
-					zIndex: 1,
-					top: 0,
-					left: 0,
-					height: '100%',
-					backgroundSize: '18px 18px',
 					backgroundImage: `radial-gradient(${alpha(
 						theme.palette.text.primary,
 						0.4
 					)} 20%, transparent 20%)`,
+					backgroundSize: '18px 18px',
+					content: '""',
+					height: '100%',
+					left: 0,
 					opacity: 0.2,
+					position: 'absolute',
+					top: 0,
+					width: '30%',
+					zIndex: 1,
 				},
+				position: 'relative',
 			}}
 		>
 			<Box position='relative' zIndex={2}>
@@ -123,32 +123,32 @@ export default function BannerFreelancers() {
 				</Box>
 				<Box
 					sx={{
-						height: { xs: 'auto', md: 1 },
-						'& .slick-slide img': {
-							objectFit: 'cover',
-						},
 						'& .slick-list, & .slick-slider, & .slick-track, & .slick-slide > div':
 							{
-								height: { xs: 'auto', md: 1 },
+								height: { md: 1, xs: 'auto' },
 							},
-						'& .slick-prev, & .slick-next': {
-							zIndex: 2,
-							bottom: 0,
-							top: '100%',
-							left: '100%',
-							right: 0,
-							transform: `translate(-100%, calc(-100% - ${theme.spacing(2)}))`,
-							marginLeft: theme.spacing(-2),
-							width: 32,
-							height: 32,
-							'&:before': {
-								fontSize: 32,
-								color: 'primary.main',
-							},
-						},
 						'& .slick-prev': {
 							marginLeft: theme.spacing(-7),
 						},
+						'& .slick-prev, & .slick-next': {
+							bottom: 0,
+							left: '100%',
+							height: 32,
+							marginLeft: theme.spacing(-2),
+							'&:before': {
+								color: 'primary.main',
+								fontSize: 32,
+							},
+							right: 0,
+							top: '100%',
+							zIndex: 2,
+							transform: `translate(-100%, calc(-100% - ${theme.spacing(2)}))`,
+							width: 32,
+						},
+						'& .slick-slide img': {
+							objectFit: 'cover',
+						},
+						height: { md: 1, xs: 'auto' },
 					}}
 				>
 					<Slider {...sliderOpts}>
@@ -186,9 +186,9 @@ export default function BannerFreelancers() {
 														src={item.avatar}
 														variant={'rounded'}
 														sx={{
-															width: 100,
-															height: 100,
 															borderRadius: 2,
+															height: 100,
+															width: 100,
 														}}
 													/>
 												</ListItemAvatar>
@@ -205,11 +205,11 @@ export default function BannerFreelancers() {
 											color='text.secondary'
 											sx={{
 												display: '-webkit-box',
-												WebkitLineClamp: { xs: 3, md: 2 },
-												WebkitBoxOrient: 'vertical',
 												overflow: 'hidden',
-												textOverflow: 'ellipsis',
 												paddingY: 0,
+												textOverflow: 'ellipsis',
+												WebkitBoxOrient: 'vertical',
+												WebkitLineClamp: { md: 2, xs: 3 },
 											}}
 										>
 											{item.feedback}

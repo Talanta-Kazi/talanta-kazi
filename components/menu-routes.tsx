@@ -2,7 +2,7 @@
 // import PeopleView from 'views/PeopleView';
 // import SupportView from 'views/SupportView';
 // import UserRolesView from 'views/UserRolesView';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import {
 	AllOut,
@@ -32,73 +32,73 @@ export interface MenuBottomProps {
 
 export const UserMenus: MenuComponentProps[] = [
 	{
+		href: '/analytics',
 		icon: <WidgetsRounded />,
-		primaryText: 'Analytics',
 		id: 'analytics',
-		href: '/analytics',
+		primaryText: 'Analytics',
 	},
 	{
+		href: '/analytics',
 		icon: <Opacity />,
-		primaryText: 'Water Cycles',
 		id: 'water-cycles',
-		href: '/analytics',
+		primaryText: 'Water Cycles',
 	},
 	{
+		href: '/analytics',
 		icon: <ControlCamera />,
-		primaryText: 'Environment',
 		id: 'environment',
-		href: '/analytics',
+		primaryText: 'Environment',
 	},
 	{
+		href: '/analytics',
 		icon: <Security />,
-		primaryText: 'Quality Control',
 		id: 'quality-control',
-		href: '/analytics',
+		primaryText: 'Quality Control',
 	},
 	{
+		href: '/analytics',
 		icon: <Memory />,
-		primaryText: 'Energy Usage',
 		id: 'energy-usage',
-		href: '/analytics',
+		primaryText: 'Energy Usage',
 	},
 	{
-		icon: <LocalFlorist />,
-		primaryText: 'Support',
-		id: 'support',
 		href: '/analytics',
+		icon: <LocalFlorist />,
+		id: 'support',
+		primaryText: 'Support',
 	},
 ];
 
 export const AdminMenus: MenuComponentProps[] = [
 	{
+		href: '/analytics',
 		icon: <WidgetsRounded />,
-		primaryText: 'Analytics',
-		href: '/analytics',
 		id: 'analytics',
+		primaryText: 'Analytics',
 	},
 	{
+		href: '/analytics',
 		icon: <AllOut />,
-		primaryText: 'Devices',
-		href: '/analytics',
 		id: 'devices',
+		primaryText: 'Devices',
 	},
 	{
+		href: '/analytics',
 		icon: <People />,
-		primaryText: 'People',
-		href: '/analytics',
 		id: 'people',
+		primaryText: 'People',
 	},
 	{
+		href: '/analytics',
 		icon: <BubbleChart />,
-		primaryText: 'Roles',
-		href: '/analytics',
 		id: 'roles',
+		primaryText: 'Roles',
 	},
 	{
-		icon: <Spa />,
-		primaryText: 'Support',
 		href: '/analytics',
+		icon: <Spa />,
 		id: 'support',
+		primaryText: 'Support',
 	},
 ];
 

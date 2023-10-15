@@ -166,7 +166,7 @@ export default function PortfolioForm({
 						startIcon={<AddCircle fontSize='large' />}
 						variant='contained'
 						onClick={handleAddPortfolioTextFields}
-						sx={{ fontWeight: 'medium', color: 'unset' }}
+						sx={{ color: 'unset', fontWeight: 'medium' }}
 					>
 						ADD PORTFOLIO
 					</Button>

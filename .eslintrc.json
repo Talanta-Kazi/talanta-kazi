@@ -4,10 +4,11 @@
 	"extends": [
 		"next/core-web-vitals",
 		"prettier",
-		"plugin:tailwindcss/recommended"
+		"plugin:tailwindcss/recommended",
+		"plugin:canonical/recommended"
 		//    "plugin:@typescript-eslint/recommended-requiring-type-checking"
 	],
-	"plugins": ["tailwindcss"],
+	"plugins": ["tailwindcss", "canonical"],
 	"rules": {
 		"@next/next/no-html-link-for-pages": "off",
 		"react/jsx-key": "off",
@@ -31,7 +32,33 @@
 		"@next/next/no-img-element": "off",
 		"jsx-a11y/click-events-have-key-events": "off",
 		"react-hooks/exhaustive-deps": "off",
-		"import/no-anonymous-default-export": "off"
+		"import/no-anonymous-default-export": "off",
+		"canonical/filename-match-exported": 0,
+		"canonical/destructuring-property-newline": 0,
+		"canonical/import-specifier-newline": 0,
+		"canonical/filename-match-regex": 0,
+		"canonical/filename-no-index": 0,
+		"canonical/id-match": [
+			2,
+			"(^[A-Za-z]+(?:[A-Z][a-z]*)*\\d*$)|(^[A-Z]+(_[A-Z]+)*(_\\d$)*$)|(^(_|\\$)$)",
+			{
+				"ignoreDestructuring": true,
+				"ignoreNamedImports": true,
+				"onlyDeclarations": true,
+				"properties": true
+			}
+		],
+		"canonical/no-restricted-strings": 0,
+		"canonical/no-use-extend-native": 2,
+		"canonical/prefer-inline-type-import": 2,
+		"canonical/sort-keys": [
+			2,
+			"asc",
+			{
+				"caseSensitive": false,
+				"natural": true
+			}
+		]
 		//    "@typescript-eslint/consistent-type-imports": [
 		//      "warn",
 		//      {

@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
 
-import type { InputProps } from './input-props';
+import { type InputProps } from './input-props';
 
 function MultiCheckbox({
 	name,

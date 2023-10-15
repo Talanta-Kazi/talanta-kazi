@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import { Close } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
@@ -33,15 +33,15 @@ interface ModalProps {
 }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-	'& .MuDialogContent-root': {
-		padding: theme.spacing(2),
-	},
 	'& .MuDialogActions-root': {
 		padding: theme.spacing(1),
 	},
+	'& .MuDialogContent-root': {
+		padding: theme.spacing(2),
+	},
 	'& .MuiDialog-paper': {
-		borderRadius: 12,
 		border: `1px solid ${theme.palette.divider}`,
+		borderRadius: 12,
 	},
 }));
 
@@ -58,11 +58,11 @@ const BootstrapDialogTitle = ({
 }: DialogTitleProps) => (
 	<DialogTitle
 		sx={{
+			backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
+			color: (theme) => theme.palette.primary.main,
 			m: 0,
 			p: 2,
 			paddingX: 3,
-			backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
-			color: (theme) => theme.palette.primary.main,
 		}}
 		{...other}
 	>
@@ -74,11 +74,11 @@ const BootstrapDialogTitle = ({
 				aria-label='close'
 				onClick={onClose}
 				sx={{
-					position: 'absolute',
+					color: (theme) => theme.palette.grey[500],
 					p: 1,
+					position: 'absolute',
 					right: 8,
 					top: 8,
-					color: (theme) => theme.palette.grey[500],
 				}}
 			>
 				<Close fontSize='small' />

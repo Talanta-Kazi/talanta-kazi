@@ -27,8 +27,8 @@ export default function Topbar({ onSidebarOpen, jobsCount }: Props) {
 	return (
 		<Box
 			display={'flex'}
-			flexDirection={{ xs: 'column', sm: 'row' }}
-			alignItems={{ xs: 'flex-start', sm: 'center' }}
+			flexDirection={{ sm: 'row', xs: 'column' }}
+			alignItems={{ sm: 'center', xs: 'flex-start' }}
 			justifyContent={'space-between'}
 		>
 			<Button
@@ -36,12 +36,12 @@ export default function Topbar({ onSidebarOpen, jobsCount }: Props) {
 				aria-label='Menu'
 				variant={'outlined'}
 				sx={{
-					minWidth: 'auto',
-					paddingY: 1,
 					borderColor: theme.palette.divider,
 					color: theme.palette.text.primary,
-					display: { xs: 'flex', md: 'none' },
+					display: { md: 'none', xs: 'flex' },
 					marginRight: 2,
+					minWidth: 'auto',
+					paddingY: 1,
 				}}
 				startIcon={
 					<svg
@@ -76,7 +76,7 @@ export default function Topbar({ onSidebarOpen, jobsCount }: Props) {
 					<Typography
 						color={'text.primary'}
 						marginRight={1}
-						display={{ xs: 'none', sm: 'block' }}
+						display={{ sm: 'block', xs: 'none' }}
 					>
 						Sort by
 					</Typography>
@@ -86,11 +86,11 @@ export default function Topbar({ onSidebarOpen, jobsCount }: Props) {
 							value={sortBy}
 							onChange={handleSelectChange}
 							sx={{
-								'.MuiSelect-select.MuiSelect-outlined': {
-									paddingY: '9px !important',
-								},
 								'.MuiOutlinedInput-notchedOutline': {
 									borderColor: theme.palette.divider,
+								},
+								'.MuiSelect-select.MuiSelect-outlined': {
+									paddingY: '9px !important',
 								},
 							}}
 						>

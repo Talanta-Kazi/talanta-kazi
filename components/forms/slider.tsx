@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { FormLabel, Slider as MuiSLider } from '@mui/material';
 import { Controller } from 'react-hook-form';
 
-import type { InputProps } from './input-props';
+import { type InputProps } from './input-props';
 
 function Slider({ name, control, setValue, label }: InputProps) {
 	const [sliderValue, setSliderValue] = useState<number>(30);

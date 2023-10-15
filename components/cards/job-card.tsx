@@ -46,7 +46,7 @@ function JobCard({
 	const { push } = useRouter();
 
 	return (
-		<Grid item xs={12} sx={{ padding: '0 !important', marginBottom: 1 }}>
+		<Grid item xs={12} sx={{ marginBottom: 1, padding: '0 !important' }}>
 			<Box
 				component={Card}
 				width={1}
@@ -57,15 +57,17 @@ function JobCard({
 				padding={isMd ? 2 : 0}
 				boxShadow={0}
 				display='flex'
-				flexDirection={{ xs: 'column', md: 'row' }}
+				flexDirection={{ md: 'row', xs: 'column' }}
 				sx={{
-					backgroundImage: 'none',
-					bgcolor: 'transparent',
 					// border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 					':hover': {
 						bgcolor: alpha(theme.palette.primary.main, 0.1),
 						color: theme.palette.primary.dark,
 					},
+
+					backgroundImage: 'none',
+
+					bgcolor: 'transparent',
 				}}
 			>
 				<CardContent
@@ -116,7 +118,7 @@ function JobCard({
 						<Typography
 							variant='body2'
 							color='text.secondary'
-							sx={{ paddingY: 0, paddingRight: 1 }}
+							sx={{ paddingRight: 1, paddingY: 0 }}
 						>
 							{contract_type_id}
 						</Typography>
@@ -124,7 +126,7 @@ function JobCard({
 						<Typography
 							variant='body2'
 							color='text.secondary'
-							sx={{ paddingY: 0, paddingRight: 1 }}
+							sx={{ paddingRight: 1, paddingY: 0 }}
 						>
 							Est. Salary: {offered_salary}
 						</Typography>
@@ -141,11 +143,11 @@ function JobCard({
 						color='text.secondary'
 						sx={{
 							display: '-webkit-box',
-							WebkitLineClamp: { xs: 3, md: 2 },
-							WebkitBoxOrient: 'vertical',
 							overflow: 'hidden',
-							textOverflow: 'ellipsis',
 							paddingY: 0,
+							textOverflow: 'ellipsis',
+							WebkitBoxOrient: 'vertical',
+							WebkitLineClamp: { md: 2, xs: 3 },
 						}}
 					>
 						{stripHtml(jobs_description)}
@@ -163,7 +165,7 @@ function JobCard({
 								variant='text'
 								color='text.secondary'
 								startIcon={<LocationOn />}
-								sx={{ paddingY: 0, paddingX: 0 }}
+								sx={{ paddingX: 0, paddingY: 0 }}
 							>
 								{`${city}, ${country}`}
 							</Box>
@@ -178,7 +180,7 @@ function JobCard({
 					</Box>
 				</CardContent>
 			</Box>
-			<Divider sx={{ marginY: 2, display: { xs: 'block', md: 'none' } }} />
+			<Divider sx={{ display: { md: 'none', xs: 'block' }, marginY: 2 }} />
 		</Grid>
 	);
 }

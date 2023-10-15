@@ -15,9 +15,9 @@ const Places = (): JSX.Element => {
 				xs={4}
 				sx={{
 					'& .lazy-load-image-loaded': {
-						width: '80%',
-						height: '80%',
 						display: 'flex !important',
+						height: '80%',
+						width: '80%',
 					},
 				}}
 			>
@@ -30,8 +30,8 @@ const Places = (): JSX.Element => {
 					alt='...'
 					effect='blur'
 					sx={{
-						objectFit: 'cover',
 						filter: theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+						objectFit: 'cover',
 					}}
 				/>
 			</Grid>
@@ -57,8 +57,8 @@ const Places = (): JSX.Element => {
 					alt='...'
 					effect='blur'
 					sx={{
-						objectFit: 'cover',
 						filter: theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+						objectFit: 'cover',
 					}}
 				/>
 			</Grid>
@@ -84,8 +84,8 @@ const Places = (): JSX.Element => {
 					alt='...'
 					effect='blur'
 					sx={{
-						objectFit: 'cover',
 						filter: theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+						objectFit: 'cover',
 					}}
 				/>
 			</Grid>
@@ -97,9 +97,9 @@ const Places = (): JSX.Element => {
 				xs={4}
 				sx={{
 					'& .lazy-load-image-loaded': {
-						width: '80%',
-						height: '80%',
 						display: 'flex !important',
+						height: '80%',
+						width: '80%',
 					},
 				}}
 			>
@@ -112,8 +112,8 @@ const Places = (): JSX.Element => {
 					alt='...'
 					effect='blur'
 					sx={{
-						objectFit: 'cover',
 						filter: theme.palette.mode === 'dark' ? 'brightness(0.6)' : 'none',
+						objectFit: 'cover',
 					}}
 				/>
 			</Grid>

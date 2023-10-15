@@ -31,8 +31,8 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 	const { data: session, status: authStatus } = useSession();
 
 	const form = useForm<FormData>({
-		resolver: zodResolver(loginAuthSchema),
 		mode: 'onChange',
+		resolver: zodResolver(loginAuthSchema),
 	});
 
 	const {
@@ -43,10 +43,10 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
 	async function onSubmit({ username, password }: FormData) {
 		const res = await signIn('credentials', {
-			username,
+			callbackUrl: '/',
 			password,
 			redirect: false,
-			callbackUrl: '/',
+			username,
 		});
 
 		if (res?.error) {
@@ -127,8 +127,8 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 							/>
 							<Box
 								display='flex'
-								flexDirection={{ xs: 'column', sm: 'row' }}
-								alignItems={{ xs: 'stretched', sm: 'center' }}
+								flexDirection={{ sm: 'row', xs: 'column' }}
+								alignItems={{ sm: 'center', xs: 'stretched' }}
 								justifyContent='flex-end'
 								width={1}
 								marginBottom={0}
