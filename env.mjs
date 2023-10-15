@@ -31,6 +31,7 @@ export const env = createEnv({
 	client: {
 		NEXT_PUBLIC_APP_URL: z.string().min(1),
 		NEXT_PUBLIC_HEIMDALL_API: z.string().min(1),
+		NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: z.string().url(),
 	},
 
 	/**
@@ -44,5 +45,6 @@ export const env = createEnv({
 		NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
 		API_URL: process.env.API_URL,
 		NEXT_PUBLIC_HEIMDALL_API: process.env.NEXT_PUBLIC_HEIMDALL_API,
+		NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: process.env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT,
 	},
 });

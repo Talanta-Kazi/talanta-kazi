@@ -11,6 +11,9 @@ const nextConfig = {
 	output: 'standalone',
 	swcMinify: true,
 	reactStrictMode: true,
+	// experimental: {
+	// 	optimizePackageImports: ['mui'],
+	// },
 	images: {
 		domains: [
 			'firebasestorage.googleapis.com',
@@ -28,6 +31,10 @@ const nextConfig = {
 		{
 			source: '/api/heimdall',
 			destination: env.NEXT_PUBLIC_HEIMDALL_API,
+		},
+		{
+			source: '/api/trace',
+			destination: env.NEXT_PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT,
 		},
 	],
 	eslint: {
